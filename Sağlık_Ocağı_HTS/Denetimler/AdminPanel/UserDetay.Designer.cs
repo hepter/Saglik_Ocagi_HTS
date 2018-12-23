@@ -792,7 +792,7 @@
             this.label12.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label12.Location = new System.Drawing.Point(324, 2);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 20);
+            this.label12.Size = new System.Drawing.Size(70, 20);
             this.label12.TabIndex = 11;
             this.label12.Text = "0";
             this.label12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabMove_MouseDown);

@@ -17,7 +17,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             InitializeComponent();
             pictureBox1.Image = adminIcon.user;
             button1.Focus();
-          
+            label12.Text = "YENİ";
 
         }
 
@@ -44,6 +44,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             richTextBox1.Text=kull.adres ;
 
             activeUserID = kull.id;
+            label12.Text = activeUserID.ToString();
             editMode = true;
             button1.Text = "Değişiklikleri Kaydet";
         }
