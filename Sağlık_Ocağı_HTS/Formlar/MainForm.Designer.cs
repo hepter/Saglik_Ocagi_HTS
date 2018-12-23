@@ -118,7 +118,7 @@
             // yöneticiPaneliToolStripMenuItem
             // 
             this.yöneticiPaneliToolStripMenuItem.Name = "yöneticiPaneliToolStripMenuItem";
-            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.yöneticiPaneliToolStripMenuItem.Text = "Yönetici Paneli";
             this.yöneticiPaneliToolStripMenuItem.Click += new System.EventHandler(this.yöneticiPaneliToolStripMenuItem_Click);
             // 
@@ -159,7 +159,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(49, 105);
+            this.textBox1.Location = new System.Drawing.Point(36, 105);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(115, 22);
             this.textBox1.TabIndex = 5;
