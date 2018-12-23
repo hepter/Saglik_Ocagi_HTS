@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Markup;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Nevron.Nov;
@@ -18,6 +19,7 @@ using Nevron.Nov.Text;
 using Nevron.Nov.UI;
 using Sağlık_Ocağı_HTS.Denetimler.AdminPanel;
 using Sağlık_Ocağı_HTS.Formlar;
+using Sağlık_Ocağı_HTS.Formlar.Ekle;
 
 
 namespace Sağlık_Ocağı_HTS
@@ -61,10 +63,10 @@ namespace Sağlık_Ocağı_HTS
             LoginForm form= new LoginForm();
             
             AdminPanel adminPanel= new AdminPanel();
-            UserDetay userDetay= new UserDetay();
+            EkleTemplate userDetay= new EkleTemplate();
           //  form.Show();
           //  adminPanel.Show();
-          //  userDetay.ShowDialog();
+            userDetay.ShowDialog();
         }
 
         private void nTextBoxControl1_TextChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)

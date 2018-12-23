@@ -75,6 +75,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -123,6 +124,18 @@
     </Compile>
     <Compile Include="Formlar\DialogBox.Designer.cs">
       <DependentUpon>DialogBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\Ekle\EkleTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\Ekle\EkleTemplate.Designer.cs">
+      <DependentUpon>EkleTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\Ekle\Poliklinik\PoliklinikItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Formlar\Ekle\Poliklinik\PoliklinikItem.Designer.cs">
+      <DependentUpon>PoliklinikItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\LoginForm.cs">
       <SubType>Form</SubType>
@@ -190,6 +203,12 @@
     <EmbeddedResource Include="Formlar\DialogBox.resx">
       <DependentUpon>DialogBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\Ekle\EkleTemplate.resx">
+      <DependentUpon>EkleTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\Ekle\Poliklinik\PoliklinikItem.resx">
+      <DependentUpon>PoliklinikItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formlar\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +224,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -247,6 +267,11 @@
   <ItemGroup>
     <None Include="Resources\adm.png" />
     <None Include="Resources\user-male-circle.png" />
+    <None Include="Resources\h.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\hosp.ico" />
+    <None Include="Resources\hosp.png" />
     <Content Include="saglikModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>saglikModel.edmx</DependentUpon>
