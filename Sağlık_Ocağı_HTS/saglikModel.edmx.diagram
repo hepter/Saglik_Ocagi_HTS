@@ -11,6 +11,9 @@
         <EntityTypeShape EntityType="saglikDBModel.kullanici" Width="1.5" PointX="4.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="saglikDBModel.poliklinik" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="saglikDBModel.sevk" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.poliklinik_isim" Width="1.5" PointX="4.5" PointY="8.125" />
+        <AssociationConnector Association="saglikDBModel.FK_poliklinik_bolumid" />
+        <AssociationConnector Association="saglikDBModel.FK_poliklinik_poliklinik" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

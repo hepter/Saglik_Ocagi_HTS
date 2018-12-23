@@ -118,25 +118,26 @@
             // yöneticiPaneliToolStripMenuItem
             // 
             this.yöneticiPaneliToolStripMenuItem.Name = "yöneticiPaneliToolStripMenuItem";
-            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.yöneticiPaneliToolStripMenuItem.Text = "Yönetici Paneli";
             this.yöneticiPaneliToolStripMenuItem.Click += new System.EventHandler(this.yöneticiPaneliToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // poliklinikEkleToolStripMenuItem
             // 
             this.poliklinikEkleToolStripMenuItem.Name = "poliklinikEkleToolStripMenuItem";
-            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.poliklinikEkleToolStripMenuItem.Text = "Poliklinik Ekle";
+            this.poliklinikEkleToolStripMenuItem.Click += new System.EventHandler(this.poliklinikEkleToolStripMenuItem_Click);
             // 
             // doktorEkleToolStripMenuItem
             // 
             this.doktorEkleToolStripMenuItem.Name = "doktorEkleToolStripMenuItem";
-            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.doktorEkleToolStripMenuItem.Text = "Doktor Ekle";
             // 
             // görünümToolStripMenuItem

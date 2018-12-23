@@ -63,10 +63,11 @@ namespace Sağlık_Ocağı_HTS
             LoginForm form= new LoginForm();
             
             AdminPanel adminPanel= new AdminPanel();
-            EkleTemplate userDetay= new EkleTemplate();
+            PoliklinikEkle userDetay= new PoliklinikEkle();
           //  form.Show();
           //  adminPanel.Show();
-            userDetay.ShowDialog();
+           // userDetay.ShowDialog();
+    
         }
 
         private void nTextBoxControl1_TextChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)
@@ -135,6 +136,12 @@ namespace Sağlık_Ocağı_HTS
         {
             AdminPanel panel =new AdminPanel();
             panel.ShowDialog();
+        }
+
+        private void poliklinikEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PoliklinikEkle ekle=new PoliklinikEkle();
+            ekle.ShowDialog();
         }
     }
 }

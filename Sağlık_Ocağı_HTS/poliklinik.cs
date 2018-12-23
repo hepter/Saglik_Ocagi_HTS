@@ -17,5 +17,10 @@ namespace Sağlık_Ocağı_HTS
         public string poliklinikadi { get; set; }
         public string durum { get; set; }
         public string aciklama { get; set; }
+        public Nullable<int> bolumid { get; set; }
+    
+        public virtual poliklinik_isim poliklinik_isim { get; set; }
+        public virtual poliklinik poliklinik1 { get; set; }
+        public virtual poliklinik poliklinik2 { get; set; }
     }
 }

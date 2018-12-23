@@ -78,6 +78,14 @@
           <Property Name="poliklinikadi" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="durum" Type="nvarchar" MaxLength="5" />
           <Property Name="aciklama" Type="nvarchar" MaxLength="255" />
+          <Property Name="bolumid" Type="int" />
+        </EntityType>
+        <EntityType Name="poliklinik_isim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isim" Type="nvarchar" MaxLength="120" />
         </EntityType>
         <EntityType Name="sevk">
           <Key>
@@ -96,6 +104,30 @@
           <Property Name="toplamtutar" Type="nvarchar" MaxLength="50" />
           <Property Name="taburcu" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_poliklinik_bolumid">
+          <End Role="poliklinik_isim" Type="Self.poliklinik_isim" Multiplicity="0..1" />
+          <End Role="poliklinik" Type="Self.poliklinik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poliklinik_isim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="poliklinik">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poliklinik_poliklinik">
+          <End Role="poliklinik" Type="Self.poliklinik" Multiplicity="1" />
+          <End Role="poliklinik1" Type="Self.poliklinik" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="poliklinik">
+              <PropertyRef Name="poliklinikadi" />
+            </Principal>
+            <Dependent Role="poliklinik1">
+              <PropertyRef Name="poliklinikadi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="userCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
           <Parameter Name="result" Type="bit" Mode="InOut" />
@@ -106,7 +138,16 @@
           <EntitySet Name="islem" EntityType="Self.islem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="kullanici" EntityType="Self.kullanici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="poliklinik" EntityType="Self.poliklinik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="poliklinik_isim" EntityType="Self.poliklinik_isim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sevk" EntityType="Self.sevk" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_poliklinik_bolumid" Association="Self.FK_poliklinik_bolumid">
+            <End Role="poliklinik_isim" EntitySet="poliklinik_isim" />
+            <End Role="poliklinik" EntitySet="poliklinik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poliklinik_poliklinik" Association="Self.FK_poliklinik_poliklinik">
+            <End Role="poliklinik" EntitySet="poliklinik" />
+            <End Role="poliklinik1" EntitySet="poliklinik" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -185,6 +226,10 @@
           <Property Name="poliklinikadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="durum" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="aciklama" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="bolumid" Type="Int32" />
+          <NavigationProperty Name="poliklinik_isim" Relationship="saglikDBModel.FK_poliklinik_bolumid" FromRole="poliklinik" ToRole="poliklinik_isim" />
+          <NavigationProperty Name="poliklinik1" Relationship="saglikDBModel.FK_poliklinik_poliklinik" FromRole="poliklinik" ToRole="poliklinik1" />
+          <NavigationProperty Name="poliklinik2" Relationship="saglikDBModel.FK_poliklinik_poliklinik" FromRole="poliklinik1" ToRole="poliklinik" />
         </EntityType>
         <EntityType Name="sevk">
           <Key>
@@ -214,6 +259,15 @@
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="result" Mode="InOut" Type="Boolean" />
           </FunctionImport>
+          <EntitySet Name="poliklinik_isim" EntityType="saglikDBModel.poliklinik_isim" />
+          <AssociationSet Name="FK_poliklinik_bolumid" Association="saglikDBModel.FK_poliklinik_bolumid">
+            <End Role="poliklinik_isim" EntitySet="poliklinik_isim" />
+            <End Role="poliklinik" EntitySet="poliklinik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_poliklinik_poliklinik" Association="saglikDBModel.FK_poliklinik_poliklinik">
+            <End Role="poliklinik" EntitySet="poliklinik" />
+            <End Role="poliklinik1" EntitySet="poliklinik" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="kullanicilar_Result">
           <Property Type="String" Name="kodu" Nullable="false" MaxLength="20" />
@@ -237,6 +291,38 @@
           <Property Type="String" Name="tckimlikno" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="poliklinik_isim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isim" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="polikliniks" Relationship="saglikDBModel.FK_poliklinik_bolumid" FromRole="poliklinik_isim" ToRole="poliklinik" />
+        </EntityType>
+        <Association Name="FK_poliklinik_bolumid">
+          <End Type="saglikDBModel.poliklinik_isim" Role="poliklinik_isim" Multiplicity="0..1" />
+          <End Type="saglikDBModel.poliklinik" Role="poliklinik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poliklinik_isim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="poliklinik">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poliklinik_poliklinik">
+          <End Type="saglikDBModel.poliklinik" Role="poliklinik" Multiplicity="1" />
+          <End Type="saglikDBModel.poliklinik" Role="poliklinik1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="poliklinik">
+              <PropertyRef Name="poliklinikadi" />
+            </Principal>
+            <Dependent Role="poliklinik1">
+              <PropertyRef Name="poliklinikadi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -315,6 +401,7 @@
           <EntitySetMapping Name="poliklinik">
             <EntityTypeMapping TypeName="saglikDBModel.poliklinik">
               <MappingFragment StoreEntitySet="poliklinik">
+                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
                 <ScalarProperty Name="poliklinikadi" ColumnName="poliklinikadi" />
                 <ScalarProperty Name="durum" ColumnName="durum" />
                 <ScalarProperty Name="aciklama" ColumnName="aciklama" />
@@ -339,6 +426,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="userCheck" FunctionName="saglikDBModel.Store.userCheck" />
+          <EntitySetMapping Name="poliklinik_isim">
+            <EntityTypeMapping TypeName="saglikDBModel.poliklinik_isim">
+              <MappingFragment StoreEntitySet="poliklinik_isim">
+                <ScalarProperty Name="isim" ColumnName="isim" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

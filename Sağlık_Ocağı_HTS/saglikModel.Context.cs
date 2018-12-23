@@ -33,6 +33,7 @@ namespace Sağlık_Ocağı_HTS
         public virtual DbSet<kullanici> kullanici { get; set; }
         public virtual DbSet<poliklinik> poliklinik { get; set; }
         public virtual DbSet<sevk> sevk { get; set; }
+        public virtual DbSet<poliklinik_isim> poliklinik_isim { get; set; }
     
         public virtual int userCheck(string username, ObjectParameter result)
         {
