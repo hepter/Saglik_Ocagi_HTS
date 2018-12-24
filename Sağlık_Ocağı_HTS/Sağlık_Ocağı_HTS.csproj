@@ -134,11 +134,23 @@
     <Compile Include="Formlar\HastaIslem\HastaIslemPanel.Designer.cs">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formlar\HastaIslem\IslemItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\IslemItem.Designer.cs">
+      <DependentUpon>IslemItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formlar\HastaIslem\SevkItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Formlar\HastaIslem\SevkItem.Designer.cs">
       <DependentUpon>SevkItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\YeniHastaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\YeniHastaForm.Designer.cs">
+      <DependentUpon>YeniHastaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\HastaIslem\YeniSevkForm.cs">
       <SubType>Form</SubType>
@@ -241,8 +253,14 @@
     <EmbeddedResource Include="Formlar\HastaIslem\HastaIslemPanel.resx">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\IslemItem.resx">
+      <DependentUpon>IslemItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\SevkItem.resx">
       <DependentUpon>SevkItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\YeniHastaForm.resx">
+      <DependentUpon>YeniHastaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\YeniSevkForm.resx">
       <DependentUpon>YeniSevkForm.cs</DependentUpon>
@@ -343,6 +361,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\miktar.png" />
+    <None Include="Resources\tl.png" />
+    <None Include="Resources\doktor.png" />
     <None Include="Resources\taburcu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

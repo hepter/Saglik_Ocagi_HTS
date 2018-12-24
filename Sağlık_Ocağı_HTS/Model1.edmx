@@ -44,7 +44,7 @@
             <PropertyRef Name="tckimlikno" />
           </Key>
           <Property Name="tckimlikno" Type="int" Nullable="false" />
-          <Property Name="dosyaID" Type="int" />
+          <Property Name="dosyaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="kurumsicilno" Type="nvarchar" MaxLength="10" />
           <Property Name="kurumadi" Type="nvarchar" MaxLength="50" />
           <Property Name="yakintel" Type="nvarchar" MaxLength="11" />
@@ -69,6 +69,7 @@
           <Property Name="sevktarihi" Type="datetime" Nullable="false" />
           <Property Name="islemid" Type="int" Nullable="false" />
           <Property Name="doktorid" Type="int" />
+          <Property Name="miktar" Type="int" />
         </EntityType>
         <EntityType Name="kullanicilar">
           <Key>
@@ -417,7 +418,7 @@
             <PropertyRef Name="tckimlikno" />
           </Key>
           <Property Name="tckimlikno" Type="Int32" Nullable="false" />
-          <Property Name="dosyaID" Type="Int32" />
+          <Property Name="dosyaID" Type="Int32" Nullable="false" />
           <Property Name="kurumsicilno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="kurumadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="yakintel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
@@ -448,6 +449,7 @@
           <NavigationProperty Name="doktor" Relationship="Self.FK_islemler_doktor" FromRole="islemler" ToRole="doktor" />
           <NavigationProperty Name="islem" Relationship="Self.FK_islemler_islem" FromRole="islemler" ToRole="islem" />
           <NavigationProperty Name="sevk" Relationship="Self.FK_islemler_sevk" FromRole="islemler" ToRole="sevk" />
+          <Property Name="miktar" Type="Int32" />
         </EntityType>
         <EntityType Name="poliklinik">
           <Key>
@@ -826,6 +828,7 @@
           <EntitySetMapping Name="islemler">
             <EntityTypeMapping TypeName="saglikDBModel.islemler">
               <MappingFragment StoreEntitySet="islemler">
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sevktarihi" ColumnName="sevktarihi" />
                 <ScalarProperty Name="islemid" ColumnName="islemid" />

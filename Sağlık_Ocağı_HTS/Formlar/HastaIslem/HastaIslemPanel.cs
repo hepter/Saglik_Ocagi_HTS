@@ -1,12 +1,7 @@
 ﻿using System;
 
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
@@ -14,6 +9,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
     public partial class HastaIslemPanel : UserControl
     {
         private saglikDBEntities_1 db;
+        public hasta ActiveHasta { get; set; }
+
         public HastaIslemPanel()
         {
             InitializeComponent();
@@ -33,30 +30,51 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         private void materialSingleLineTextField1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter&& materialSingleLineTextField1.Focused)
+            if (e.KeyCode == Keys.Enter && materialSingleLineTextField1.Text.Trim()!="")//&& materialSingleLineTextField1.f)
             {
-                HastaBulDosyaID(materialSingleLineTextField1.Text);
+                TextboxEnterSorgula();
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void TextboxEnterSorgula()
         {
             
             string aranan = materialSingleLineTextField1.Text;
+            int sayi;
+            if (!int.TryParse(aranan,out sayi))
+                return;
             hasta hasta = HastaBulDosyaID(aranan) ?? HastaBulTC(aranan);
             if (hasta!=null)
+            {
                 HastaBilgiDoldur(hasta);
+                ActiveHasta = hasta;
+            }
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+
+            Yeni_Hasta_Form form= new Yeni_Hasta_Form();
+            DialogResult res= form.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                ActiveHasta = form.ActiveHasta;
+                HastaBilgiDoldur(ActiveHasta);
+            }
         }
         private hasta HastaBulDosyaID(string str)
         {
             db = new saglikDBEntities_1();
-            return db.hasta.FirstOrDefault(a => a.dosyaID == int.Parse(str));
+            hasta hasta = db.hasta.Find(int.Parse(str));
+            return hasta; //(a => a.dosyaID == int.Parse(str));
         }
 
         private hasta HastaBulTC(string str)
         {
             db = new saglikDBEntities_1();
-            return db.hasta.FirstOrDefault(a => a.tckimlikno == int.Parse(str));
+            return db.hasta.Find(int.Parse(str));
         }
 
         private void HastaBilgiDoldur(hasta h)
@@ -73,6 +91,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         private void HastaSevkDoldur(hasta h)
         {
+            if (h.dosya.Count==0)
+                return;
             var sevks = h.dosya.First(a => a.dosyaid == h.dosyaID).sevkler;
             List<sevk> sss = sevks.Select(a => a.sevk).ToList();
             foreach (var sevk in sss)
@@ -147,6 +167,18 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                     dataGridButtonEvent(svk);
 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (ActiveHasta == null)
+                return;
+
+
+            YeniSevkForm form = new YeniSevkForm(ActiveHasta);
+            form.ShowDialog();
+            db = new saglikDBEntities_1();
+
         }
     }
 }

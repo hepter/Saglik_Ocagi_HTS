@@ -65,7 +65,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             saglikDBEntities_1 db = new saglikDBEntities_1();
             if (!YıldızlılarDolumu())
             {
-                MessageBox.Show("Lütfen Yldızlı Kısımları Doldurup Tekrar Deneyin!","Hata",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen Yıdızlı Kısımları Doldurup Tekrar Deneyin!","Hata",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
          
@@ -117,7 +117,6 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
           
             
             db.SaveChanges();
-            db.Dispose();
             if (!editMode)
                 MessageBox.Show("Kayıt Eklendi","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
             else

@@ -21,7 +21,7 @@ namespace Sağlık_Ocağı_HTS
         }
     
         public int tckimlikno { get; set; }
-        public Nullable<int> dosyaID { get; set; }
+        public int dosyaID { get; set; }
         public string kurumsicilno { get; set; }
         public string kurumadi { get; set; }
         public string yakintel { get; set; }

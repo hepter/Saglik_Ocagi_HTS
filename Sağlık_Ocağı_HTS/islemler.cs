@@ -18,6 +18,7 @@ namespace Sağlık_Ocağı_HTS
         public System.DateTime sevktarihi { get; set; }
         public int islemid { get; set; }
         public Nullable<int> doktorid { get; set; }
+        public Nullable<int> miktar { get; set; }
     
         public virtual doktor doktor { get; set; }
         public virtual islem islem { get; set; }
