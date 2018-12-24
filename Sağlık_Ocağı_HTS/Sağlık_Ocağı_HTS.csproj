@@ -140,6 +140,12 @@
     <Compile Include="Formlar\HastaIslem\HastaIslemPanel.Designer.cs">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formlar\HastaIslem\SevkItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\SevkItem.Designer.cs">
+      <DependentUpon>SevkItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +244,9 @@
     <EmbeddedResource Include="Formlar\HastaIslem\HastaIslemPanel.resx">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\SevkItem.resx">
+      <DependentUpon>SevkItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.resx">
       <DependentUpon>PoliklinikEkle.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,6 +343,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\taburcu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
