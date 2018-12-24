@@ -25,6 +25,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Poliklinik
             editMode = true;
             button1.Text = "Güncelle";
             richTextBox1.Text = poli.aciklama;
+            materialSingleLineTextField1.Text = poli.poliklinikadi;
             activePoliklinik=poli;
             materialCheckBox1.Checked = ((poli.durum ?? "0")   == "1") ? true : false;
 

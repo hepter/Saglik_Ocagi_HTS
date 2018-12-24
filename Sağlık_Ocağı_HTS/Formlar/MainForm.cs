@@ -143,5 +143,15 @@ namespace Sağlık_Ocağı_HTS
             PoliklinikEkle ekle=new PoliklinikEkle();
             ekle.ShowDialog();
         }
+
+        private void dosyaToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+        {
+            (sender as ToolStripMenuItem).ForeColor = Color.Black;
+        }
+
+        private void dosyaToolStripMenuItem_DropDownClosed(object sender, EventArgs e)
+        {
+            (sender as ToolStripMenuItem).ForeColor = Color.White;
+        }
     }
 }

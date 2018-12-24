@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -60,7 +62,62 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 
         private void button1_Click(object sender, EventArgs e)
         {
+            saglikDBEntities1 db = new saglikDBEntities1();
+            if (!YıldızlılarDolumu())
+            {
+                MessageBox.Show("Lütfen Yldızlı Kısımları Doldurup Tekrar Deneyin!","Hata",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+         
 
+            var userCheck= new ObjectParameter("result",typeof(int));
+            db.userCheck(textBox2.Text, userCheck);
+            if ((bool)userCheck.Value && !editMode)
+            {
+                MessageBox.Show("Zaten Böyle Bir kullanıcı Adı mevcut!","Hata",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+
+            kullanici kull = new kullanici();
+            kull.username = textBox2.Text ;
+            kull.sifre = textBox3.Text ;
+            kull.yetki = comboBox1.SelectedIndex.ToString();
+            kull.ad =  textBox5.Text ;
+            kull.soyad =  textBox6.Text ;
+            kull.tckimlikno = textBox1.Text ;
+            kull.cinsiyet = comboBox2.SelectedIndex.ToString();
+            kull.dogumtarihi = dateTimePicker1.Value   ;
+            kull.isebaslama =  dateTimePicker2.Value ;
+            kull.unvan = textBox11.Text ;
+            kull.evtel  = maskedTextBox1.Text ;
+            kull.ceptel = maskedTextBox2.Text ;
+            kull.dogumyeri = textBox16.Text ;
+            kull.anneadi = textBox15.Text ;
+            kull.babaadi =  textBox17.Text ;
+            kull.kangrubu = textBox18.Text  ;
+            kull.medenihal = comboBox3.SelectedIndex.ToString();
+            kull.maas = textBox19.Text;
+            kull.adres  = richTextBox1.Text ;
+
+            if (editMode)
+            {
+                 kull.id =activeUserID;
+                 db.kullanici.AddOrUpdate(kull);
+            }
+            else
+            {
+                  db.kullanici.Add(kull);
+            }
+          
+            
+            db.SaveChanges();
+            db.Dispose();
+            if (!editMode)
+                MessageBox.Show("Kayıt Eklendi","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Kayıt Güncellendi","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            
+            Close();
         }
 
 

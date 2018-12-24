@@ -23,8 +23,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
 
         private void EkleTemplate_Load(object sender, EventArgs e)
         {
-         
-          
+            PoliklinikDoldur();
+
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -41,6 +41,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
                 poli.poliklinikadi = materialSingleLineTextField1.Text.Trim();
                 PoliklinikGöster pGöster= new PoliklinikGöster(poli);
                 pGöster.ShowDialog();
+                db= new saglikDBEntities1();
+                PoliklinikDoldur();
             }
         }
 
@@ -52,7 +54,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
             toplamControl = 0;
             foreach (var entity in db.poliklinik.ToList())
             {
-                if (!string.IsNullOrWhiteSpace(aramaCacheStr) && entity.poliklinikadi.IndexOf(arananMetin,comparisonType:StringComparison.CurrentCultureIgnoreCase)!=-1)
+                if (string.IsNullOrWhiteSpace(aramaCacheStr) || entity.poliklinikadi.IndexOf(arananMetin,comparisonType:StringComparison.CurrentCultureIgnoreCase)!=-1)
                 {
                     PoliklinikItem item= new PoliklinikItem(entity);
                     item.DüzenleEvent += DüzenleButonAksiyon;
@@ -118,5 +120,9 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
             flowLayoutPanel1.ResumeLayout();
         }
 
+        private void materialSingleLineTextField1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
