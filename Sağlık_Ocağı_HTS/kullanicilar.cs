@@ -10,28 +10,19 @@
 namespace Sağlık_Ocağı_HTS
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class kullanicilar_Result
+    public partial class kullanicilar
     {
-        public string kodu { get; set; }
-        public string ad { get; set; }
-        public string soyad { get; set; }
+        public int id { get; set; }
+        public int tckimlikno { get; set; }
+        public string username { get; set; }
         public string sifre { get; set; }
         public string yetki { get; set; }
-        public string evtel { get; set; }
-        public string ceptel { get; set; }
-        public string adres { get; set; }
         public string unvan { get; set; }
         public Nullable<System.DateTime> isebaslama { get; set; }
         public string maas { get; set; }
-        public string dogumyeri { get; set; }
-        public string anneadi { get; set; }
-        public string babaadi { get; set; }
-        public string cinsiyet { get; set; }
-        public string kangrubu { get; set; }
-        public string medenihal { get; set; }
-        public Nullable<System.DateTime> dogumtarihi { get; set; }
-        public string tckimlikno { get; set; }
-        public string username { get; set; }
+    
+        public virtual birey birey { get; set; }
     }
 }

@@ -14,7 +14,18 @@ namespace Sağlık_Ocağı_HTS
     
     public partial class islem
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public islem()
+        {
+            this.islemler = new HashSet<islemler>();
+        }
+    
+        public int id { get; set; }
+        public int islemid { get; set; }
         public string islemadi { get; set; }
         public string birimfiyat { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<islemler> islemler { get; set; }
     }
 }

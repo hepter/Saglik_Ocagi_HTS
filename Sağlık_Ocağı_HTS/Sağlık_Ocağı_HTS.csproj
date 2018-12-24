@@ -66,6 +66,8 @@
     <Reference Include="Nevron.Nov.Schedule, Version=18.5.28.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad" />
     <Reference Include="Nevron.Nov.Text, Version=18.5.28.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad" />
     <Reference Include="Nevron.Nov.WinFormControls, Version=18.5.28.12, Culture=neutral, PublicKeyToken=b33b1a04bb5ca8ad" />
+    <Reference Include="Nevron.Presentation, Version=18.12.10.12, Culture=neutral, PublicKeyToken=6656c5d1103e75cc" />
+    <Reference Include="Nevron.System, Version=18.12.10.12, Culture=neutral, PublicKeyToken=6a987feae5e496fd" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -87,13 +89,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cikis.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+    <Compile Include="birey.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\adminIcon.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>adminIcon.resx</DependentUpon>
+    <Compile Include="doktor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dosya.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Formlar\AdminPanel\User.cs">
       <SubType>UserControl</SubType>
@@ -118,6 +121,12 @@
     </Compile>
     <Compile Include="Formlar\AdminPanel\AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\ContextForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\ContextForm.Designer.cs">
+      <DependentUpon>ContextForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\DialogBox.cs">
       <SubType>Form</SubType>
@@ -162,47 +171,52 @@
       <DependentUpon>PoliklinikGöster.cs</DependentUpon>
     </Compile>
     <Compile Include="hasta.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="islem.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="kullanici.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+    <Compile Include="islemler.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="kullanicilar_Result.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+    <Compile Include="kullanicilar.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="poliklinik.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="poliklinik_isim.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="saglikModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>saglikModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="saglikModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>saglikModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="saglikModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>saglikModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="sevk.cs">
-      <DependentUpon>saglikModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Formlar\AdminPanel\adminIcon.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>adminIcon.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Compile Include="sevkler.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="taburcu.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Formlar\AdminPanel\User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\AdminPanel\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\ContextForm.resx">
+      <DependentUpon>ContextForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\DialogBox.resx">
       <DependentUpon>DialogBox.cs</DependentUpon>
@@ -247,6 +264,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -257,18 +282,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="saglikModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>saglikModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="saglikModel.edmx.diagram">
-      <DependentUpon>saglikModel.edmx</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -294,16 +307,6 @@
     <None Include="Resources\hosp.ico" />
     <None Include="Resources\hosp.png" />
     <None Include="Resources\hosp1.png" />
-    <Content Include="saglikModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>saglikModel.edmx</DependentUpon>
-      <LastGenOutput>saglikModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="saglikModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>saglikModel.edmx</DependentUpon>
-      <LastGenOutput>saglikModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="stdole">
@@ -316,6 +319,21 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+    <None Include="Resources\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

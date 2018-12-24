@@ -14,11 +14,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
 {
     public partial class PoliklinikEkle : Sağlık_Ocağı_HTS.Formlar.DialogBox
     {
-        private saglikDBEntities1 db;
+        private saglikDBEntities_1 db;
         private int toplamControl = 0;
         public PoliklinikEkle()
         {
-            db = new saglikDBEntities1();
+            db = new saglikDBEntities_1();
             InitializeComponent();
         }
 
@@ -42,7 +42,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
                 poli.poliklinikadi = materialSingleLineTextField1.Text.Trim();
                 PoliklinikGöster pGöster= new PoliklinikGöster(poli);
                 pGöster.ShowDialog();
-                db= new saglikDBEntities1();
+                db= new saglikDBEntities_1();
                 PoliklinikDoldur();
             }
         }
@@ -84,7 +84,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
         {
             PoliklinikGöster pgöster= new PoliklinikGöster(poli);
             pgöster.ShowDialog();
-            db=new saglikDBEntities1();
+            db=new saglikDBEntities_1();
           
         }
 
@@ -94,7 +94,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
 
             if (res==DialogResult.Yes)
             {
-                db=new saglikDBEntities1();
+                db=new saglikDBEntities_1();
                 poliklinik pol = new poliklinik() { poliklinikadi = poli.poliklinikadi };
                 db.poliklinik.Attach(pol);
                 db.poliklinik.Remove(pol);

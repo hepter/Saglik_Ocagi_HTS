@@ -40,7 +40,11 @@
             this.doktorEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.görünümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.testeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.effeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.materialContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -85,18 +89,18 @@
             // oturumdanÇıkToolStripMenuItem
             // 
             this.oturumdanÇıkToolStripMenuItem.Name = "oturumdanÇıkToolStripMenuItem";
-            this.oturumdanÇıkToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.oturumdanÇıkToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.oturumdanÇıkToolStripMenuItem.Text = "Oturumdan çık";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(183, 6);
             // 
             // çıkışToolStripMenuItem
             // 
             this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.çıkışToolStripMenuItem.Text = "Çıkış";
             this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
             // 
@@ -120,7 +124,7 @@
             // 
             this.yöneticiPaneliToolStripMenuItem.BackColor = System.Drawing.Color.Linen;
             this.yöneticiPaneliToolStripMenuItem.Name = "yöneticiPaneliToolStripMenuItem";
-            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.yöneticiPaneliToolStripMenuItem.Text = "Yönetici Paneli";
             this.yöneticiPaneliToolStripMenuItem.Click += new System.EventHandler(this.yöneticiPaneliToolStripMenuItem_Click);
             // 
@@ -128,13 +132,13 @@
             // 
             this.toolStripMenuItem2.BackColor = System.Drawing.Color.Linen;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 6);
             // 
             // poliklinikEkleToolStripMenuItem
             // 
             this.poliklinikEkleToolStripMenuItem.BackColor = System.Drawing.Color.Linen;
             this.poliklinikEkleToolStripMenuItem.Name = "poliklinikEkleToolStripMenuItem";
-            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.poliklinikEkleToolStripMenuItem.Text = "Poliklinik Ekle";
             this.poliklinikEkleToolStripMenuItem.Click += new System.EventHandler(this.poliklinikEkleToolStripMenuItem_Click);
             // 
@@ -142,7 +146,7 @@
             // 
             this.doktorEkleToolStripMenuItem.BackColor = System.Drawing.Color.Linen;
             this.doktorEkleToolStripMenuItem.Name = "doktorEkleToolStripMenuItem";
-            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.doktorEkleToolStripMenuItem.Text = "Doktor Ekle";
             // 
             // görünümToolStripMenuItem
@@ -163,6 +167,31 @@
             this.panel1.Size = new System.Drawing.Size(1104, 457);
             this.panel1.TabIndex = 4;
             // 
+            // materialContextMenuStrip1
+            // 
+            this.materialContextMenuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialContextMenuStrip1.Depth = 0;
+            this.materialContextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.materialContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.testeToolStripMenuItem,
+            this.effeToolStripMenuItem});
+            this.materialContextMenuStrip1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialContextMenuStrip1.Name = "materialContextMenuStrip1";
+            this.materialContextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.materialContextMenuStrip1.Size = new System.Drawing.Size(111, 52);
+            // 
+            // testeToolStripMenuItem
+            // 
+            this.testeToolStripMenuItem.Name = "testeToolStripMenuItem";
+            this.testeToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
+            this.testeToolStripMenuItem.Text = "teste";
+            // 
+            // effeToolStripMenuItem
+            // 
+            this.effeToolStripMenuItem.Name = "effeToolStripMenuItem";
+            this.effeToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
+            this.effeToolStripMenuItem.Text = "effe";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -175,6 +204,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.materialContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -192,6 +222,9 @@
         private System.Windows.Forms.ToolStripMenuItem poliklinikEkleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem doktorEkleToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem effeToolStripMenuItem;
     }
 }
 

@@ -12,18 +12,22 @@ namespace Sağlık_Ocağı_HTS
     using System;
     using System.Collections.Generic;
     
-    public partial class poliklinik_isim
+    public partial class doktor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public poliklinik_isim()
+        public doktor()
         {
-            this.poliklinik = new HashSet<poliklinik>();
+            this.islemler = new HashSet<islemler>();
+            this.sevk = new HashSet<sevk>();
         }
     
-        public int id { get; set; }
-        public string isim { get; set; }
+        public int doktorid { get; set; }
+        public Nullable<int> tckimlikno { get; set; }
     
+        public virtual birey birey { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<poliklinik> poliklinik { get; set; }
+        public virtual ICollection<islemler> islemler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sevk> sevk { get; set; }
     }
 }

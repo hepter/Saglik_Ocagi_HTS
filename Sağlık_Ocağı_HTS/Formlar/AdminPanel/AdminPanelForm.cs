@@ -20,7 +20,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             InitializeComponent();
         }
 
-        private saglikDBEntities1 db;
+        private saglikDBEntities_1 db;
         private void LoginForm_Load(object sender, EventArgs e)
         {
             ControlsYenile();
@@ -28,10 +28,10 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 
         void ControlsYenile()
         {
-            db = new saglikDBEntities1();
+            db = new saglikDBEntities_1();
             flowLayoutPanel1.Controls.Clear();
             SuspendLayout();
-            foreach (var kull in db.kullanici.ToList())
+            foreach (var kull in db.kullanicilar.ToList())
             {
                 User user = new User(kull, SilAksiyon, DetayAksiyon);
                 flowLayoutPanel1.Controls.Add(user);
@@ -44,23 +44,29 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         {
         }
 
-        public void SilAksiyon(kullanici kull )
+        public void SilAksiyon(kullanicilar kull )
         {
-            db = new saglikDBEntities1();
+            
+            db = new saglikDBEntities_1();
             foreach (var user in flowLayoutPanel1.Controls.Cast<User>())
             {
                 if (kull.id==user.EntityKullanici.id)
                 {
-                    db.Entry(new kullanici(){id=user.EntityKullanici.id}).State = EntityState.Deleted;
+                    db.Entry(new kullanicilar()
+                    {
+                        id=user.EntityKullanici.id,
+                        username = user.EntityKullanici.username
+
+                    }).State = EntityState.Deleted;
                     db.SaveChanges();
-                    //new saglikDBEntities1().kullanici.Remove(user.EntityKullanici);
+                    //new saglikDBEntities_1().kullanici.Remove(user.EntityKullanici);
                     flowLayoutPanel1.Controls.Remove(user);
                     break;
                 }
             }
 
         }
-        public void DetayAksiyon(kullanici kull)
+        public void DetayAksiyon(kullanicilar kull)
         {
             UserDetay detay= new UserDetay(kull);
             detay.ShowDialog();

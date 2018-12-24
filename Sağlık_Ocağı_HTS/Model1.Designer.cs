@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\HEPTER10\source\repos\SOHTS\Saglik_Ocagi_HTS\Sağlık_Ocağı_HTS\saglikModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\HEPTER10\source\repos\SOHTS\Saglik_Ocagi_HTS\Sağlık_Ocağı_HTS\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

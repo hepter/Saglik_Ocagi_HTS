@@ -3,8 +3,8 @@ using System;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Migrations;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
-using Sağlık_Ocağı_HTS.Formlar.AdminPanel;
 
 namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
@@ -15,33 +15,35 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         public UserDetay()
         {
             InitializeComponent();
-            pictureBox1.Image = adminIcon.user;
+            pictureBox1.Image = Properties.Resources.user;
             button1.Focus();
             label12.Text = "YENİ";
 
         }
 
-        public UserDetay(kullanici kull) : this()
+        public UserDetay(kullanicilar kull) : this()
         {
+            birey birey  = new saglikDBEntities_1().birey.First(a=>a.tckimlikno==kull.tckimlikno);
+
             textBox2.Text=kull.username ;
             textBox3.Text=kull.sifre ;
             comboBox1.SelectedIndex = int.Parse(kull.yetki);
-            textBox5.Text =kull.ad ;
-            textBox6.Text=kull.soyad ;
-            textBox1.Text=kull.tckimlikno ;
-            comboBox2.SelectedIndex = int.Parse(kull.cinsiyet);
-            dateTimePicker1.Value =kull.dogumtarihi ?? DateTime.Now  ;
+            textBox5.Text =birey.ad ;
+            textBox6.Text=birey.soyad ;
+            textBox1.Text=kull.tckimlikno.ToString() ;
+            comboBox2.SelectedIndex = int.Parse(birey.cinsiyet);
+            dateTimePicker1.Value =birey.dtarihi ?? DateTime.Now  ;
             dateTimePicker2.Value =kull.isebaslama ?? DateTime.Now  ;
             textBox11.Text =kull.unvan;
-            maskedTextBox1.Text =kull.evtel ;
-            maskedTextBox2.Text=kull.ceptel ;
-            textBox16.Text= kull.dogumyeri ;
-            textBox15.Text =kull.anneadi ;
-            textBox17.Text =kull.babaadi ;
-            textBox18.Text =kull.kangrubu ;
-            comboBox3.SelectedIndex = int.Parse(kull.medenihal);
+            maskedTextBox1.Text =birey.evtel ;
+            maskedTextBox2.Text=birey.ceptel ;
+            textBox16.Text= birey.dogumyeri ;
+            textBox15.Text =birey.anneadi ;
+            textBox17.Text =birey.babaadi ;
+            textBox18.Text =birey.kangrubu ;
+            comboBox3.SelectedIndex = int.Parse(birey.medenihal);
             textBox19.Text =kull.maas;
-            richTextBox1.Text=kull.adres ;
+            richTextBox1.Text=birey.adres ;
 
             activeUserID = kull.id;
             label12.Text = activeUserID.ToString();
@@ -60,7 +62,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            saglikDBEntities1 db = new saglikDBEntities1();
+            saglikDBEntities_1 db = new saglikDBEntities_1();
             if (!YıldızlılarDolumu())
             {
                 MessageBox.Show("Lütfen Yldızlı Kısımları Doldurup Tekrar Deneyin!","Hata",MessageBoxButtons.OK,MessageBoxIcon.Warning);
@@ -76,35 +78,41 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
                 return;
             }
 
-            kullanici kull = new kullanici();
+            birey birey  = new birey();
+            kullanicilar kull = new kullanicilar();
             kull.username = textBox2.Text ;
             kull.sifre = textBox3.Text ;
             kull.yetki = comboBox1.SelectedIndex.ToString();
-            kull.ad =  textBox5.Text ;
-            kull.soyad =  textBox6.Text ;
-            kull.tckimlikno = textBox1.Text ;
-            kull.cinsiyet = comboBox2.SelectedIndex.ToString();
-            kull.dogumtarihi = dateTimePicker1.Value   ;
+            birey.ad =  textBox5.Text ;
+            birey.soyad =  textBox6.Text ;
+            kull.tckimlikno = int.Parse(textBox1.Text);
+            birey.cinsiyet = comboBox2.SelectedIndex.ToString();
+            birey.dtarihi = dateTimePicker1.Value   ;
             kull.isebaslama =  dateTimePicker2.Value ;
             kull.unvan = textBox11.Text ;
-            kull.evtel  = maskedTextBox1.Text ;
-            kull.ceptel = maskedTextBox2.Text ;
-            kull.dogumyeri = textBox16.Text ;
-            kull.anneadi = textBox15.Text ;
-            kull.babaadi =  textBox17.Text ;
-            kull.kangrubu = textBox18.Text  ;
-            kull.medenihal = comboBox3.SelectedIndex.ToString();
+            birey.evtel  = maskedTextBox1.Text ;
+            birey.ceptel = maskedTextBox2.Text ;
+            birey.dogumyeri = textBox16.Text ;
+            birey.anneadi = textBox15.Text ;
+            birey.babaadi =  textBox17.Text ;
+            birey.kangrubu = textBox18.Text  ;
+            birey.medenihal = comboBox3.SelectedIndex.ToString();
             kull.maas = textBox19.Text;
-            kull.adres  = richTextBox1.Text ;
+            birey.adres  = richTextBox1.Text ;
 
             if (editMode)
             {
                  kull.id =activeUserID;
-                 db.kullanici.AddOrUpdate(kull);
+                 birey.tckimlikno = kull.tckimlikno;
+                 //db.birey.AddOrUpdate(birey);
+                 db.kullanicilar.AddOrUpdate(kull);
+                 
             }
             else
             {
-                  db.kullanici.Add(kull);
+                  birey.tckimlikno = kull.tckimlikno;
+                  db.birey.AddOrUpdate(birey);
+                  db.kullanicilar.AddOrUpdate(kull);
             }
           
             
@@ -180,11 +188,11 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         {
             if (comboBox1.SelectedIndex==0)
             {
-                pictureBox1.Image = adminIcon.user;
+                pictureBox1.Image = Properties.Resources.user;
             }
             else
             {
-                pictureBox1.Image = adminIcon.admin;
+                pictureBox1.Image = Properties.Resources.admin;
             }
         }
     }

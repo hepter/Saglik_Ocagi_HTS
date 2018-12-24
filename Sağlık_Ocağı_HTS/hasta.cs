@@ -14,23 +14,22 @@ namespace Sağlık_Ocağı_HTS
     
     public partial class hasta
     {
-        public string tckimlikno { get; set; }
-        public string dosyano { get; set; }
-        public string ad { get; set; }
-        public string soyad { get; set; }
-        public string dogumyeri { get; set; }
-        public Nullable<System.DateTime> dogumtarihi { get; set; }
-        public string babaadi { get; set; }
-        public string anneadi { get; set; }
-        public string cinsiyet { get; set; }
-        public string kangrubu { get; set; }
-        public string medenihal { get; set; }
-        public string adres { get; set; }
-        public string tel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public hasta()
+        {
+            this.dosya = new HashSet<dosya>();
+        }
+    
+        public int tckimlikno { get; set; }
+        public Nullable<int> dosyaID { get; set; }
         public string kurumsicilno { get; set; }
         public string kurumadi { get; set; }
         public string yakintel { get; set; }
         public string yakinkurumsicilno { get; set; }
         public string yakinkurumadi { get; set; }
+    
+        public virtual birey birey { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<dosya> dosya { get; set; }
     }
 }

@@ -20,6 +20,7 @@ using Nevron.Nov.UI;
 using Sağlık_Ocağı_HTS.Denetimler.AdminPanel;
 using Sağlık_Ocağı_HTS.Formlar;
 using Sağlık_Ocağı_HTS.Formlar.Ekle;
+using Sağlık_Ocağı_HTS.Formlar.HastaIslem;
 
 
 namespace Sağlık_Ocağı_HTS
@@ -43,7 +44,7 @@ namespace Sağlık_Ocağı_HTS
            
         }
 
-        private saglikDBEntities1 db = new saglikDBEntities1();
+        private saglikDBEntities_1 db = new saglikDBEntities_1();
         int aaa = 0;
         private void button1_Click(object sender, EventArgs e)
        {
@@ -67,7 +68,9 @@ namespace Sağlık_Ocağı_HTS
           //  form.Show();
           //  AdminPanelForm.Show();
            // userDetay.ShowDialog();
-    
+            HastaIslemPanel  hastaIslemPanel=  new HastaIslemPanel();
+            hastaIslemPanel.Dock = DockStyle.Fill;
+            panel1.Controls.Add(hastaIslemPanel);
         }
 
         private void nTextBoxControl1_TextChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)
@@ -111,7 +114,7 @@ namespace Sağlık_Ocağı_HTS
 
         //    int sonuc = 0;
         //    var bbb= new ObjectParameter("result",typeof(bool));
-        //    db  = new saglikDBEntities1();
+        //    db  = new saglikDBEntities_1();
         //    db.userCheck(textBox1.Text,bbb);
 
         //    if ((bool)bbb.Value)
@@ -127,8 +130,8 @@ namespace Sağlık_Ocağı_HTS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            db = new saglikDBEntities1();
-            UserDetay detay= new UserDetay(db.kullanici.FirstOrDefault());
+            db = new saglikDBEntities_1();
+            UserDetay detay= new UserDetay(db.kullanicilar.FirstOrDefault());
             detay.ShowDialog();
         }
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="704549d122054575b1d028505514467b" Name="Diagram1">
+        <EntityTypeShape EntityType="saglikDBModel.birey" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.doktor" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.dosya" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.hasta" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.islem" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.islemler" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.poliklinik" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.poliklinik_isim" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.sevk" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.sevkler" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="saglikDBModel.taburcu" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="saglikDBModel.FK_doktor_birey" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_hasta_birey" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_islemler_doktor" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_sevk_doktor" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_dosya_hasta" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_sevkler_dosya" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_islemler_islem" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_islemler_sevk" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_poliklinik_bolumid" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_sevk_poliklinik1" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_sevk_taburcu" ManuallyRouted="false" />
+        <AssociationConnector Association="saglikDBModel.FK_sevkler_sevk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="saglikDBModel.kullanicilar" Width="1.5" PointX="2.75" PointY="11.125" />
+        <AssociationConnector Association="saglikDBModel.FK_kullanicilar_birey" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

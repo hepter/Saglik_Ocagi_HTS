@@ -15,10 +15,10 @@ namespace Sağlık_Ocağı_HTS
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class saglikDBEntities1 : DbContext
+    public partial class saglikDBEntities_1 : DbContext
     {
-        public saglikDBEntities1()
-            : base("name=saglikDBEntities1")
+        public saglikDBEntities_1()
+            : base("name=saglikDBEntities_1")
         {
         }
     
@@ -27,13 +27,19 @@ namespace Sağlık_Ocağı_HTS
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<cikis> cikis { get; set; }
+        public virtual DbSet<birey> birey { get; set; }
+        public virtual DbSet<doktor> doktor { get; set; }
+        public virtual DbSet<dosya> dosya { get; set; }
         public virtual DbSet<hasta> hasta { get; set; }
         public virtual DbSet<islem> islem { get; set; }
-        public virtual DbSet<kullanici> kullanici { get; set; }
+        public virtual DbSet<islemler> islemler { get; set; }
         public virtual DbSet<poliklinik> poliklinik { get; set; }
-        public virtual DbSet<sevk> sevk { get; set; }
         public virtual DbSet<poliklinik_isim> poliklinik_isim { get; set; }
+        public virtual DbSet<sevk> sevk { get; set; }
+        public virtual DbSet<sevkler> sevkler { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<taburcu> taburcu { get; set; }
+        public virtual DbSet<kullanicilar> kullanicilar { get; set; }
     
         public virtual int userCheck(string username, ObjectParameter result)
         {

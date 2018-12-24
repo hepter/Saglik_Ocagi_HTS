@@ -55,7 +55,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Poliklinik
 
 
         }
-        saglikDBEntities1 db=new saglikDBEntities1();
+        saglikDBEntities_1 db=new saglikDBEntities_1();
         void PoliklinikComboDoldur()
         {
             foreach (var item in db.poliklinik_isim.Select(a=> new PoliklinikComboItem(){poliklinikİsim = a}).ToList())

@@ -14,13 +14,19 @@ namespace Sağlık_Ocağı_HTS
     
     public partial class poliklinik
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public poliklinik()
+        {
+            this.sevk = new HashSet<sevk>();
+        }
+    
         public string poliklinikadi { get; set; }
         public string durum { get; set; }
         public string aciklama { get; set; }
         public Nullable<int> bolumid { get; set; }
     
         public virtual poliklinik_isim poliklinik_isim { get; set; }
-        public virtual poliklinik poliklinik1 { get; set; }
-        public virtual poliklinik poliklinik2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sevk> sevk { get; set; }
     }
 }

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sağlık_Ocağı_HTS.Formlar.AdminPanel;
 
 namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
@@ -19,8 +18,8 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
  
     public partial class User : UserControl
     {
-        public delegate void AksiyonHandler(kullanici user);
-        public kullanici EntityKullanici { get;}
+        public delegate void AksiyonHandler(kullanicilar user);
+        public kullanicilar EntityKullanici { get;}
 
         public event AksiyonHandler SilEvent;
         public event AksiyonHandler DetayEvent;
@@ -28,29 +27,31 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         public User()
         {
             InitializeComponent();
-            pictureBox1.Image = adminIcon.user;
+            pictureBox1.Image = Properties.Resources.user;
             label4.Text = "User";
         }
-        public User(kullanici kull,AksiyonHandler Sil,AksiyonHandler Detay):this()
+        public User(kullanicilar kull,AksiyonHandler Sil,AksiyonHandler Detay):this()
         {
            
             switch ((UserSeviye)int.Parse(kull.yetki))
             {
                 case UserSeviye.Admin:
-                    pictureBox1.Image = adminIcon.admin;
+                    pictureBox1.Image = Properties.Resources.admin;
                     break;
                 case UserSeviye.User:
-                    pictureBox1.Image = adminIcon.user;
+                    pictureBox1.Image = Properties.Resources.user;
                     break;
             }
 
-         
+
+            List<birey> bireyler  = new saglikDBEntities_1().birey.ToList();
+            birey birey =  bireyler.First(a=>a.tckimlikno==kull.tckimlikno);
             SilEvent = Sil;
             DetayEvent = Detay;
             EntityKullanici = kull;
             label4.Text = kull.username;
-            materialLabel2.Text = kull.ad;
-            materialLabel4.Text = kull.soyad;
+            materialLabel2.Text = birey.ad;
+            materialLabel4.Text = birey.soyad;
             label6.Text = kull.unvan;
             label3.Text = kull.id.ToString();
         }
