@@ -1,6 +1,6 @@
-﻿namespace Sağlık_Ocağı_HTS.Formlar
+﻿namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
-    partial class AdminPanel
+    partial class AdminPanelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -78,7 +78,7 @@
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             // 
-            // AdminPanel
+            // AdminPanelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

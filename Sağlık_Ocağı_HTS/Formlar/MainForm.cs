@@ -62,10 +62,10 @@ namespace Sağlık_Ocağı_HTS
         {
             LoginForm form= new LoginForm();
             
-            AdminPanel adminPanel= new AdminPanel();
+            AdminPanelForm AdminPanelForm= new AdminPanelForm();
             PoliklinikEkle userDetay= new PoliklinikEkle();
           //  form.Show();
-          //  adminPanel.Show();
+          //  AdminPanelForm.Show();
            // userDetay.ShowDialog();
     
         }
@@ -134,7 +134,7 @@ namespace Sağlık_Ocağı_HTS
 
         private void yöneticiPaneliToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdminPanel panel =new AdminPanel();
+            AdminPanelForm panel =new AdminPanelForm();
             panel.ShowDialog();
         }
 

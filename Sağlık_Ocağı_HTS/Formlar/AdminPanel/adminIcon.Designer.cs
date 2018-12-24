@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel {
+namespace Sağlık_Ocağı_HTS.Formlar.AdminPanel {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sağlık_Ocağı_HTS.Denetimler.AdminPanel.adminIcon", typeof(adminIcon).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sağlık_Ocağı_HTS.Formlar.AdminPanelForm.adminIcon", typeof(adminIcon).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

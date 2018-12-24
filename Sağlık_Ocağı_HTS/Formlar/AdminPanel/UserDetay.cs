@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿
+using System;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Migrations;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
+using Sağlık_Ocağı_HTS.Formlar.AdminPanel;
 
 namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
@@ -129,6 +127,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
                 string.IsNullOrWhiteSpace(textBox3.Text) ||
                 string.IsNullOrWhiteSpace(textBox5.Text) ||
                 string.IsNullOrWhiteSpace(textBox6.Text) ||
+                string.IsNullOrWhiteSpace(textBox11.Text) ||
                 !maskedTextBox2.MaskCompleted ||
                 comboBox1.SelectedIndex ==-1)
             {
@@ -173,9 +172,20 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         private void tabMove_MouseUp(object sender, MouseEventArgs e)
         {
             dragging = false;
-        } 
+        }
+
         #endregion
 
-
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex==0)
+            {
+                pictureBox1.Image = adminIcon.user;
+            }
+            else
+            {
+                pictureBox1.Image = adminIcon.admin;
+            }
+        }
     }
 }

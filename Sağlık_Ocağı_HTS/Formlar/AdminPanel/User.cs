@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Sağlık_Ocağı_HTS.Formlar.AdminPanel;
 
 namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
@@ -28,11 +29,11 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         {
             InitializeComponent();
             pictureBox1.Image = adminIcon.user;
-            nLabelControl1.Text = "User";
+            label4.Text = "User";
         }
-        public User(kullanici kull,AksiyonHandler Sil,AksiyonHandler Detay)
+        public User(kullanici kull,AksiyonHandler Sil,AksiyonHandler Detay):this()
         {
-            InitializeComponent();
+           
             switch ((UserSeviye)int.Parse(kull.yetki))
             {
                 case UserSeviye.Admin:
@@ -47,10 +48,10 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             SilEvent = Sil;
             DetayEvent = Detay;
             EntityKullanici = kull;
-            nLabelControl1.Text = kull.username;
-            nLabelControl4.Text = kull.ad;
-            nLabelControl5.Text = kull.soyad;
-            nLabelControl6.Text = kull.unvan;
+            label4.Text = kull.username;
+            materialLabel2.Text = kull.ad;
+            materialLabel4.Text = kull.soyad;
+            label6.Text = kull.unvan;
             label3.Text = kull.id.ToString();
         }
 

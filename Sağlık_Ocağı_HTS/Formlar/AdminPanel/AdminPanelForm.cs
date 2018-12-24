@@ -2,32 +2,42 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
-using Sağlık_Ocağı_HTS.Denetimler.AdminPanel;
 
-namespace Sağlık_Ocağı_HTS.Formlar
+
+namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
-    public partial class AdminPanel : MaterialForm
+    public partial class AdminPanelForm : MaterialForm
     {
-        public AdminPanel()
+        public AdminPanelForm()
         {
             InitializeComponent();
         }
 
+        private saglikDBEntities1 db;
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            var db = new saglikDBEntities1();
+            ControlsYenile();
+        }
 
+        void ControlsYenile()
+        {
+            db = new saglikDBEntities1();
+            flowLayoutPanel1.Controls.Clear();
+            SuspendLayout();
             foreach (var kull in db.kullanici.ToList())
             {
                 User user = new User(kull, SilAksiyon, DetayAksiyon);
                 flowLayoutPanel1.Controls.Add(user);
             }
+            ResumeLayout();
+            ControlsYenidenBoyutla();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,11 +46,14 @@ namespace Sağlık_Ocağı_HTS.Formlar
 
         public void SilAksiyon(kullanici kull )
         {
+            db = new saglikDBEntities1();
             foreach (var user in flowLayoutPanel1.Controls.Cast<User>())
             {
                 if (kull.id==user.EntityKullanici.id)
                 {
-                    new saglikDBEntities1().kullanici.Remove(user.EntityKullanici);
+                    db.Entry(new kullanici(){id=user.EntityKullanici.id}).State = EntityState.Deleted;
+                    db.SaveChanges();
+                    //new saglikDBEntities1().kullanici.Remove(user.EntityKullanici);
                     flowLayoutPanel1.Controls.Remove(user);
                     break;
                 }
@@ -49,9 +62,9 @@ namespace Sağlık_Ocağı_HTS.Formlar
         }
         public void DetayAksiyon(kullanici kull)
         {
-          
             UserDetay detay= new UserDetay(kull);
             detay.ShowDialog();
+            ControlsYenile();
         }
 
 
@@ -59,9 +72,16 @@ namespace Sağlık_Ocağı_HTS.Formlar
         {
             UserDetay dialog = new UserDetay();
             dialog.ShowDialog();
+            ControlsYenile();
         }
 
         private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)
+        {
+            ControlsYenidenBoyutla();
+        }
+
+
+        void ControlsYenidenBoyutla()
         {
             flowLayoutPanel1.SuspendLayout();
             foreach (var user in flowLayoutPanel1.Controls.Cast<User>())

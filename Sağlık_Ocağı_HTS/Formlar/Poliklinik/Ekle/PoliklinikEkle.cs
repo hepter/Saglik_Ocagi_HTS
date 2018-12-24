@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -93,8 +94,13 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
 
             if (res==DialogResult.Yes)
             {
-                db.poliklinik.Remove(poli);
                 db=new saglikDBEntities1();
+                poliklinik pol = new poliklinik() { poliklinikadi = poli.poliklinikadi };
+                db.poliklinik.Attach(pol);
+                db.poliklinik.Remove(pol);
+                //db.Entry(new poliklinik(){poliklinikadi= poli.poliklinikadi}).State = EntityState.Deleted;
+                db.SaveChanges();
+                
                 PoliklinikDoldur();
             }
 

@@ -90,34 +90,34 @@
     <Compile Include="cikis.cs">
       <DependentUpon>saglikModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Denetimler\AdminPanel\adminIcon.Designer.cs">
+    <Compile Include="Formlar\AdminPanel\adminIcon.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>adminIcon.resx</DependentUpon>
     </Compile>
-    <Compile Include="Denetimler\AdminPanel\User.cs">
+    <Compile Include="Formlar\AdminPanel\User.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Denetimler\AdminPanel\User.Designer.cs">
+    <Compile Include="Formlar\AdminPanel\User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
-    <Compile Include="Denetimler\AdminPanel\UserAddDialog.cs">
+    <Compile Include="Formlar\AdminPanel\UserAddDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Denetimler\AdminPanel\UserAddDialog.Designer.cs">
+    <Compile Include="Formlar\AdminPanel\UserAddDialog.Designer.cs">
       <DependentUpon>UserAddDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Denetimler\AdminPanel\UserDetay.cs">
+    <Compile Include="Formlar\AdminPanel\UserDetay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Denetimler\AdminPanel\UserDetay.Designer.cs">
+    <Compile Include="Formlar\AdminPanel\UserDetay.Designer.cs">
       <DependentUpon>UserDetay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel.cs">
+    <Compile Include="Formlar\AdminPanel\AdminPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel.Designer.cs">
-      <DependentUpon>AdminPanel.cs</DependentUpon>
+    <Compile Include="Formlar\AdminPanel\AdminPanelForm.Designer.cs">
+      <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\DialogBox.cs">
       <SubType>Form</SubType>
@@ -193,21 +193,21 @@
     <Compile Include="sevk.cs">
       <DependentUpon>saglikModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Denetimler\AdminPanel\adminIcon.resx">
+    <EmbeddedResource Include="Formlar\AdminPanel\adminIcon.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>adminIcon.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Denetimler\AdminPanel\User.resx">
+    <EmbeddedResource Include="Formlar\AdminPanel\User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Denetimler\AdminPanel\UserAddDialog.resx">
+    <EmbeddedResource Include="Formlar\AdminPanel\UserAddDialog.resx">
       <DependentUpon>UserAddDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Denetimler\AdminPanel\UserDetay.resx">
+    <EmbeddedResource Include="Formlar\AdminPanel\UserDetay.resx">
       <DependentUpon>UserDetay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\AdminPanel.resx">
-      <DependentUpon>AdminPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Formlar\AdminPanel\AdminPanelForm.resx">
+      <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\DialogBox.resx">
       <DependentUpon>DialogBox.cs</DependentUpon>
@@ -307,5 +307,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
