@@ -122,12 +122,6 @@
     <Compile Include="Formlar\AdminPanel\AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\ContextForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formlar\ContextForm.Designer.cs">
-      <DependentUpon>ContextForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formlar\DialogBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +139,12 @@
     </Compile>
     <Compile Include="Formlar\HastaIslem\SevkItem.Designer.cs">
       <DependentUpon>SevkItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\YeniSevkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\YeniSevkForm.Designer.cs">
+      <DependentUpon>YeniSevkForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.cs">
       <SubType>Form</SubType>
@@ -235,9 +235,6 @@
     <EmbeddedResource Include="Formlar\AdminPanel\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\ContextForm.resx">
-      <DependentUpon>ContextForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formlar\DialogBox.resx">
       <DependentUpon>DialogBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\SevkItem.resx">
       <DependentUpon>SevkItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\YeniSevkForm.resx">
+      <DependentUpon>YeniSevkForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.resx">
       <DependentUpon>PoliklinikEkle.cs</DependentUpon>
