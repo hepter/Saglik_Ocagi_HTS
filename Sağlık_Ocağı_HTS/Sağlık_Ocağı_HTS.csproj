@@ -125,6 +125,12 @@
     <Compile Include="Formlar\DialogBox.Designer.cs">
       <DependentUpon>DialogBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formlar\HastaIslem\HastaIslemPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\HastaIslemPanel.Designer.cs">
+      <DependentUpon>HastaIslemPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\DialogBox.resx">
       <DependentUpon>DialogBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\HastaIslemPanel.resx">
+      <DependentUpon>HastaIslemPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.resx">
       <DependentUpon>PoliklinikEkle.cs</DependentUpon>

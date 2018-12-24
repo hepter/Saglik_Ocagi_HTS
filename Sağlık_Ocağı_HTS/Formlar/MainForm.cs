@@ -106,24 +106,24 @@ namespace Sağlık_Ocağı_HTS
             Application.Exit();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
+        //private void button1_Click_1(object sender, EventArgs e)
+        //{
 
-            int sonuc = 0;
-            var bbb= new ObjectParameter("result",typeof(bool));
-            db  = new saglikDBEntities1();
-            db.userCheck(textBox1.Text,bbb);
+        //    int sonuc = 0;
+        //    var bbb= new ObjectParameter("result",typeof(bool));
+        //    db  = new saglikDBEntities1();
+        //    db.userCheck(textBox1.Text,bbb);
 
-            if ((bool)bbb.Value)
-            {
-                MessageBox.Show("doğru");
-            }
-            else
-            {
-                MessageBox.Show("yanlış");
-            }
+        //    if ((bool)bbb.Value)
+        //    {
+        //        MessageBox.Show("doğru");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("yanlış");
+        //    }
            
-        }
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {
