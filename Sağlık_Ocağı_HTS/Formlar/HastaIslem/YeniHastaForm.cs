@@ -42,7 +42,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 return;
             }
 
-
+            DateTime aktifDosyaTarihi = DateTime.Now;
             birey birey  = new birey();
 
             birey.tckimlikno = int.Parse(textBox1.Text);
@@ -66,9 +66,19 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             birey.hasta.yakinkurumadi =textBox4.Text;
             birey.hasta.yakinkurumsicilno =textBox11.Text;
             birey.hasta.yakintel =maskedTextBox3.Text;
+
             
+            dosya dosya=new dosya();
+            dosya.dosyatarihi =aktifDosyaTarihi;
+            dosya.hastatckimlikno = birey.tckimlikno;
+
+            birey.hasta.dosya =new List<dosya>();
+            birey.hasta.dosya.Add(dosya);
+
+
             db.birey.AddOrUpdate(birey);
             db.SaveChanges();
+
             ActiveHasta = birey.hasta;
             MessageBox.Show("Hasta Eklendi!","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
             DialogResult = DialogResult.OK;

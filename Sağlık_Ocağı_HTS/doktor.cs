@@ -22,7 +22,7 @@ namespace Sağlık_Ocağı_HTS
         }
     
         public int doktorid { get; set; }
-        public Nullable<int> tckimlikno { get; set; }
+        public int tckimlikno { get; set; }
     
         public virtual birey birey { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

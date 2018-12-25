@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         private const string yeniStr = "Yeni Ekle...";
         private DateTime aktifSevkTarihi;
         private string aktifSaat;
-        private sevk aktifSevk= new sevk();
+        private List<islemler> islemlerList=new List<islemler>();
 
         private saglikDBEntities_1 db;
         public YeniSevkForm()
@@ -112,10 +113,17 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         void SevkİşlemControlsDoldur()
         {
-            db.sevk.Find(aktifSevkTarihi);
+            var islemlers =db.islemler.Where(a=>a.sevktarihi==aktifSevkTarihi);
+            if (islemlers == null || islemlers.Count() == 0)
+                return;
 
-            IslemItem item= new IslemItem(islem);
-            flowLayoutPanel1.Controls.Add(item);
+
+            foreach (var islemler in islemlers)
+            {
+                IslemItem item= new IslemItem(islemler.islem);
+                flowLayoutPanel1.Controls.Add(item);
+            }
+            
 
 
 
@@ -158,16 +166,22 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             }
 
             
-
+            db=new saglikDBEntities_1();
+            
             islem islem =(comboBox2.SelectedItem as İşlemComboItem).islm;
             IslemItem item= new IslemItem(islem);
             flowLayoutPanel1.Controls.Add(item);
 
+            
+        
+            doktor dr =(comboBox3.SelectedItem as DrComboItem).dr;
+
             islemler islemler= new islemler();
             islemler.sevktarihi = aktifSevkTarihi;
-            islemler.islemid = islem.islemid;
-            aktifSevk.islemler.Add(islemler);
+            islemler.doktorid = dr.doktorid;
+            islemler.miktar = 1;
 
+            islemlerList.Add(islemler);
         }
 
         #region Yeni işlem ekle Comboboxlar
@@ -234,20 +248,37 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             flowLayoutPanel1.Controls.Add(item);
 
 
-            doktor doktor = (comboBox2.SelectedItem as DrComboItem).dr;
-            poliklinik poliklinik = (comboBox2.SelectedItem as PoliComboItem).poliklinik;
+            doktor doktor = (comboBox3.SelectedItem as DrComboItem).dr;
+            poliklinik poliklinik = (comboBox1.SelectedItem as PoliComboItem).poliklinik;
+
+           
+
             sevk sevk= new sevk();
-            sevk.poliklinik1 = poliklinik;
-            sevk.doktor = doktor;  
+
+            sevk.poliklinik1= new poliklinik();
+            sevk.poliklinik1.aciklama = poliklinik.aciklama;
+            sevk.poliklinik1.bolumid = poliklinik.bolumid;
+            sevk.poliklinik1.durum = poliklinik.durum;
+            sevk.poliklinik1.poliklinikadi = poliklinik.poliklinikadi;
+
+            sevk.doktor = new doktor();
+            sevk.doktor.doktorid = doktor.doktorid;
+            sevk.doktor.tckimlikno = doktor.tckimlikno;
+
+
             sevk.sevktarihi = aktifSevkTarihi;
             sevk.saat = aktifSaat;
             sevk.sevkedendoktorid = doktor.doktorid;
             sevk.sira = sıraNo.ToString();
 
-            taburcu taburcu= new taburcu();
-            taburcu.taburcuoldumu = "0";
-            sevk.taburcu = taburcu;
-            sevk.islemler = aktifSevk.islemler;
+          
+            sevk.taburcu = new taburcu();
+            sevk.taburcu.taburcuoldumu = "0";
+            sevk.islemler= new List<islemler>();
+            foreach (var islems in islemlerList)
+                sevk.islemler.Add(islems);
+
+            //sevk.islemler = aktifSevk.islemler;
 
             db.sevk.Add(sevk);
             db.SaveChanges();

@@ -137,7 +137,7 @@
             // 
             this.comboBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(127, 3);
+            this.comboBox2.Location = new System.Drawing.Point(127, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(153, 24);
             this.comboBox2.TabIndex = 1;
@@ -162,7 +162,7 @@
             // 
             this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(428, 3);
+            this.comboBox3.Location = new System.Drawing.Point(428, 4);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(154, 24);
             this.comboBox3.TabIndex = 1;
@@ -226,7 +226,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(183, 34);
             this.button2.TabIndex = 7;
-            this.button2.Text = "Sevki Okuştur";
+            this.button2.Text = "Sevki Oluştur";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 

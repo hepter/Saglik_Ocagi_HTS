@@ -22,7 +22,7 @@ namespace Sağlık_Ocağı_HTS
     
         public int dosyaid { get; set; }
         public Nullable<System.DateTime> dosyatarihi { get; set; }
-        public Nullable<int> hastatckimlikno { get; set; }
+        public int hastatckimlikno { get; set; }
     
         public virtual hasta hasta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

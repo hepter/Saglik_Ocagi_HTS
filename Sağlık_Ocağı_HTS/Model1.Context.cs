@@ -33,13 +33,13 @@ namespace Sağlık_Ocağı_HTS
         public virtual DbSet<hasta> hasta { get; set; }
         public virtual DbSet<islem> islem { get; set; }
         public virtual DbSet<islemler> islemler { get; set; }
+        public virtual DbSet<kullanicilar> kullanicilar { get; set; }
         public virtual DbSet<poliklinik> poliklinik { get; set; }
         public virtual DbSet<poliklinik_isim> poliklinik_isim { get; set; }
         public virtual DbSet<sevk> sevk { get; set; }
         public virtual DbSet<sevkler> sevkler { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<taburcu> taburcu { get; set; }
-        public virtual DbSet<kullanicilar> kullanicilar { get; set; }
     
         public virtual int userCheck(string username, ObjectParameter result)
         {
