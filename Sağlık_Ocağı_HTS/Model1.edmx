@@ -55,10 +55,9 @@
           <Key>
             <PropertyRef Name="islemid" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="islemid" Type="int" Nullable="false" />
+          <Property Name="islemid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="islemadi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="birimfiyat" Type="nvarchar" MaxLength="50" />
+          <Property Name="birimfiyat" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="islemler">
           <Key>
@@ -431,10 +430,9 @@
           <Key>
             <PropertyRef Name="islemid" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="islemid" Type="Int32" Nullable="false" />
           <Property Name="islemadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="birimfiyat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birimfiyat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="islemler" Relationship="Self.FK_islemler_islem" FromRole="islem" ToRole="islemler" />
         </EntityType>
         <EntityType Name="islemler">
@@ -818,7 +816,6 @@
           <EntitySetMapping Name="islem">
             <EntityTypeMapping TypeName="saglikDBModel.islem">
               <MappingFragment StoreEntitySet="islem">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="islemid" ColumnName="islemid" />
                 <ScalarProperty Name="islemadi" ColumnName="islemadi" />
                 <ScalarProperty Name="birimfiyat" ColumnName="birimfiyat" />

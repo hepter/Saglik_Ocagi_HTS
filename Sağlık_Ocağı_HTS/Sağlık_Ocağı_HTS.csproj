@@ -128,11 +128,23 @@
     <Compile Include="Formlar\DialogBox.Designer.cs">
       <DependentUpon>DialogBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formlar\HastaIslem\DoktorEkleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\DoktorEkleForm.Designer.cs">
+      <DependentUpon>DoktorEkleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formlar\HastaIslem\HastaIslemPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Formlar\HastaIslem\HastaIslemPanel.Designer.cs">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\IslemEkleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\IslemEkleForm.Designer.cs">
+      <DependentUpon>IslemEkleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\HastaIslem\IslemItem.cs">
       <SubType>UserControl</SubType>
@@ -250,8 +262,14 @@
     <EmbeddedResource Include="Formlar\DialogBox.resx">
       <DependentUpon>DialogBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\DoktorEkleForm.resx">
+      <DependentUpon>DoktorEkleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\HastaIslemPanel.resx">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\IslemEkleForm.resx">
+      <DependentUpon>IslemEkleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\IslemItem.resx">
       <DependentUpon>IslemItem.cs</DependentUpon>

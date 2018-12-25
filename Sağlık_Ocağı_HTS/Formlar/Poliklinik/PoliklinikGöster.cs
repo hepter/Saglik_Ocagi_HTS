@@ -77,6 +77,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Poliklinik
             db.poliklinik.AddOrUpdate(poli);
             db.SaveChanges();
             MessageBox.Show("İşlem Tamamlandı","Kayıt",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
             Close();
         }
     }

@@ -41,9 +41,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
                 poliklinik poli= new poliklinik();
                 poli.poliklinikadi = materialSingleLineTextField1.Text.Trim();
                 PoliklinikGöster pGöster= new PoliklinikGöster(poli);
-                pGöster.ShowDialog();
-                db= new saglikDBEntities_1();
-                PoliklinikDoldur();
+                if (pGöster.ShowDialog()==DialogResult.OK)
+                {
+                    db= new saglikDBEntities_1();
+                    PoliklinikDoldur();
+                }
             }
         }
 

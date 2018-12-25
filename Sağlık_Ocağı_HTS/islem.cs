@@ -20,7 +20,6 @@ namespace Sağlık_Ocağı_HTS
             this.islemler = new HashSet<islemler>();
         }
     
-        public int id { get; set; }
         public int islemid { get; set; }
         public string islemadi { get; set; }
         public string birimfiyat { get; set; }
