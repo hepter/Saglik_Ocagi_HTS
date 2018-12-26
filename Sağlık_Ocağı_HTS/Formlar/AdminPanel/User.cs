@@ -51,10 +51,10 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             DetayEvent = Detay;
             EntityKullanici = kull;
             label4.Text = kull.username;
-            materialLabel2.Text = birey.ad;
-            materialLabel4.Text = birey.soyad;
-            label6.Text = kull.unvan;
-            label3.Text = kull.id.ToString();
+            materialLabel1.Text = birey.ad;
+            materialLabel3.Text = birey.soyad;
+            label5.Text = "Ünvan:"+kull.unvan;
+            label1.Text = "USER ID:"+kull.id;
         }
         protected override void OnPaint(PaintEventArgs e)
 

@@ -82,6 +82,13 @@
           <Property Name="isebaslama" Type="datetime" />
           <Property Name="maas" Type="nvarchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="odeme">
+          <Key>
+            <PropertyRef Name="odemeid" />
+          </Key>
+          <Property Name="odemeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yontemadi" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="poliklinik">
           <Key>
             <PropertyRef Name="poliklinikadi" />
@@ -127,7 +134,7 @@
           </Key>
           <Property Name="taburcuid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cikisSaati" Type="datetime" />
-          <Property Name="odeme" Type="nchar" MaxLength="20" />
+          <Property Name="odemeid" Type="int" />
           <Property Name="taburcuoldumu" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="toplamtutar" Type="nchar" MaxLength="20" />
         </EntityType>
@@ -263,6 +270,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_taburcu_odeme">
+          <End Role="odeme" Type="Self.odeme" Multiplicity="0..1" />
+          <End Role="taburcu" Type="Self.taburcu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odeme">
+              <PropertyRef Name="odemeid" />
+            </Principal>
+            <Dependent Role="taburcu">
+              <PropertyRef Name="odemeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -306,6 +325,7 @@
           <EntitySet Name="islem" EntityType="Self.islem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="islemler" EntityType="Self.islemler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="odeme" EntityType="Self.odeme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="poliklinik" EntityType="Self.poliklinik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="poliklinik_isim" EntityType="Self.poliklinik_isim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sevk" EntityType="Self.sevk" Schema="dbo" store:Type="Tables" />
@@ -354,6 +374,10 @@
           <AssociationSet Name="FK_sevk_taburcu" Association="Self.FK_sevk_taburcu">
             <End Role="taburcu" EntitySet="taburcu" />
             <End Role="sevk" EntitySet="sevk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_taburcu_odeme" Association="Self.FK_taburcu_odeme">
+            <End Role="odeme" EntitySet="odeme" />
+            <End Role="taburcu" EntitySet="taburcu" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -451,6 +475,11 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="odemes" EntityType="saglikDBModel.odeme" />
+          <AssociationSet Name="FK_taburcu_odeme" Association="saglikDBModel.FK_taburcu_odeme">
+            <End Role="odeme" EntitySet="odemes" />
+            <End Role="taburcu" EntitySet="taburcu" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="birey">
           <Key>
@@ -599,6 +628,8 @@
           <Property Name="taburcuoldumu" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="toplamtutar" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_taburcu" FromRole="taburcu" ToRole="sevk" />
+          <Property Name="odemeid" Type="Int32" />
+          <NavigationProperty Name="odeme1" Relationship="saglikDBModel.FK_taburcu_odeme" FromRole="taburcu" ToRole="odeme" />
         </EntityType>
         <Association Name="FK_doktor_birey">
           <End Type="saglikDBModel.birey" Role="birey" Multiplicity="1" />
@@ -743,6 +774,26 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="odeme">
+          <Key>
+            <PropertyRef Name="odemeid" />
+          </Key>
+          <Property Name="odemeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yontemadi" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="taburcus" Relationship="saglikDBModel.FK_taburcu_odeme" FromRole="odeme" ToRole="taburcu" />
+        </EntityType>
+        <Association Name="FK_taburcu_odeme">
+          <End Type="saglikDBModel.odeme" Role="odeme" Multiplicity="0..1" />
+          <End Type="saglikDBModel.taburcu" Role="taburcu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odeme">
+              <PropertyRef Name="odemeid" />
+            </Principal>
+            <Dependent Role="taburcu">
+              <PropertyRef Name="odemeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -878,9 +929,9 @@
           <EntitySetMapping Name="taburcu">
             <EntityTypeMapping TypeName="saglikDBModel.taburcu">
               <MappingFragment StoreEntitySet="taburcu">
+                <ScalarProperty Name="odemeid" ColumnName="odemeid" />
                 <ScalarProperty Name="toplamtutar" ColumnName="toplamtutar" />
                 <ScalarProperty Name="taburcuoldumu" ColumnName="taburcuoldumu" />
-                <ScalarProperty Name="odeme" ColumnName="odeme" />
                 <ScalarProperty Name="cikisSaati" ColumnName="cikisSaati" />
                 <ScalarProperty Name="taburcuid" ColumnName="taburcuid" />
               </MappingFragment>
@@ -910,6 +961,14 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="saglikDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="saglikDBModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="odemes">
+            <EntityTypeMapping TypeName="saglikDBModel.odeme">
+              <MappingFragment StoreEntitySet="odeme">
+                <ScalarProperty Name="yontemadi" ColumnName="yontemadi" />
+                <ScalarProperty Name="odemeid" ColumnName="odemeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -924,7 +983,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

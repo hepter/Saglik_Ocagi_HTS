@@ -187,5 +187,10 @@ namespace Sağlık_Ocağı_HTS
                 return;
             Close();
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Process.GetCurrentProcess().Kill(); 
+        }
     }
 }

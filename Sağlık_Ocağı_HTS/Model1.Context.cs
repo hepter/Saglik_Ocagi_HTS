@@ -39,6 +39,7 @@ namespace Sağlık_Ocağı_HTS
         public virtual DbSet<sevk> sevk { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<taburcu> taburcu { get; set; }
+        public virtual DbSet<odeme> odemes { get; set; }
     
         public virtual int userCheck(string username, ObjectParameter result)
         {

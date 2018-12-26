@@ -100,13 +100,18 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 SevkItem item = new SevkItem(sevk);
                 item.GörüntüleEvent += SevkGörüntüleOrtakButton;
                 item.DüzenleEvent += SevkDüzenleOrtakButton;
+                item.TaburcuEvent += SevkTaburcuOrtakButton;
                 flowLayoutPanel1.Controls.Add(item);
 
             }
         }
 
       
-
+        void SevkTaburcuOrtakButton(sevk s)
+        {
+            YeniSevkForm form= new YeniSevkForm(s);
+            form.ShowDialog();
+        } 
       
         
         void SevkDüzenleOrtakButton(sevk s)
@@ -114,8 +119,6 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             YeniSevkForm form= new YeniSevkForm(s);
             form.ShowDialog();
         } 
-
-     
 
 
         public void SevkGörüntüleOrtakButton(sevk s)
@@ -149,7 +152,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 toplamMaliyet += maliyet*var.miktar??1;
             }
 
-            label1.Text = toplamMaliyet.ToString();
+            label1.Text = toplamMaliyet+" TL";
         }
 
        
@@ -338,7 +341,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
              
             string başMesaj = "Sağlık Ocağı Hasta Sevk Raporu";
             string doktorİsim = string.Format("Dr. {0} {1}","hasan","teret");
-            string toplamStr = $"Toplam Maliyet: {label1.Text} TL";
+            string toplamStr = $"Toplam Maliyet: {label1.Text}";
 
                 int iLeftMargin = e.MarginBounds.Left-50;
                 //Set the top margin
@@ -514,6 +517,21 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
             e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+
+            PrintDialog printDialog = new PrintDialog();            
+            printDialog.Document = printDocument1;
+            printDialog.UseEXDialog = true;    
+            if (DialogResult.OK == printDialog.ShowDialog())
+            {
+                printDocument1.DocumentName ="SEVK RAPOR";          
+                printDocument1.Print();
+            }
+           
         }
     }
 

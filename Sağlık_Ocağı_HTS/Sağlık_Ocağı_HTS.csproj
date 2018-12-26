@@ -93,11 +93,11 @@
     <Compile Include="Formlar\AdminPanel\User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserAddDialog.cs">
+    <Compile Include="Formlar\AdminPanel\UserDüzenleHızlı.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserAddDialog.Designer.cs">
-      <DependentUpon>UserAddDialog.cs</DependentUpon>
+    <Compile Include="Formlar\AdminPanel\UserDüzenleHızlı.Designer.cs">
+      <DependentUpon>UserDüzenleHızlı.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\AdminPanel\UserDetay.cs">
       <SubType>Form</SubType>
@@ -146,6 +146,12 @@
     </Compile>
     <Compile Include="Formlar\HastaIslem\SevkItem.Designer.cs">
       <DependentUpon>SevkItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\TaburcuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\TaburcuForm.Designer.cs">
+      <DependentUpon>TaburcuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\HastaIslem\YeniHastaForm.cs">
       <SubType>Form</SubType>
@@ -222,6 +228,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="odeme.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="poliklinik.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -248,8 +257,8 @@
     <EmbeddedResource Include="Formlar\AdminPanel\User.resx">
       <DependentUpon>User.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\AdminPanel\UserAddDialog.resx">
-      <DependentUpon>UserAddDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Formlar\AdminPanel\UserDüzenleHızlı.resx">
+      <DependentUpon>UserDüzenleHızlı.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\AdminPanel\UserDetay.resx">
       <DependentUpon>UserDetay.cs</DependentUpon>
@@ -274,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\SevkItem.resx">
       <DependentUpon>SevkItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\TaburcuForm.resx">
+      <DependentUpon>TaburcuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\YeniHastaForm.resx">
       <DependentUpon>YeniHastaForm.cs</DependentUpon>
@@ -373,7 +385,6 @@
     <None Include="Resources\miktar.png" />
     <None Include="Resources\tl.png" />
     <None Include="Resources\doktor.png" />
-    <None Include="Resources\taburcu.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model1.Context.tt">
@@ -386,6 +397,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\taburcu2.png" />
+    <None Include="Resources\taburcu.png" />
+    <None Include="Resources\print_preview256.png" />
     <None Include="Resources\header.png" />
     <None Include="Resources\imza.png" />
     <None Include="Resources\print.png" />

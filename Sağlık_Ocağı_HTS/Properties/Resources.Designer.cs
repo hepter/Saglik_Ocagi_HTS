@@ -153,9 +153,29 @@ namespace Sağlık_Ocağı_HTS.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap print_preview256 {
+            get {
+                object obj = ResourceManager.GetObject("print_preview256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap taburcu {
             get {
                 object obj = ResourceManager.GetObject("taburcu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap taburcu2 {
+            get {
+                object obj = ResourceManager.GetObject("taburcu2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -86,7 +86,7 @@
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(670, 200);
-            this.Name = "AdminPanel";
+            this.Name = "AdminPanelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yönetim";
             this.Load += new System.EventHandler(this.LoginForm_Load);

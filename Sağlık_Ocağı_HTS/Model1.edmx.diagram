@@ -28,6 +28,8 @@
         <AssociationConnector Association="saglikDBModel.FK_poliklinik_bolumid" />
         <AssociationConnector Association="saglikDBModel.FK_sevk_poliklinik" />
         <AssociationConnector Association="saglikDBModel.FK_sevk_taburcu" />
+        <EntityTypeShape EntityType="saglikDBModel.odeme" Width="1.5" PointX="3" PointY="18" />
+        <AssociationConnector Association="saglikDBModel.FK_taburcu_odeme" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

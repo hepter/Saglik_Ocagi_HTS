@@ -15,6 +15,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         public delegate void SevkAksiyonHandler(sevk sevk);
         public event SevkAksiyonHandler GörüntüleEvent;
         public event SevkAksiyonHandler DüzenleEvent;
+        public event SevkAksiyonHandler TaburcuEvent;
+
         private sevk ActiveSevk;
       
 
@@ -25,10 +27,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         public SevkItem(sevk sevk) : this()
         {
-            materialLabel2.Text = sevk.sevktarihi.ToString("dd-MM-yyyy dddd");
-            materialLabel4.Text = sevk.doktor.birey.ad;
-            label1.Text = (sevk.taburcu.taburcuoldumu == "1") ? "TABURCU" : "TABURCU DEĞİL";
-          
+            
+            materialLabel1.Text = "  Tarih: " + sevk.sevktarihi.ToString("dd-MM-yyyy dddd");
+            materialLabel2.Text = "Bölüm: " + sevk.poliklinik1.poliklinik_isim.isim;
+            materialLabel3.Text = "Doktor: " + sevk.doktor.birey.ad +" "+sevk.doktor.birey.soyad;
+            pictureBox1.Image = (sevk.taburcu.taburcuoldumu == "1") ? Properties.Resources.taburcu2: Properties.Resources.taburcu;
             ActiveSevk = sevk;
         }
 
@@ -40,6 +43,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         private void button2_Click(object sender, EventArgs e)
         {
             DüzenleEvent(ActiveSevk);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TaburcuEvent(ActiveSevk);
         }
     }
 }
