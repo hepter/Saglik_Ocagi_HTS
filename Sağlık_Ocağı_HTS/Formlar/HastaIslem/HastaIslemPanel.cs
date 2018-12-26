@@ -1,8 +1,9 @@
 ﻿using System;
-
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -320,8 +321,201 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         }
 
-      
+        private void button4_Click(object sender, EventArgs e)
+        {  
 
-        
+           
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Margin=new Padding(20,20,20,20);
+            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog1.ShowDialog();
+        }
+
+      
+        private void printDocument11_PrintPage(object sender,System.Drawing.Printing.PrintPageEventArgs e)
+        {
+          
+             
+            string başMesaj = "Sağlık Ocağı Hasta Sevk Raporu";
+            string doktorİsim = string.Format("Dr. {0} {1}","hasan","teret");
+            string toplamStr = $"Toplam Maliyet: {label1.Text} TL";
+
+                int iLeftMargin = e.MarginBounds.Left-50;
+                //Set the top margin
+                int iTopMargin = e.MarginBounds.Top-50;
+                //Whether more pages have to print or not
+                bool bMorePagesToPrint = false;
+                int iTmpWidth = 0;             
+                
+                //For the first page to print set the cell width and header height
+                if (bFirstPage)
+                {
+                    foreach (DataGridViewColumn GridCol in dataGridView1.Columns)
+                    {
+                        iTmpWidth = (int)(Math.Floor((double)((double)GridCol.Width /
+                                       (double)iTotalWidth * (double)iTotalWidth *
+                                       ((double)e.MarginBounds.Width / (double)iTotalWidth))));
+
+                        iHeaderHeight = (int)(e.Graphics.MeasureString(GridCol.HeaderText,
+                                    GridCol.InheritedStyle.Font, iTmpWidth).Height) + 22;
+
+                        // Save width and height of headres
+                        arrColumnLefts.Add(iLeftMargin);
+                        arrColumnWidths.Add(iTmpWidth+12);
+                        iLeftMargin += iTmpWidth+12;
+                    }
+                }
+                //Loop till all the grid rows not get printed
+                while (iRow <= dataGridView1.Rows.Count - 1)
+                {
+                    DataGridViewRow GridRow = dataGridView1.Rows[iRow];
+                    //Set the cell height
+                    iCellHeight = GridRow.Height + 10;
+                    int iCount = 0;
+                    //Check whether the current page settings allo more rows to print
+                    if (iTopMargin + iCellHeight >= e.MarginBounds.Height + e.MarginBounds.Top)
+                    {
+                        bNewPage = true;
+                        bFirstPage = false;
+                        bMorePagesToPrint = true;
+                        break;
+                    }
+                    else
+                    {
+                        if (bNewPage)
+                        {
+
+
+                            e.Graphics.DrawImage(Properties.Resources.header,new Rectangle(0,0,e.PageBounds.Width,80));
+
+                        
+                            //Draw Header
+                            e.Graphics.DrawString(
+                                başMesaj,
+                                new Font(dataGridView1.Font.FontFamily,18, FontStyle.Bold),
+                                Brushes.White,
+                                e.MarginBounds.Left-20,-60+
+                                e.MarginBounds.Top -e.Graphics.MeasureString(başMesaj, new Font(dataGridView1.Font,
+                                    FontStyle.Bold), e.MarginBounds.Width).Height - 13
+                                );
+
+                            String strDate = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToShortTimeString();
+                            //Draw Date
+                            e.Graphics.DrawString(strDate, new Font(dataGridView1.Font.FontFamily,10, FontStyle.Regular),
+                                    Brushes.White, e.MarginBounds.Left + (e.MarginBounds.Width -
+                                    e.Graphics.MeasureString(strDate, new Font(dataGridView1.Font,
+                                    FontStyle.Bold), e.MarginBounds.Width).Width),-50+ e.MarginBounds.Top -
+                                    e.Graphics.MeasureString(başMesaj, new Font(new Font(dataGridView1.Font,
+                                    FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13);
+
+                            //Draw Columns                 
+                            iTopMargin = e.MarginBounds.Top;
+                            foreach (DataGridViewColumn GridCol in dataGridView1.Columns)
+                            {
+                                e.Graphics.FillRectangle(new SolidBrush(Color.LightGray),
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawRectangle(Pens.Black,
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawString(GridCol.HeaderText, GridCol.InheritedStyle.Font,
+                                    new SolidBrush(GridCol.InheritedStyle.ForeColor),
+                                    new RectangleF((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight), strFormat);
+                                iCount++;
+                            }
+                            bNewPage = false;
+                            iTopMargin += iHeaderHeight;
+                        }
+                        iCount = 0;
+                        //Draw Columns Contents                
+                        foreach (DataGridViewCell Cel in GridRow.Cells)
+                        {
+                            if (Cel.Value != null)
+                            {                               
+                                e.Graphics.DrawString(Cel.Value.ToString(), Cel.InheritedStyle.Font,
+                                            new SolidBrush(Cel.InheritedStyle.ForeColor),
+                                            new RectangleF((int)arrColumnLefts[iCount], (float)iTopMargin,
+                                            (int)arrColumnWidths[iCount], (float)iCellHeight), strFormat);
+                            }
+                            //Drawing Cells Borders 
+                            e.Graphics.DrawRectangle(Pens.Black, new Rectangle((int)arrColumnLefts[iCount],
+                                    iTopMargin, (int)arrColumnWidths[iCount], iCellHeight));
+
+                            iCount++;
+                        }
+                    }
+                    iRow++;
+                    iTopMargin += iCellHeight;                    
+                }                
+
+            
+
+            iTopMargin += iCellHeight;       
+            e.Graphics.DrawString(toplamStr, new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Red,e.PageBounds.Width/10 *7,iTopMargin);
+            iTopMargin += iCellHeight; 
+            e.Graphics.DrawString(doktorİsim, new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black,e.PageBounds.Width/5*3,iTopMargin);
+            e.Graphics.DrawImage(Properties.Resources.imza,new Rectangle(e.PageBounds.Width/5*3,iTopMargin+11,120,100));
+            
+                //If more lines exist, print another page.
+                if (bMorePagesToPrint)
+                    e.HasMorePages = true;
+                else
+                    e.HasMorePages = false;
+        }
+
+                 
+        StringFormat strFormat; //Used to format the grid rows.
+        ArrayList arrColumnLefts = new ArrayList();//Used to save left coordinates of columns
+        ArrayList arrColumnWidths = new ArrayList();//Used to save column widths
+        int iCellHeight = 0; //Used to get/set the datagridview cell height
+        int iTotalWidth = 0; //
+        int iRow = 0;//Used as counter
+        bool bFirstPage = false; //Used to check whether we are printing first page
+        bool bNewPage = false;// Used to check whether we are printing a new page
+        int iHeaderHeight = 0; //Used for the header height
+     
+        private void printDocument1_BeginPrint(object sender, PrintEventArgs e)
+        {
+            strFormat = new StringFormat();
+            strFormat.Alignment = StringAlignment.Near;
+            strFormat.LineAlignment = StringAlignment.Center;
+            strFormat.Trimming = StringTrimming.EllipsisCharacter;
+
+            arrColumnLefts.Clear();
+            arrColumnWidths.Clear();
+            iCellHeight = 0;
+            iRow = 0;
+            bFirstPage = true;
+            bNewPage = true;
+
+            // Calculating Total Widths
+            iTotalWidth = 0;
+            foreach (DataGridViewColumn dgvGridCol in dataGridView1.Columns)
+            {
+                iTotalWidth += dgvGridCol.Width;
+            }
+        }
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+
+            var centerFormat = new StringFormat() 
+            { 
+                // right alignment might actually make more sense for numbers
+                Alignment = StringAlignment.Center, 
+                LineAlignment = StringAlignment.Center
+            };
+
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+
+        }
     }
+
 }
+

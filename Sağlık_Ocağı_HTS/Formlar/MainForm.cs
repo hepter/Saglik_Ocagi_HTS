@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,6 @@ using System.Windows.Forms;
 using System.Windows.Markup;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using Nevron.Nov;
-using Nevron.Nov.Dom;
-using Nevron.Nov.Graphics;
-using Nevron.Nov.Text;
-using Nevron.Nov.UI;
 using Sağlık_Ocağı_HTS.Denetimler.AdminPanel;
 using Sağlık_Ocağı_HTS.Formlar;
 using Sağlık_Ocağı_HTS.Formlar.Ekle;
@@ -28,20 +24,34 @@ namespace Sağlık_Ocağı_HTS
 {
     public partial class MainForm : MaterialForm
     {
-        private kullanicilar aktifKullanici;
+        private kullanicilar _aktifKullanici;
+        private kullanicilar aktifKullanici
+        {
+            get { return _aktifKullanici; }
+            set
+            {
+                label1.Text = value.username;
+                var birey = db.birey.Where(a => a.tckimlikno == value.tckimlikno).First();
+                label2.Text = birey.ad + " "+ birey.soyad;
+                pictureBox1.Image = (value.yetki == "1") ? Properties.Resources.admin : Properties.Resources.user;
+                _aktifKullanici = value;
+            }
+        }
+
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
        
         public MainForm()
         {
+            InitializeComponent();
             var db = new saglikDBEntities_1();
             var kull = db.kullanicilar.First(a=>a.username=="hepter");
             db.Entry(kull).State = EntityState.Detached;
             aktifKullanici = kull;
 
 
-            InitializeComponent();
+           
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -50,7 +60,7 @@ namespace Sağlık_Ocağı_HTS
            
         }
 
-        public MainForm(kullanicilar kull)
+        public MainForm(kullanicilar kull):this()
         {
             aktifKullanici = kull;
         }
@@ -84,11 +94,6 @@ namespace Sağlık_Ocağı_HTS
             panel1.Controls.Add(hastaIslemPanel);
         }
 
-        private void nTextBoxControl1_TextChanged(Nevron.Nov.Dom.NValueChangeEventArgs arg)
-        {
-
-        }
-
         private void süzenToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -117,7 +122,7 @@ namespace Sağlık_Ocağı_HTS
 
         private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Process.GetCurrentProcess().Kill(); 
         }
 
         //private void button1_Click_1(object sender, EventArgs e)
@@ -180,7 +185,7 @@ namespace Sağlık_Ocağı_HTS
             DialogResult res=   MessageBox.Show($"{aktifKullanici.username} hesanbından çıkış yapılsın mı?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
             if (res != DialogResult.Yes)
                 return;
-
+            Close();
         }
     }
 }

@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Nevron.Nov.Grid;
 
 namespace Sağlık_Ocağı_HTS.Formlar.Poliklinik
 {

@@ -32,12 +32,10 @@ namespace Sağlık_Ocağı_HTS.Formlar
             {
                 MessageBox.Show("Kullanıcı Adı veya Şifre hatalı!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
-                
             }
 
             db.Entry(kullanıcı).State = EntityState.Detached;
             MainForm form= new MainForm(kullanıcı);
-            //form.Closed += new EventHandler((o, args) => this.Close());
             Hide();
             form.ShowDialog();
             Show();

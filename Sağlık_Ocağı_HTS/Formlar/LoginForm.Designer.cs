@@ -106,6 +106,7 @@
             this.Controls.Add(this.materialSingleLineTextField2);
             this.Controls.Add(this.materialSingleLineTextField1);
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Giriş";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.LoginForm_Load);

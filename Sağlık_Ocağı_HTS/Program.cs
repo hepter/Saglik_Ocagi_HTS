@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Nevron.Nov;
-using Nevron.Nov.Barcode;
-using Nevron.Nov.Diagram;
-using Nevron.Nov.Text;
-using Nevron.Nov.Windows.Forms;
 using Sağlık_Ocağı_HTS.Formlar;
 
 namespace Sağlık_Ocağı_HTS

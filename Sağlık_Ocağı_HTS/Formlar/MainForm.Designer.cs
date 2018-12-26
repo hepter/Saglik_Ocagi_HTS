@@ -43,8 +43,12 @@
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.testeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.effeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.materialContextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -65,7 +69,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(1281, 39);
+            this.menuStrip1.Size = new System.Drawing.Size(1375, 39);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
@@ -126,7 +130,7 @@
             // 
             this.yöneticiPaneliToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.yöneticiPaneliToolStripMenuItem.Name = "yöneticiPaneliToolStripMenuItem";
-            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.yöneticiPaneliToolStripMenuItem.Text = "Yönetici Paneli";
             this.yöneticiPaneliToolStripMenuItem.Click += new System.EventHandler(this.yöneticiPaneliToolStripMenuItem_Click);
             // 
@@ -135,13 +139,13 @@
             this.toolStripMenuItem2.BackColor = System.Drawing.Color.Coral;
             this.toolStripMenuItem2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 6);
             // 
             // poliklinikEkleToolStripMenuItem
             // 
             this.poliklinikEkleToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.poliklinikEkleToolStripMenuItem.Name = "poliklinikEkleToolStripMenuItem";
-            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.poliklinikEkleToolStripMenuItem.Text = "Poliklinik Ekle";
             this.poliklinikEkleToolStripMenuItem.Click += new System.EventHandler(this.poliklinikEkleToolStripMenuItem_Click);
             // 
@@ -149,7 +153,7 @@
             // 
             this.doktorEkleToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.doktorEkleToolStripMenuItem.Name = "doktorEkleToolStripMenuItem";
-            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.doktorEkleToolStripMenuItem.Text = "Doktor Ekle";
             this.doktorEkleToolStripMenuItem.Click += new System.EventHandler(this.doktorEkleToolStripMenuItem_Click);
             // 
@@ -171,7 +175,7 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.Location = new System.Drawing.Point(12, 67);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1258, 501);
+            this.panel1.Size = new System.Drawing.Size(1352, 626);
             this.panel1.TabIndex = 4;
             // 
             // materialContextMenuStrip1
@@ -199,19 +203,61 @@
             this.effeToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
             this.effeToolStripMenuItem.Text = "effe";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(85)))), ((int)(((byte)(72)))));
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.admin;
+            this.pictureBox1.Location = new System.Drawing.Point(1126, 25);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(85)))), ((int)(((byte)(72)))));
+            this.label1.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gold;
+            this.label1.Location = new System.Drawing.Point(1162, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(213, 23);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "nickname";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(85)))), ((int)(((byte)(72)))));
+            this.label2.Font = new System.Drawing.Font("Malgun Gothic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.label2.Location = new System.Drawing.Point(1163, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(213, 17);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "isim";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1282, 580);
+            this.ClientSize = new System.Drawing.Size(1376, 705);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SOHTS";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.materialContextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,6 +278,9 @@
         private MaterialSkin.Controls.MaterialContextMenuStrip materialContextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem effeToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
