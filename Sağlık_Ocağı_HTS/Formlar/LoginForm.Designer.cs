@@ -47,6 +47,7 @@
             this.materialSingleLineTextField1.SelectionStart = 0;
             this.materialSingleLineTextField1.Size = new System.Drawing.Size(378, 28);
             this.materialSingleLineTextField1.TabIndex = 0;
+            this.materialSingleLineTextField1.Text = "hepter";
             this.materialSingleLineTextField1.UseSystemPasswordChar = false;
             // 
             // materialSingleLineTextField2
@@ -61,7 +62,8 @@
             this.materialSingleLineTextField2.SelectionLength = 0;
             this.materialSingleLineTextField2.SelectionStart = 0;
             this.materialSingleLineTextField2.Size = new System.Drawing.Size(378, 28);
-            this.materialSingleLineTextField2.TabIndex = 0;
+            this.materialSingleLineTextField2.TabIndex = 1;
+            this.materialSingleLineTextField2.Text = "123456";
             this.materialSingleLineTextField2.UseSystemPasswordChar = true;
             // 
             // button1
@@ -77,6 +79,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Tamam";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -91,6 +94,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "İptal";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // LoginForm
             // 

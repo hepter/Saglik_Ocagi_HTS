@@ -12,6 +12,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 {
     public partial class IslemItem : UserControl
     {
+        public delegate void islemHandler(islem i);
+        public event islemHandler silBtnEvent;
         public islem ActiveIslem { get; }
 
         public IslemItem()
@@ -23,10 +25,12 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             ActiveIslem = islm;
             materialLabel1.Text = islm.islemadi;
             materialLabel2.Text = islm.birimfiyat;
-
+         
         }
 
-
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            silBtnEvent(ActiveIslem);
+        }
     }
 }

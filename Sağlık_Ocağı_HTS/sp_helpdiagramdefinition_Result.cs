@@ -10,15 +10,10 @@
 namespace Sağlık_Ocağı_HTS
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sevkler
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int id { get; set; }
-        public System.DateTime sevktarihi { get; set; }
-        public int dosyaID { get; set; }
-    
-        public virtual dosya dosya { get; set; }
-        public virtual sevk sevk { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

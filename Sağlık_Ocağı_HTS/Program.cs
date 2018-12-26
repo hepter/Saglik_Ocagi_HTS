@@ -8,6 +8,7 @@ using Nevron.Nov.Barcode;
 using Nevron.Nov.Diagram;
 using Nevron.Nov.Text;
 using Nevron.Nov.Windows.Forms;
+using Sağlık_Ocağı_HTS.Formlar;
 
 namespace Sağlık_Ocağı_HTS
 {
@@ -23,7 +24,7 @@ namespace Sağlık_Ocağı_HTS
             Application.SetCompatibleTextRenderingDefault(false);
 
           
-            Application.Run(new MainForm());
+            Application.Run(new LoginForm());
         }
     }
 }

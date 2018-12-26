@@ -17,7 +17,7 @@ namespace Sağlık_Ocağı_HTS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public dosya()
         {
-            this.sevkler = new HashSet<sevkler>();
+            this.sevk = new HashSet<sevk>();
         }
     
         public int dosyaid { get; set; }
@@ -26,6 +26,6 @@ namespace Sağlık_Ocağı_HTS
     
         public virtual hasta hasta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sevkler> sevkler { get; set; }
+        public virtual ICollection<sevk> sevk { get; set; }
     }
 }

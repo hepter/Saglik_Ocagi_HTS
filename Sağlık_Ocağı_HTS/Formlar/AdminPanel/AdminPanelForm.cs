@@ -15,11 +15,18 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
     public partial class AdminPanelForm : MaterialForm
     {
+        
+        private kullanicilar aktifKullanici;
         public AdminPanelForm()
         {
             InitializeComponent();
         }
 
+        public AdminPanelForm(kullanicilar kull):this()
+        {
+            aktifKullanici = kull;
+
+        }
         private saglikDBEntities_1 db;
         private void LoginForm_Load(object sender, EventArgs e)
         {
@@ -33,7 +40,10 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             SuspendLayout();
             foreach (var kull in db.kullanicilar.ToList())
             {
-                User user = new User(kull, SilAksiyon, DetayAksiyon);
+                bool aktifKullanicininHesabimi = false;
+                if (aktifKullanici.username==kull.username)
+                    aktifKullanicininHesabimi = true;
+                User user = new User(kull, SilAksiyon, DetayAksiyon,aktifKullanicininHesabimi);
                 flowLayoutPanel1.Controls.Add(user);
             }
             ResumeLayout();
@@ -46,8 +56,18 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 
         public void SilAksiyon(kullanicilar kull )
         {
-            
             db = new saglikDBEntities_1();
+
+             if (aktifKullanici.username ==kull.username)
+             {
+                 MessageBox.Show($"Kendi Hesabınızı silemezsiniz!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                 return;
+             }
+
+            DialogResult res=   MessageBox.Show($"'{kull.username}' kullanıcısını silmek istediğinize Emin misiniz?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (res != DialogResult.Yes)
+                return;
+
             foreach (var user in flowLayoutPanel1.Controls.Cast<User>())
             {
                 if (kull.id==user.EntityKullanici.id)

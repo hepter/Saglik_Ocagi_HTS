@@ -14,26 +14,17 @@ namespace Sağlık_Ocağı_HTS
     
     public partial class sevk
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public sevk()
-        {
-            this.islemler = new HashSet<islemler>();
-            this.sevkler = new HashSet<sevkler>();
-        }
-    
         public System.DateTime sevktarihi { get; set; }
-        public Nullable<int> sevkedendoktorid { get; set; }
+        public int dosyaid { get; set; }
+        public int sevkedendoktorid { get; set; }
         public string poliklinik { get; set; }
         public string sira { get; set; }
         public string saat { get; set; }
-        public Nullable<int> taburcuid { get; set; }
+        public int taburcuid { get; set; }
     
         public virtual doktor doktor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<islemler> islemler { get; set; }
+        public virtual dosya dosya { get; set; }
         public virtual poliklinik poliklinik1 { get; set; }
         public virtual taburcu taburcu { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sevkler> sevkler { get; set; }
     }
 }

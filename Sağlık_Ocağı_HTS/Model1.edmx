@@ -64,10 +64,9 @@
             <PropertyRef Name="sevktarihi" />
             <PropertyRef Name="islemid" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sevktarihi" Type="datetime" Nullable="false" />
           <Property Name="islemid" Type="int" Nullable="false" />
-          <Property Name="doktorid" Type="int" />
+          <Property Name="doktorid" Type="int" Nullable="false" />
           <Property Name="miktar" Type="int" />
         </EntityType>
         <EntityType Name="kullanicilar">
@@ -90,7 +89,7 @@
           <Property Name="poliklinikadi" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="durum" Type="nvarchar" MaxLength="5" />
           <Property Name="aciklama" Type="nvarchar" MaxLength="255" />
-          <Property Name="bolumid" Type="int" />
+          <Property Name="bolumid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="poliklinik_isim">
           <Key>
@@ -102,22 +101,15 @@
         <EntityType Name="sevk">
           <Key>
             <PropertyRef Name="sevktarihi" />
+            <PropertyRef Name="dosyaid" />
           </Key>
           <Property Name="sevktarihi" Type="datetime" Nullable="false" />
-          <Property Name="sevkedendoktorid" Type="int" />
-          <Property Name="poliklinik" Type="nvarchar" MaxLength="100" />
+          <Property Name="dosyaid" Type="int" Nullable="false" />
+          <Property Name="sevkedendoktorid" Type="int" Nullable="false" />
+          <Property Name="poliklinik" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="sira" Type="nvarchar" MaxLength="5" />
           <Property Name="saat" Type="nvarchar" MaxLength="10" />
-          <Property Name="taburcuid" Type="int" />
-        </EntityType>
-        <EntityType Name="sevkler">
-          <Key>
-            <PropertyRef Name="sevktarihi" />
-            <PropertyRef Name="dosyaID" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sevktarihi" Type="datetime" Nullable="false" />
-          <Property Name="dosyaID" Type="int" Nullable="false" />
+          <Property Name="taburcuid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -176,7 +168,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_islemler_doktor">
-          <End Role="doktor" Type="Self.doktor" Multiplicity="0..1" />
+          <End Role="doktor" Type="Self.doktor" Multiplicity="1" />
           <End Role="islemler" Type="Self.islemler" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="doktor">
@@ -199,18 +191,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_islemler_sevk">
-          <End Role="sevk" Type="Self.sevk" Multiplicity="1" />
-          <End Role="islemler" Type="Self.islemler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sevk">
-              <PropertyRef Name="sevktarihi" />
-            </Principal>
-            <Dependent Role="islemler">
-              <PropertyRef Name="sevktarihi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_kullanicilar_birey">
           <End Role="birey" Type="Self.birey" Multiplicity="1" />
           <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="*" />
@@ -224,7 +204,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_poliklinik_bolumid">
-          <End Role="poliklinik_isim" Type="Self.poliklinik_isim" Multiplicity="0..1" />
+          <End Role="poliklinik_isim" Type="Self.poliklinik_isim" Multiplicity="1" />
           <End Role="poliklinik" Type="Self.poliklinik" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="poliklinik_isim">
@@ -236,7 +216,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_sevk_doktor">
-          <End Role="doktor" Type="Self.doktor" Multiplicity="0..1" />
+          <End Role="doktor" Type="Self.doktor" Multiplicity="1" />
           <End Role="sevk" Type="Self.sevk" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="doktor">
@@ -247,8 +227,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_sevk_poliklinik1">
-          <End Role="poliklinik" Type="Self.poliklinik" Multiplicity="0..1" />
+        <Association Name="FK_sevk_dosya">
+          <End Role="dosya" Type="Self.dosya" Multiplicity="1" />
+          <End Role="sevk" Type="Self.sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dosya">
+              <PropertyRef Name="dosyaid" />
+            </Principal>
+            <Dependent Role="sevk">
+              <PropertyRef Name="dosyaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sevk_poliklinik">
+          <End Role="poliklinik" Type="Self.poliklinik" Multiplicity="1" />
           <End Role="sevk" Type="Self.sevk" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="poliklinik">
@@ -260,7 +252,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_sevk_taburcu">
-          <End Role="taburcu" Type="Self.taburcu" Multiplicity="0..1" />
+          <End Role="taburcu" Type="Self.taburcu" Multiplicity="1" />
           <End Role="sevk" Type="Self.sevk" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="taburcu">
@@ -271,30 +263,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_sevkler_dosya">
-          <End Role="dosya" Type="Self.dosya" Multiplicity="1" />
-          <End Role="sevkler" Type="Self.sevkler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dosya">
-              <PropertyRef Name="dosyaid" />
-            </Principal>
-            <Dependent Role="sevkler">
-              <PropertyRef Name="dosyaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_sevkler_sevk">
-          <End Role="sevk" Type="Self.sevk" Multiplicity="1" />
-          <End Role="sevkler" Type="Self.sevkler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sevk">
-              <PropertyRef Name="sevktarihi" />
-            </Principal>
-            <Dependent Role="sevkler">
-              <PropertyRef Name="sevktarihi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="userCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
           <Parameter Name="result" Type="bit" Mode="InOut" />
@@ -310,7 +309,6 @@
           <EntitySet Name="poliklinik" EntityType="Self.poliklinik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="poliklinik_isim" EntityType="Self.poliklinik_isim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sevk" EntityType="Self.sevk" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sevkler" EntityType="Self.sevkler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="taburcu" EntityType="Self.taburcu" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_doktor_birey" Association="Self.FK_doktor_birey">
@@ -333,10 +331,6 @@
             <End Role="islem" EntitySet="islem" />
             <End Role="islemler" EntitySet="islemler" />
           </AssociationSet>
-          <AssociationSet Name="FK_islemler_sevk" Association="Self.FK_islemler_sevk">
-            <End Role="sevk" EntitySet="sevk" />
-            <End Role="islemler" EntitySet="islemler" />
-          </AssociationSet>
           <AssociationSet Name="FK_kullanicilar_birey" Association="Self.FK_kullanicilar_birey">
             <End Role="birey" EntitySet="birey" />
             <End Role="kullanicilar" EntitySet="kullanicilar" />
@@ -349,21 +343,17 @@
             <End Role="doktor" EntitySet="doktor" />
             <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
-          <AssociationSet Name="FK_sevk_poliklinik1" Association="Self.FK_sevk_poliklinik1">
+          <AssociationSet Name="FK_sevk_dosya" Association="Self.FK_sevk_dosya">
+            <End Role="dosya" EntitySet="dosya" />
+            <End Role="sevk" EntitySet="sevk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sevk_poliklinik" Association="Self.FK_sevk_poliklinik">
             <End Role="poliklinik" EntitySet="poliklinik" />
             <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
           <AssociationSet Name="FK_sevk_taburcu" Association="Self.FK_sevk_taburcu">
             <End Role="taburcu" EntitySet="taburcu" />
             <End Role="sevk" EntitySet="sevk" />
-          </AssociationSet>
-          <AssociationSet Name="FK_sevkler_dosya" Association="Self.FK_sevkler_dosya">
-            <End Role="dosya" EntitySet="dosya" />
-            <End Role="sevkler" EntitySet="sevkler" />
-          </AssociationSet>
-          <AssociationSet Name="FK_sevkler_sevk" Association="Self.FK_sevkler_sevk">
-            <End Role="sevk" EntitySet="sevk" />
-            <End Role="sevkler" EntitySet="sevkler" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -385,7 +375,6 @@
           <EntitySet Name="poliklinik" EntityType="saglikDBModel.poliklinik" />
           <EntitySet Name="poliklinik_isim" EntityType="saglikDBModel.poliklinik_isim" />
           <EntitySet Name="sevk" EntityType="saglikDBModel.sevk" />
-          <EntitySet Name="sevkler" EntityType="saglikDBModel.sevkler" />
           <EntitySet Name="sysdiagrams" EntityType="saglikDBModel.sysdiagrams" />
           <EntitySet Name="taburcu" EntityType="saglikDBModel.taburcu" />
           <AssociationSet Name="FK_doktor_birey" Association="saglikDBModel.FK_doktor_birey">
@@ -412,23 +401,19 @@
             <End Role="hasta" EntitySet="hasta" />
             <End Role="dosya" EntitySet="dosya" />
           </AssociationSet>
-          <AssociationSet Name="FK_sevkler_dosya" Association="saglikDBModel.FK_sevkler_dosya">
+          <AssociationSet Name="FK_sevk_dosya" Association="saglikDBModel.FK_sevk_dosya">
             <End Role="dosya" EntitySet="dosya" />
-            <End Role="sevkler" EntitySet="sevkler" />
+            <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
           <AssociationSet Name="FK_islemler_islem" Association="saglikDBModel.FK_islemler_islem">
             <End Role="islem" EntitySet="islem" />
-            <End Role="islemler" EntitySet="islemler" />
-          </AssociationSet>
-          <AssociationSet Name="FK_islemler_sevk" Association="saglikDBModel.FK_islemler_sevk">
-            <End Role="sevk" EntitySet="sevk" />
             <End Role="islemler" EntitySet="islemler" />
           </AssociationSet>
           <AssociationSet Name="FK_poliklinik_bolumid" Association="saglikDBModel.FK_poliklinik_bolumid">
             <End Role="poliklinik_isim" EntitySet="poliklinik_isim" />
             <End Role="poliklinik" EntitySet="poliklinik" />
           </AssociationSet>
-          <AssociationSet Name="FK_sevk_poliklinik1" Association="saglikDBModel.FK_sevk_poliklinik1">
+          <AssociationSet Name="FK_sevk_poliklinik" Association="saglikDBModel.FK_sevk_poliklinik">
             <End Role="poliklinik" EntitySet="poliklinik" />
             <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
@@ -436,11 +421,37 @@
             <End Role="taburcu" EntitySet="taburcu" />
             <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
-          <AssociationSet Name="FK_sevkler_sevk" Association="saglikDBModel.FK_sevkler_sevk">
-            <End Role="sevk" EntitySet="sevk" />
-            <End Role="sevkler" EntitySet="sevkler" />
-          </AssociationSet>
-          </EntityContainer>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(saglikDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(saglikDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
         <EntityType Name="birey">
           <Key>
             <PropertyRef Name="tckimlikno" />
@@ -481,7 +492,7 @@
           <Property Name="dosyatarihi" Type="DateTime" Precision="3" />
           <Property Name="hastatckimlikno" Type="Int32" Nullable="false" />
           <NavigationProperty Name="hasta" Relationship="saglikDBModel.FK_dosya_hasta" FromRole="dosya" ToRole="hasta" />
-          <NavigationProperty Name="sevkler" Relationship="saglikDBModel.FK_sevkler_dosya" FromRole="dosya" ToRole="sevkler" />
+          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_dosya" FromRole="dosya" ToRole="sevk" />
         </EntityType>
         <EntityType Name="hasta">
           <Key>
@@ -511,14 +522,12 @@
             <PropertyRef Name="sevktarihi" />
             <PropertyRef Name="islemid" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="islemid" Type="Int32" Nullable="false" />
-          <Property Name="doktorid" Type="Int32" />
+          <Property Name="doktorid" Type="Int32" Nullable="false" />
           <Property Name="miktar" Type="Int32" />
           <NavigationProperty Name="doktor" Relationship="saglikDBModel.FK_islemler_doktor" FromRole="islemler" ToRole="doktor" />
           <NavigationProperty Name="islem" Relationship="saglikDBModel.FK_islemler_islem" FromRole="islemler" ToRole="islem" />
-          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_islemler_sevk" FromRole="islemler" ToRole="sevk" />
         </EntityType>
         <EntityType Name="kullanicilar">
           <Key>
@@ -541,9 +550,9 @@
           <Property Name="poliklinikadi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="durum" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="aciklama" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="bolumid" Type="Int32" />
+          <Property Name="bolumid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="poliklinik_isim" Relationship="saglikDBModel.FK_poliklinik_bolumid" FromRole="poliklinik" ToRole="poliklinik_isim" />
-          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_poliklinik1" FromRole="poliklinik" ToRole="sevk" />
+          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_poliklinik" FromRole="poliklinik" ToRole="sevk" />
         </EntityType>
         <EntityType Name="poliklinik_isim">
           <Key>
@@ -556,29 +565,19 @@
         <EntityType Name="sevk">
           <Key>
             <PropertyRef Name="sevktarihi" />
+            <PropertyRef Name="dosyaid" />
           </Key>
           <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="sevkedendoktorid" Type="Int32" />
-          <Property Name="poliklinik" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="dosyaid" Type="Int32" Nullable="false" />
+          <Property Name="sevkedendoktorid" Type="Int32" Nullable="false" />
+          <Property Name="poliklinik" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="sira" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="saat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="taburcuid" Type="Int32" />
+          <Property Name="taburcuid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="doktor" Relationship="saglikDBModel.FK_sevk_doktor" FromRole="sevk" ToRole="doktor" />
-          <NavigationProperty Name="islemler" Relationship="saglikDBModel.FK_islemler_sevk" FromRole="sevk" ToRole="islemler" />
-          <NavigationProperty Name="poliklinik1" Relationship="saglikDBModel.FK_sevk_poliklinik1" FromRole="sevk" ToRole="poliklinik" />
+          <NavigationProperty Name="dosya" Relationship="saglikDBModel.FK_sevk_dosya" FromRole="sevk" ToRole="dosya" />
+          <NavigationProperty Name="poliklinik1" Relationship="saglikDBModel.FK_sevk_poliklinik" FromRole="sevk" ToRole="poliklinik" />
           <NavigationProperty Name="taburcu" Relationship="saglikDBModel.FK_sevk_taburcu" FromRole="sevk" ToRole="taburcu" />
-          <NavigationProperty Name="sevkler" Relationship="saglikDBModel.FK_sevkler_sevk" FromRole="sevk" ToRole="sevkler" />
-        </EntityType>
-        <EntityType Name="sevkler">
-          <Key>
-            <PropertyRef Name="sevktarihi" />
-            <PropertyRef Name="dosyaID" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dosyaID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="dosya" Relationship="saglikDBModel.FK_sevkler_dosya" FromRole="sevkler" ToRole="dosya" />
-          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevkler_sevk" FromRole="sevkler" ToRole="sevk" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -638,7 +637,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_islemler_doktor">
-          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="0..1" />
+          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="1" />
           <End Type="saglikDBModel.islemler" Role="islemler" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="doktor">
@@ -650,7 +649,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_sevk_doktor">
-          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="0..1" />
+          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="1" />
           <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="doktor">
@@ -673,15 +672,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_sevkler_dosya">
+        <Association Name="FK_sevk_dosya">
           <End Type="saglikDBModel.dosya" Role="dosya" Multiplicity="1" />
-          <End Type="saglikDBModel.sevkler" Role="sevkler" Multiplicity="*" />
+          <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="dosya">
               <PropertyRef Name="dosyaid" />
             </Principal>
-            <Dependent Role="sevkler">
-              <PropertyRef Name="dosyaID" />
+            <Dependent Role="sevk">
+              <PropertyRef Name="dosyaid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -697,20 +696,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_islemler_sevk">
-          <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="1" />
-          <End Type="saglikDBModel.islemler" Role="islemler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sevk">
-              <PropertyRef Name="sevktarihi" />
-            </Principal>
-            <Dependent Role="islemler">
-              <PropertyRef Name="sevktarihi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_poliklinik_bolumid">
-          <End Type="saglikDBModel.poliklinik_isim" Role="poliklinik_isim" Multiplicity="0..1" />
+          <End Type="saglikDBModel.poliklinik_isim" Role="poliklinik_isim" Multiplicity="1" />
           <End Type="saglikDBModel.poliklinik" Role="poliklinik" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="poliklinik_isim">
@@ -721,8 +708,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_sevk_poliklinik1">
-          <End Type="saglikDBModel.poliklinik" Role="poliklinik" Multiplicity="0..1" />
+        <Association Name="FK_sevk_poliklinik">
+          <End Type="saglikDBModel.poliklinik" Role="poliklinik" Multiplicity="1" />
           <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="poliklinik">
@@ -734,7 +721,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_sevk_taburcu">
-          <End Type="saglikDBModel.taburcu" Role="taburcu" Multiplicity="0..1" />
+          <End Type="saglikDBModel.taburcu" Role="taburcu" Multiplicity="1" />
           <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="taburcu">
@@ -745,19 +732,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_sevkler_sevk">
-          <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="1" />
-          <End Type="saglikDBModel.sevkler" Role="sevkler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sevk">
-              <PropertyRef Name="sevktarihi" />
-            </Principal>
-            <Dependent Role="sevkler">
-              <PropertyRef Name="sevktarihi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        </Schema>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -830,7 +816,6 @@
                 <ScalarProperty Name="doktorid" ColumnName="doktorid" />
                 <ScalarProperty Name="islemid" ColumnName="islemid" />
                 <ScalarProperty Name="sevktarihi" ColumnName="sevktarihi" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -874,16 +859,8 @@
                 <ScalarProperty Name="sira" ColumnName="sira" />
                 <ScalarProperty Name="poliklinik" ColumnName="poliklinik" />
                 <ScalarProperty Name="sevkedendoktorid" ColumnName="sevkedendoktorid" />
+                <ScalarProperty Name="dosyaid" ColumnName="dosyaid" />
                 <ScalarProperty Name="sevktarihi" ColumnName="sevktarihi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sevkler">
-            <EntityTypeMapping TypeName="saglikDBModel.sevkler">
-              <MappingFragment StoreEntitySet="sevkler">
-                <ScalarProperty Name="dosyaID" ColumnName="dosyaID" />
-                <ScalarProperty Name="sevktarihi" ColumnName="sevktarihi" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -909,7 +886,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="saglikDBModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="saglikDBModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="saglikDBModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="saglikDBModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="saglikDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="saglikDBModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="saglikDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="saglikDBModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="saglikDBModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

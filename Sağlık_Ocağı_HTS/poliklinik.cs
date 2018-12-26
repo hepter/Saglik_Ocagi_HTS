@@ -23,7 +23,7 @@ namespace Sağlık_Ocağı_HTS
         public string poliklinikadi { get; set; }
         public string durum { get; set; }
         public string aciklama { get; set; }
-        public Nullable<int> bolumid { get; set; }
+        public int bolumid { get; set; }
     
         public virtual poliklinik_isim poliklinik_isim { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -10,16 +10,13 @@
 namespace Sağlık_Ocağı_HTS
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class islemler
+    public partial class sp_helpdiagrams_Result
     {
-        public System.DateTime sevktarihi { get; set; }
-        public int islemid { get; set; }
-        public int doktorid { get; set; }
-        public Nullable<int> miktar { get; set; }
-    
-        public virtual doktor doktor { get; set; }
-        public virtual islem islem { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

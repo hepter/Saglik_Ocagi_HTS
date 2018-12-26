@@ -94,19 +94,26 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
         {
             DialogResult res=  MessageBox.Show($"'{poli.poliklinikadi}' isimli Polikliniği silmek istediğinize Emin misiniz?","Siliniyor...",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
 
-            if (res==DialogResult.Yes)
+            if (res!=DialogResult.Yes)
+                return;
+            db=new saglikDBEntities_1();
+            var sevkler = db.sevk.First(a => a.poliklinik == poli.poliklinikadi);
+            if (sevkler!=null)
             {
-                db=new saglikDBEntities_1();
-                poliklinik pol = new poliklinik() { poliklinikadi = poli.poliklinikadi };
-                db.poliklinik.Attach(pol);
-                db.poliklinik.Remove(pol);
-                //db.Entry(new poliklinik(){poliklinikadi= poli.poliklinikadi}).State = EntityState.Deleted;
-                db.SaveChanges();
-                
-                PoliklinikDoldur();
+                MessageBox.Show($"Kullanımda olan bir poliklinik silinemez!\nÖmce bağlı olduğu sevk silinmesi gerekli!","HATA",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
             }
+           
+            poliklinik pol = new poliklinik() { poliklinikadi = poli.poliklinikadi };
+            db.poliklinik.Attach(pol);
+            db.poliklinik.Remove(pol);
 
+            db.SaveChanges();
+            PoliklinikDoldur();
             MessageBox.Show($"Başarılı","Silindi",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+
+           
 
         }
         private void materialSingleLineTextField1_TextChanged(object sender, EventArgs e)

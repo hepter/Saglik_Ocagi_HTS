@@ -78,7 +78,14 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
             db.birey.AddOrUpdate(birey);
             db.SaveChanges();
-
+            birey.hasta.dosyaID = dosya.dosyaid;
+            db = new saglikDBEntities_1();
+            db.hasta.AddOrUpdate(birey.hasta);
+            db.SaveChanges();
+            //db=new saglikDBEntities_1();
+            //int hastadosyaNo = db.dosya.Where(a=>a.hastatckimlikno== birey.tckimlikno).First().dosyaid;
+            //birey.hasta.dosya.Where(a => a.hastatckimlikno == birey.tckimlikno).First().dosyaid = hastadosyaNo;
+            //birey.hasta.dosyaID = hastadosyaNo;
             ActiveHasta = birey.hasta;
             MessageBox.Show("Hasta Eklendi!","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
             DialogResult = DialogResult.OK;

@@ -113,6 +113,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
                   birey.tckimlikno = kull.tckimlikno;
                   db.birey.AddOrUpdate(birey);
                   db.kullanicilar.AddOrUpdate(kull);
+                
             }
           
             

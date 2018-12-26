@@ -12,15 +12,16 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
     public enum UserSeviye
     {
-        Admin,
-        User
+        User,
+        Admin
+        
     }
  
     public partial class User : UserControl
     {
         public delegate void AksiyonHandler(kullanicilar user);
         public kullanicilar EntityKullanici { get;}
-
+        public bool aktifKullaniciMi { get; set; }
         public event AksiyonHandler SilEvent;
         public event AksiyonHandler DetayEvent;
 
@@ -30,9 +31,9 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             pictureBox1.Image = Properties.Resources.user;
             label4.Text = "User";
         }
-        public User(kullanicilar kull,AksiyonHandler Sil,AksiyonHandler Detay):this()
+        public User(kullanicilar kull,AksiyonHandler Sil,AksiyonHandler Detay,bool aktifKullaniciMi=false):this()
         {
-           
+            this.aktifKullaniciMi = aktifKullaniciMi;
             switch ((UserSeviye)int.Parse(kull.yetki))
             {
                 case UserSeviye.Admin:
@@ -55,7 +56,24 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             label6.Text = kull.unvan;
             label3.Text = kull.id.ToString();
         }
+        protected override void OnPaint(PaintEventArgs e)
 
+        {
+
+            base.OnPaint(e);
+
+            if (aktifKullaniciMi)
+            {
+                
+         
+            int borderWidth = 1;
+            Color borderColor = SystemColors.AppWorkspace;
+            ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Color.Orange,
+                borderWidth, ButtonBorderStyle.Solid, Color.Orange, borderWidth,
+                ButtonBorderStyle.Solid, Color.Orange, borderWidth, ButtonBorderStyle.Solid,
+                Color.Orange, borderWidth, ButtonBorderStyle.Solid);
+            }
+        }
         private void User_Load(object sender, EventArgs e)
         {
 
@@ -63,10 +81,9 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes==MessageBox.Show("Silmek istediğinize Emin Misiniz?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning))
-            {
-                SilEvent(EntityKullanici);
-            }
+          
+          SilEvent(EntityKullanici);
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

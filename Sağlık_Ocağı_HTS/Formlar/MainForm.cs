@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -27,21 +28,31 @@ namespace Sağlık_Ocağı_HTS
 {
     public partial class MainForm : MaterialForm
     {
+        private kullanicilar aktifKullanici;
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
        
         public MainForm()
         {
-    
-            InitializeComponent();
+            var db = new saglikDBEntities_1();
+            var kull = db.kullanicilar.First(a=>a.username=="hepter");
+            db.Entry(kull).State = EntityState.Detached;
+            aktifKullanici = kull;
 
+
+            InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Brown500, Primary.Brown700, Primary.LightBlue900, Accent.Green700, TextShade.WHITE);
 
            
+        }
+
+        public MainForm(kullanicilar kull)
+        {
+            aktifKullanici = kull;
         }
 
         private saglikDBEntities_1 db = new saglikDBEntities_1();
@@ -137,7 +148,7 @@ namespace Sağlık_Ocağı_HTS
 
         private void yöneticiPaneliToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdminPanelForm panel =new AdminPanelForm();
+            AdminPanelForm panel =new AdminPanelForm(aktifKullanici);
             panel.ShowDialog();
         }
 
@@ -155,6 +166,21 @@ namespace Sağlık_Ocağı_HTS
         private void dosyaToolStripMenuItem_DropDownClosed(object sender, EventArgs e)
         {
             (sender as ToolStripMenuItem).ForeColor = Color.White;
+        }
+
+        private void doktorEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoktorEkleForm form=new DoktorEkleForm();
+            form.ShowDialog();
+
+        }
+
+        private void oturumdanÇıkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res=   MessageBox.Show($"{aktifKullanici.username} hesanbından çıkış yapılsın mı?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (res != DialogResult.Yes)
+                return;
+
         }
     }
 }
