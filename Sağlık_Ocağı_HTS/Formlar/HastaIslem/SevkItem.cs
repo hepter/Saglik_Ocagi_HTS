@@ -18,7 +18,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         public event SevkAksiyonHandler TaburcuEvent;
 
         private sevk ActiveSevk;
-      
+     
 
         public SevkItem()
         {
@@ -31,7 +31,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             materialLabel1.Text = "  Tarih: " + sevk.sevktarihi.ToString("dd-MM-yyyy dddd");
             materialLabel2.Text = "Bölüm: " + sevk.poliklinik1.poliklinik_isim.isim;
             materialLabel3.Text = "Doktor: " + sevk.doktor.birey.ad +" "+sevk.doktor.birey.soyad;
-            pictureBox1.Image = (sevk.taburcu.taburcuoldumu == "1") ? Properties.Resources.taburcu2: Properties.Resources.taburcu;
+            pictureBox1.Image = (sevk.taburcu.taburcuoldumu) ? Properties.Resources.taburcu2: Properties.Resources.taburcu;
             ActiveSevk = sevk;
         }
 
@@ -48,6 +48,19 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         private void button3_Click(object sender, EventArgs e)
         {
             TaburcuEvent(ActiveSevk);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+
+            int borderWidth = 2;
+              
+                Color color = Color.DodgerBlue;
+                ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, color, borderWidth, ButtonBorderStyle.Solid,
+                    color, borderWidth, ButtonBorderStyle.Solid, color, borderWidth,
+                    ButtonBorderStyle.Solid, color, borderWidth, ButtonBorderStyle.Solid);
+        
+            
         }
     }
 }

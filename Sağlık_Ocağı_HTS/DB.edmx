@@ -135,7 +135,7 @@
           <Property Name="taburcuid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="cikisSaati" Type="datetime" />
           <Property Name="odemeid" Type="int" />
-          <Property Name="taburcuoldumu" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="taburcuoldumu" Type="bit" Nullable="false" />
           <Property Name="toplamtutar" Type="nchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK_doktor_birey">
@@ -384,65 +384,322 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="saglikDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="birey">
+          <Key>
+            <PropertyRef Name="tckimlikno" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogumyeri" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="dtarihi" Type="DateTime" Precision="3" />
+          <Property Name="cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="kangrubu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="medenihal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="anneadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="babaadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="evtel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ceptel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="doktor" Relationship="Self.FK_doktor_birey" FromRole="birey" ToRole="doktor" />
+          <NavigationProperty Name="hasta" Relationship="Self.FK_hasta_birey" FromRole="birey" ToRole="hasta" />
+          <NavigationProperty Name="kullanicilar" Relationship="Self.FK_kullanicilar_birey" FromRole="birey" ToRole="kullanicilar" />
+        </EntityType>
+        <EntityType Name="doktor">
+          <Key>
+            <PropertyRef Name="doktorid" />
+          </Key>
+          <Property Name="doktorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="birey" Relationship="Self.FK_doktor_birey" FromRole="doktor" ToRole="birey" />
+          <NavigationProperty Name="islemler" Relationship="Self.FK_islemler_doktor" FromRole="doktor" ToRole="islemler" />
+          <NavigationProperty Name="sevk" Relationship="Self.FK_sevk_doktor" FromRole="doktor" ToRole="sevk" />
+        </EntityType>
+        <EntityType Name="dosya">
+          <Key>
+            <PropertyRef Name="dosyaid" />
+          </Key>
+          <Property Name="dosyaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dosyatarihi" Type="DateTime" Precision="3" />
+          <Property Name="hastatckimlikno" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="hasta" Relationship="Self.FK_dosya_hasta" FromRole="dosya" ToRole="hasta" />
+          <NavigationProperty Name="sevk" Relationship="Self.FK_sevk_dosya" FromRole="dosya" ToRole="sevk" />
+        </EntityType>
+        <EntityType Name="hasta">
+          <Key>
+            <PropertyRef Name="tckimlikno" />
+          </Key>
+          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
+          <Property Name="dosyaID" Type="Int32" Nullable="false" />
+          <Property Name="kurumsicilno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="kurumadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="yakintel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="yakinkurumsicilno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="yakinkurumadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="birey" Relationship="Self.FK_hasta_birey" FromRole="hasta" ToRole="birey" />
+          <NavigationProperty Name="dosya" Relationship="Self.FK_dosya_hasta" FromRole="hasta" ToRole="dosya" />
+        </EntityType>
+        <EntityType Name="islem">
+          <Key>
+            <PropertyRef Name="islemid" />
+          </Key>
+          <Property Name="islemid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="islemadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birimfiyat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="islemler" Relationship="Self.FK_islemler_islem" FromRole="islem" ToRole="islemler" />
+        </EntityType>
+        <EntityType Name="islemler">
+          <Key>
+            <PropertyRef Name="sevktarihi" />
+            <PropertyRef Name="islemid" />
+          </Key>
+          <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="islemid" Type="Int32" Nullable="false" />
+          <Property Name="doktorid" Type="Int32" Nullable="false" />
+          <Property Name="miktar" Type="Int32" />
+          <NavigationProperty Name="doktor" Relationship="Self.FK_islemler_doktor" FromRole="islemler" ToRole="doktor" />
+          <NavigationProperty Name="islem" Relationship="Self.FK_islemler_islem" FromRole="islemler" ToRole="islem" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yetki" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="unvan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="isebaslama" Type="DateTime" Precision="3" />
+          <Property Name="maas" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="birey" Relationship="Self.FK_kullanicilar_birey" FromRole="kullanicilar" ToRole="birey" />
+        </EntityType>
+        <EntityType Name="odeme">
+          <Key>
+            <PropertyRef Name="odemeid" />
+          </Key>
+          <Property Name="odemeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yontemadi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="taburcu" Relationship="saglikDBModel.FK_taburcu_odeme" FromRole="odeme" ToRole="taburcu" />
+        </EntityType>
+        <EntityType Name="poliklinik">
+          <Key>
+            <PropertyRef Name="poliklinikadi" />
+          </Key>
+          <Property Name="poliklinikadi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="durum" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="aciklama" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="bolumid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="poliklinik_isim" Relationship="Self.FK_poliklinik_bolumid" FromRole="poliklinik" ToRole="poliklinik_isim" />
+          <NavigationProperty Name="sevk" Relationship="Self.FK_sevk_poliklinik" FromRole="poliklinik" ToRole="sevk" />
+        </EntityType>
+        <EntityType Name="poliklinik_isim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isim" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="poliklinik" Relationship="Self.FK_poliklinik_bolumid" FromRole="poliklinik_isim" ToRole="poliklinik" />
+        </EntityType>
+        <EntityType Name="sevk">
+          <Key>
+            <PropertyRef Name="sevktarihi" />
+            <PropertyRef Name="dosyaid" />
+          </Key>
+          <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dosyaid" Type="Int32" Nullable="false" />
+          <Property Name="sevkedendoktorid" Type="Int32" Nullable="false" />
+          <Property Name="poliklinik" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sira" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="saat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="taburcuid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="doktor" Relationship="Self.FK_sevk_doktor" FromRole="sevk" ToRole="doktor" />
+          <NavigationProperty Name="dosya" Relationship="Self.FK_sevk_dosya" FromRole="sevk" ToRole="dosya" />
+          <NavigationProperty Name="poliklinik1" Relationship="Self.FK_sevk_poliklinik" FromRole="sevk" ToRole="poliklinik" />
+          <NavigationProperty Name="taburcu" Relationship="saglikDBModel.FK_sevk_taburcu" FromRole="sevk" ToRole="taburcu" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_doktor_birey">
+          <End Role="birey" Type="Self.birey" Multiplicity="1" />
+          <End Role="doktor" Type="Self.doktor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="birey">
+              <PropertyRef Name="tckimlikno" />
+            </Principal>
+            <Dependent Role="doktor">
+              <PropertyRef Name="tckimlikno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hasta_birey">
+          <End Role="birey" Type="Self.birey" Multiplicity="1" />
+          <End Role="hasta" Type="Self.hasta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="birey">
+              <PropertyRef Name="tckimlikno" />
+            </Principal>
+            <Dependent Role="hasta">
+              <PropertyRef Name="tckimlikno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kullanicilar_birey">
+          <End Role="birey" Type="Self.birey" Multiplicity="1" />
+          <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="birey">
+              <PropertyRef Name="tckimlikno" />
+            </Principal>
+            <Dependent Role="kullanicilar">
+              <PropertyRef Name="tckimlikno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_islemler_doktor">
+          <End Role="doktor" Type="Self.doktor" Multiplicity="1" />
+          <End Role="islemler" Type="Self.islemler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doktor">
+              <PropertyRef Name="doktorid" />
+            </Principal>
+            <Dependent Role="islemler">
+              <PropertyRef Name="doktorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sevk_doktor">
+          <End Role="doktor" Type="Self.doktor" Multiplicity="1" />
+          <End Role="sevk" Type="Self.sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doktor">
+              <PropertyRef Name="doktorid" />
+            </Principal>
+            <Dependent Role="sevk">
+              <PropertyRef Name="sevkedendoktorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dosya_hasta">
+          <End Role="hasta" Type="Self.hasta" Multiplicity="1" />
+          <End Role="dosya" Type="Self.dosya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hasta">
+              <PropertyRef Name="tckimlikno" />
+            </Principal>
+            <Dependent Role="dosya">
+              <PropertyRef Name="hastatckimlikno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sevk_dosya">
+          <End Role="dosya" Type="Self.dosya" Multiplicity="1" />
+          <End Role="sevk" Type="Self.sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dosya">
+              <PropertyRef Name="dosyaid" />
+            </Principal>
+            <Dependent Role="sevk">
+              <PropertyRef Name="dosyaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_islemler_islem">
+          <End Role="islem" Type="Self.islem" Multiplicity="1" />
+          <End Role="islemler" Type="Self.islemler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="islem">
+              <PropertyRef Name="islemid" />
+            </Principal>
+            <Dependent Role="islemler">
+              <PropertyRef Name="islemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_poliklinik_bolumid">
+          <End Role="poliklinik_isim" Type="Self.poliklinik_isim" Multiplicity="1" />
+          <End Role="poliklinik" Type="Self.poliklinik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poliklinik_isim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="poliklinik">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sevk_poliklinik">
+          <End Role="poliklinik" Type="Self.poliklinik" Multiplicity="1" />
+          <End Role="sevk" Type="Self.sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="poliklinik">
+              <PropertyRef Name="poliklinikadi" />
+            </Principal>
+            <Dependent Role="sevk">
+              <PropertyRef Name="poliklinik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="saglikDBEntities_1" annotation:LazyLoadingEnabled="true">
-          <FunctionImport Name="userCheck">
-            <Parameter Name="username" Mode="In" Type="String" />
-            <Parameter Name="result" Mode="InOut" Type="Boolean" />
-          </FunctionImport>
-          <EntitySet Name="birey" EntityType="saglikDBModel.birey" />
-          <EntitySet Name="doktor" EntityType="saglikDBModel.doktor" />
-          <EntitySet Name="dosya" EntityType="saglikDBModel.dosya" />
-          <EntitySet Name="hasta" EntityType="saglikDBModel.hasta" />
-          <EntitySet Name="islem" EntityType="saglikDBModel.islem" />
-          <EntitySet Name="islemler" EntityType="saglikDBModel.islemler" />
-          <EntitySet Name="kullanicilar" EntityType="saglikDBModel.kullanicilar" />
-          <EntitySet Name="poliklinik" EntityType="saglikDBModel.poliklinik" />
-          <EntitySet Name="poliklinik_isim" EntityType="saglikDBModel.poliklinik_isim" />
-          <EntitySet Name="sevk" EntityType="saglikDBModel.sevk" />
-          <EntitySet Name="sysdiagrams" EntityType="saglikDBModel.sysdiagrams" />
-          <EntitySet Name="taburcu" EntityType="saglikDBModel.taburcu" />
-          <AssociationSet Name="FK_doktor_birey" Association="saglikDBModel.FK_doktor_birey">
+          <EntitySet Name="birey" EntityType="Self.birey" />
+          <EntitySet Name="doktor" EntityType="Self.doktor" />
+          <EntitySet Name="dosya" EntityType="Self.dosya" />
+          <EntitySet Name="hasta" EntityType="Self.hasta" />
+          <EntitySet Name="islem" EntityType="Self.islem" />
+          <EntitySet Name="islemler" EntityType="Self.islemler" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" />
+          <EntitySet Name="odeme" EntityType="Self.odeme" />
+          <EntitySet Name="poliklinik" EntityType="Self.poliklinik" />
+          <EntitySet Name="poliklinik_isim" EntityType="Self.poliklinik_isim" />
+          <EntitySet Name="sevk" EntityType="Self.sevk" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_doktor_birey" Association="Self.FK_doktor_birey">
             <End Role="birey" EntitySet="birey" />
             <End Role="doktor" EntitySet="doktor" />
           </AssociationSet>
-          <AssociationSet Name="FK_hasta_birey" Association="saglikDBModel.FK_hasta_birey">
+          <AssociationSet Name="FK_hasta_birey" Association="Self.FK_hasta_birey">
             <End Role="birey" EntitySet="birey" />
             <End Role="hasta" EntitySet="hasta" />
           </AssociationSet>
-          <AssociationSet Name="FK_kullanicilar_birey" Association="saglikDBModel.FK_kullanicilar_birey">
+          <AssociationSet Name="FK_kullanicilar_birey" Association="Self.FK_kullanicilar_birey">
             <End Role="birey" EntitySet="birey" />
             <End Role="kullanicilar" EntitySet="kullanicilar" />
           </AssociationSet>
-          <AssociationSet Name="FK_islemler_doktor" Association="saglikDBModel.FK_islemler_doktor">
+          <AssociationSet Name="FK_islemler_doktor" Association="Self.FK_islemler_doktor">
             <End Role="doktor" EntitySet="doktor" />
             <End Role="islemler" EntitySet="islemler" />
           </AssociationSet>
-          <AssociationSet Name="FK_sevk_doktor" Association="saglikDBModel.FK_sevk_doktor">
+          <AssociationSet Name="FK_sevk_doktor" Association="Self.FK_sevk_doktor">
             <End Role="doktor" EntitySet="doktor" />
             <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
-          <AssociationSet Name="FK_dosya_hasta" Association="saglikDBModel.FK_dosya_hasta">
+          <AssociationSet Name="FK_dosya_hasta" Association="Self.FK_dosya_hasta">
             <End Role="hasta" EntitySet="hasta" />
             <End Role="dosya" EntitySet="dosya" />
           </AssociationSet>
-          <AssociationSet Name="FK_sevk_dosya" Association="saglikDBModel.FK_sevk_dosya">
+          <AssociationSet Name="FK_sevk_dosya" Association="Self.FK_sevk_dosya">
             <End Role="dosya" EntitySet="dosya" />
             <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
-          <AssociationSet Name="FK_islemler_islem" Association="saglikDBModel.FK_islemler_islem">
+          <AssociationSet Name="FK_islemler_islem" Association="Self.FK_islemler_islem">
             <End Role="islem" EntitySet="islem" />
             <End Role="islemler" EntitySet="islemler" />
           </AssociationSet>
-          <AssociationSet Name="FK_poliklinik_bolumid" Association="saglikDBModel.FK_poliklinik_bolumid">
+          <AssociationSet Name="FK_poliklinik_bolumid" Association="Self.FK_poliklinik_bolumid">
             <End Role="poliklinik_isim" EntitySet="poliklinik_isim" />
             <End Role="poliklinik" EntitySet="poliklinik" />
           </AssociationSet>
-          <AssociationSet Name="FK_sevk_poliklinik" Association="saglikDBModel.FK_sevk_poliklinik">
+          <AssociationSet Name="FK_sevk_poliklinik" Association="Self.FK_sevk_poliklinik">
             <End Role="poliklinik" EntitySet="poliklinik" />
-            <End Role="sevk" EntitySet="sevk" />
-          </AssociationSet>
-          <AssociationSet Name="FK_sevk_taburcu" Association="saglikDBModel.FK_sevk_taburcu">
-            <End Role="taburcu" EntitySet="taburcu" />
             <End Role="sevk" EntitySet="sevk" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
@@ -475,279 +732,52 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="odemes" EntityType="saglikDBModel.odeme" />
+          <FunctionImport Name="userCheck">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="taburcu" EntityType="saglikDBModel.taburcu" />
           <AssociationSet Name="FK_taburcu_odeme" Association="saglikDBModel.FK_taburcu_odeme">
-            <End Role="odeme" EntitySet="odemes" />
+            <End Role="odeme" EntitySet="odeme" />
             <End Role="taburcu" EntitySet="taburcu" />
           </AssociationSet>
+          <AssociationSet Name="FK_sevk_taburcu" Association="saglikDBModel.FK_sevk_taburcu">
+            <End Role="taburcu" EntitySet="taburcu" />
+            <End Role="sevk" EntitySet="sevk" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="birey">
-          <Key>
-            <PropertyRef Name="tckimlikno" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
-          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="dogumyeri" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="dtarihi" Type="DateTime" Precision="3" />
-          <Property Name="cinsiyet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="kangrubu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="medenihal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="anneadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="babaadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="evtel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="ceptel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="doktor" Relationship="saglikDBModel.FK_doktor_birey" FromRole="birey" ToRole="doktor" />
-          <NavigationProperty Name="hasta" Relationship="saglikDBModel.FK_hasta_birey" FromRole="birey" ToRole="hasta" />
-          <NavigationProperty Name="kullanicilar" Relationship="saglikDBModel.FK_kullanicilar_birey" FromRole="birey" ToRole="kullanicilar" />
-        </EntityType>
-        <EntityType Name="doktor">
-          <Key>
-            <PropertyRef Name="doktorid" />
-          </Key>
-          <Property Name="doktorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="birey" Relationship="saglikDBModel.FK_doktor_birey" FromRole="doktor" ToRole="birey" />
-          <NavigationProperty Name="islemler" Relationship="saglikDBModel.FK_islemler_doktor" FromRole="doktor" ToRole="islemler" />
-          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_doktor" FromRole="doktor" ToRole="sevk" />
-        </EntityType>
-        <EntityType Name="dosya">
-          <Key>
-            <PropertyRef Name="dosyaid" />
-          </Key>
-          <Property Name="dosyaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dosyatarihi" Type="DateTime" Precision="3" />
-          <Property Name="hastatckimlikno" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="hasta" Relationship="saglikDBModel.FK_dosya_hasta" FromRole="dosya" ToRole="hasta" />
-          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_dosya" FromRole="dosya" ToRole="sevk" />
-        </EntityType>
-        <EntityType Name="hasta">
-          <Key>
-            <PropertyRef Name="tckimlikno" />
-          </Key>
-          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
-          <Property Name="dosyaID" Type="Int32" Nullable="false" />
-          <Property Name="kurumsicilno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="kurumadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="yakintel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="yakinkurumsicilno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="yakinkurumadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="birey" Relationship="saglikDBModel.FK_hasta_birey" FromRole="hasta" ToRole="birey" />
-          <NavigationProperty Name="dosya" Relationship="saglikDBModel.FK_dosya_hasta" FromRole="hasta" ToRole="dosya" />
-        </EntityType>
-        <EntityType Name="islem">
-          <Key>
-            <PropertyRef Name="islemid" />
-          </Key>
-          <Property Name="islemid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="islemadi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="birimfiyat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="islemler" Relationship="saglikDBModel.FK_islemler_islem" FromRole="islem" ToRole="islemler" />
-        </EntityType>
-        <EntityType Name="islemler">
-          <Key>
-            <PropertyRef Name="sevktarihi" />
-            <PropertyRef Name="islemid" />
-          </Key>
-          <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="islemid" Type="Int32" Nullable="false" />
-          <Property Name="doktorid" Type="Int32" Nullable="false" />
-          <Property Name="miktar" Type="Int32" />
-          <NavigationProperty Name="doktor" Relationship="saglikDBModel.FK_islemler_doktor" FromRole="islemler" ToRole="doktor" />
-          <NavigationProperty Name="islem" Relationship="saglikDBModel.FK_islemler_islem" FromRole="islemler" ToRole="islem" />
-        </EntityType>
-        <EntityType Name="kullanicilar">
-          <Key>
-            <PropertyRef Name="username" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tckimlikno" Type="Int32" Nullable="false" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="yetki" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="unvan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="isebaslama" Type="DateTime" Precision="3" />
-          <Property Name="maas" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="birey" Relationship="saglikDBModel.FK_kullanicilar_birey" FromRole="kullanicilar" ToRole="birey" />
-        </EntityType>
-        <EntityType Name="poliklinik">
-          <Key>
-            <PropertyRef Name="poliklinikadi" />
-          </Key>
-          <Property Name="poliklinikadi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="durum" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="aciklama" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="bolumid" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="poliklinik_isim" Relationship="saglikDBModel.FK_poliklinik_bolumid" FromRole="poliklinik" ToRole="poliklinik_isim" />
-          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_poliklinik" FromRole="poliklinik" ToRole="sevk" />
-        </EntityType>
-        <EntityType Name="poliklinik_isim">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="isim" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="poliklinik" Relationship="saglikDBModel.FK_poliklinik_bolumid" FromRole="poliklinik_isim" ToRole="poliklinik" />
-        </EntityType>
-        <EntityType Name="sevk">
-          <Key>
-            <PropertyRef Name="sevktarihi" />
-            <PropertyRef Name="dosyaid" />
-          </Key>
-          <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dosyaid" Type="Int32" Nullable="false" />
-          <Property Name="sevkedendoktorid" Type="Int32" Nullable="false" />
-          <Property Name="poliklinik" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sira" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="saat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="taburcuid" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="doktor" Relationship="saglikDBModel.FK_sevk_doktor" FromRole="sevk" ToRole="doktor" />
-          <NavigationProperty Name="dosya" Relationship="saglikDBModel.FK_sevk_dosya" FromRole="sevk" ToRole="dosya" />
-          <NavigationProperty Name="poliklinik1" Relationship="saglikDBModel.FK_sevk_poliklinik" FromRole="sevk" ToRole="poliklinik" />
-          <NavigationProperty Name="taburcu" Relationship="saglikDBModel.FK_sevk_taburcu" FromRole="sevk" ToRole="taburcu" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         <EntityType Name="taburcu">
           <Key>
             <PropertyRef Name="taburcuid" />
           </Key>
           <Property Name="taburcuid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cikisSaati" Type="DateTime" Precision="3" />
-          <Property Name="odeme" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="taburcuoldumu" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="toplamtutar" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_taburcu" FromRole="taburcu" ToRole="sevk" />
           <Property Name="odemeid" Type="Int32" />
-          <NavigationProperty Name="odeme1" Relationship="saglikDBModel.FK_taburcu_odeme" FromRole="taburcu" ToRole="odeme" />
+          <Property Name="taburcuoldumu" Type="Boolean" Nullable="false" />
+          <Property Name="toplamtutar" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="odeme" Relationship="saglikDBModel.FK_taburcu_odeme" FromRole="taburcu" ToRole="odeme" />
+          <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_taburcu" FromRole="taburcu" ToRole="sevk" />
         </EntityType>
-        <Association Name="FK_doktor_birey">
-          <End Type="saglikDBModel.birey" Role="birey" Multiplicity="1" />
-          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="*" />
+        <Association Name="FK_taburcu_odeme">
+          <End Type="saglikDBModel.odeme" Role="odeme" Multiplicity="0..1" />
+          <End Type="saglikDBModel.taburcu" Role="taburcu" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="birey">
-              <PropertyRef Name="tckimlikno" />
+            <Principal Role="odeme">
+              <PropertyRef Name="odemeid" />
             </Principal>
-            <Dependent Role="doktor">
-              <PropertyRef Name="tckimlikno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_hasta_birey">
-          <End Type="saglikDBModel.birey" Role="birey" Multiplicity="1" />
-          <End Type="saglikDBModel.hasta" Role="hasta" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="birey">
-              <PropertyRef Name="tckimlikno" />
-            </Principal>
-            <Dependent Role="hasta">
-              <PropertyRef Name="tckimlikno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_kullanicilar_birey">
-          <End Type="saglikDBModel.birey" Role="birey" Multiplicity="1" />
-          <End Type="saglikDBModel.kullanicilar" Role="kullanicilar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="birey">
-              <PropertyRef Name="tckimlikno" />
-            </Principal>
-            <Dependent Role="kullanicilar">
-              <PropertyRef Name="tckimlikno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_islemler_doktor">
-          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="1" />
-          <End Type="saglikDBModel.islemler" Role="islemler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="doktor">
-              <PropertyRef Name="doktorid" />
-            </Principal>
-            <Dependent Role="islemler">
-              <PropertyRef Name="doktorid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_sevk_doktor">
-          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="1" />
-          <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="doktor">
-              <PropertyRef Name="doktorid" />
-            </Principal>
-            <Dependent Role="sevk">
-              <PropertyRef Name="sevkedendoktorid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dosya_hasta">
-          <End Type="saglikDBModel.hasta" Role="hasta" Multiplicity="1" />
-          <End Type="saglikDBModel.dosya" Role="dosya" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="hasta">
-              <PropertyRef Name="tckimlikno" />
-            </Principal>
-            <Dependent Role="dosya">
-              <PropertyRef Name="hastatckimlikno" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_sevk_dosya">
-          <End Type="saglikDBModel.dosya" Role="dosya" Multiplicity="1" />
-          <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="dosya">
-              <PropertyRef Name="dosyaid" />
-            </Principal>
-            <Dependent Role="sevk">
-              <PropertyRef Name="dosyaid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_islemler_islem">
-          <End Type="saglikDBModel.islem" Role="islem" Multiplicity="1" />
-          <End Type="saglikDBModel.islemler" Role="islemler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="islem">
-              <PropertyRef Name="islemid" />
-            </Principal>
-            <Dependent Role="islemler">
-              <PropertyRef Name="islemid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_poliklinik_bolumid">
-          <End Type="saglikDBModel.poliklinik_isim" Role="poliklinik_isim" Multiplicity="1" />
-          <End Type="saglikDBModel.poliklinik" Role="poliklinik" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="poliklinik_isim">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="poliklinik">
-              <PropertyRef Name="bolumid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_sevk_poliklinik">
-          <End Type="saglikDBModel.poliklinik" Role="poliklinik" Multiplicity="1" />
-          <End Type="saglikDBModel.sevk" Role="sevk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="poliklinik">
-              <PropertyRef Name="poliklinikadi" />
-            </Principal>
-            <Dependent Role="sevk">
-              <PropertyRef Name="poliklinik" />
+            <Dependent Role="taburcu">
+              <PropertyRef Name="odemeid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -763,177 +793,142 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <EntityType Name="odeme">
-          <Key>
-            <PropertyRef Name="odemeid" />
-          </Key>
-          <Property Name="odemeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="yontemadi" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="taburcus" Relationship="saglikDBModel.FK_taburcu_odeme" FromRole="odeme" ToRole="taburcu" />
-        </EntityType>
-        <Association Name="FK_taburcu_odeme">
-          <End Type="saglikDBModel.odeme" Role="odeme" Multiplicity="0..1" />
-          <End Type="saglikDBModel.taburcu" Role="taburcu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="odeme">
-              <PropertyRef Name="odemeid" />
-            </Principal>
-            <Dependent Role="taburcu">
-              <PropertyRef Name="odemeid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="saglikDBModelStoreContainer" CdmEntityContainer="saglikDBEntities_1">
-          <FunctionImportMapping FunctionImportName="userCheck" FunctionName="saglikDBModel.Store.userCheck" />
           <EntitySetMapping Name="birey">
             <EntityTypeMapping TypeName="saglikDBModel.birey">
               <MappingFragment StoreEntitySet="birey">
-                <ScalarProperty Name="adres" ColumnName="adres" />
-                <ScalarProperty Name="ceptel" ColumnName="ceptel" />
-                <ScalarProperty Name="evtel" ColumnName="evtel" />
-                <ScalarProperty Name="babaadi" ColumnName="babaadi" />
-                <ScalarProperty Name="anneadi" ColumnName="anneadi" />
-                <ScalarProperty Name="medenihal" ColumnName="medenihal" />
-                <ScalarProperty Name="kangrubu" ColumnName="kangrubu" />
-                <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
-                <ScalarProperty Name="dtarihi" ColumnName="dtarihi" />
-                <ScalarProperty Name="dogumyeri" ColumnName="dogumyeri" />
-                <ScalarProperty Name="soyad" ColumnName="soyad" />
-                <ScalarProperty Name="ad" ColumnName="ad" />
-                <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="dogumyeri" ColumnName="dogumyeri" />
+                <ScalarProperty Name="dtarihi" ColumnName="dtarihi" />
+                <ScalarProperty Name="cinsiyet" ColumnName="cinsiyet" />
+                <ScalarProperty Name="kangrubu" ColumnName="kangrubu" />
+                <ScalarProperty Name="medenihal" ColumnName="medenihal" />
+                <ScalarProperty Name="anneadi" ColumnName="anneadi" />
+                <ScalarProperty Name="babaadi" ColumnName="babaadi" />
+                <ScalarProperty Name="evtel" ColumnName="evtel" />
+                <ScalarProperty Name="ceptel" ColumnName="ceptel" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="doktor">
             <EntityTypeMapping TypeName="saglikDBModel.doktor">
               <MappingFragment StoreEntitySet="doktor">
-                <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
                 <ScalarProperty Name="doktorid" ColumnName="doktorid" />
+                <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="dosya">
             <EntityTypeMapping TypeName="saglikDBModel.dosya">
               <MappingFragment StoreEntitySet="dosya">
-                <ScalarProperty Name="hastatckimlikno" ColumnName="hastatckimlikno" />
-                <ScalarProperty Name="dosyatarihi" ColumnName="dosyatarihi" />
                 <ScalarProperty Name="dosyaid" ColumnName="dosyaid" />
+                <ScalarProperty Name="dosyatarihi" ColumnName="dosyatarihi" />
+                <ScalarProperty Name="hastatckimlikno" ColumnName="hastatckimlikno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="hasta">
             <EntityTypeMapping TypeName="saglikDBModel.hasta">
               <MappingFragment StoreEntitySet="hasta">
-                <ScalarProperty Name="yakinkurumadi" ColumnName="yakinkurumadi" />
-                <ScalarProperty Name="yakinkurumsicilno" ColumnName="yakinkurumsicilno" />
-                <ScalarProperty Name="yakintel" ColumnName="yakintel" />
-                <ScalarProperty Name="kurumadi" ColumnName="kurumadi" />
-                <ScalarProperty Name="kurumsicilno" ColumnName="kurumsicilno" />
-                <ScalarProperty Name="dosyaID" ColumnName="dosyaID" />
                 <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
+                <ScalarProperty Name="dosyaID" ColumnName="dosyaID" />
+                <ScalarProperty Name="kurumsicilno" ColumnName="kurumsicilno" />
+                <ScalarProperty Name="kurumadi" ColumnName="kurumadi" />
+                <ScalarProperty Name="yakintel" ColumnName="yakintel" />
+                <ScalarProperty Name="yakinkurumsicilno" ColumnName="yakinkurumsicilno" />
+                <ScalarProperty Name="yakinkurumadi" ColumnName="yakinkurumadi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="islem">
             <EntityTypeMapping TypeName="saglikDBModel.islem">
               <MappingFragment StoreEntitySet="islem">
-                <ScalarProperty Name="birimfiyat" ColumnName="birimfiyat" />
-                <ScalarProperty Name="islemadi" ColumnName="islemadi" />
                 <ScalarProperty Name="islemid" ColumnName="islemid" />
+                <ScalarProperty Name="islemadi" ColumnName="islemadi" />
+                <ScalarProperty Name="birimfiyat" ColumnName="birimfiyat" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="islemler">
             <EntityTypeMapping TypeName="saglikDBModel.islemler">
               <MappingFragment StoreEntitySet="islemler">
-                <ScalarProperty Name="miktar" ColumnName="miktar" />
-                <ScalarProperty Name="doktorid" ColumnName="doktorid" />
-                <ScalarProperty Name="islemid" ColumnName="islemid" />
                 <ScalarProperty Name="sevktarihi" ColumnName="sevktarihi" />
+                <ScalarProperty Name="islemid" ColumnName="islemid" />
+                <ScalarProperty Name="doktorid" ColumnName="doktorid" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="kullanicilar">
             <EntityTypeMapping TypeName="saglikDBModel.kullanicilar">
               <MappingFragment StoreEntitySet="kullanicilar">
-                <ScalarProperty Name="maas" ColumnName="maas" />
-                <ScalarProperty Name="isebaslama" ColumnName="isebaslama" />
-                <ScalarProperty Name="unvan" ColumnName="unvan" />
-                <ScalarProperty Name="yetki" ColumnName="yetki" />
-                <ScalarProperty Name="sifre" ColumnName="sifre" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="yetki" ColumnName="yetki" />
+                <ScalarProperty Name="unvan" ColumnName="unvan" />
+                <ScalarProperty Name="isebaslama" ColumnName="isebaslama" />
+                <ScalarProperty Name="maas" ColumnName="maas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="odeme">
+            <EntityTypeMapping TypeName="saglikDBModel.odeme">
+              <MappingFragment StoreEntitySet="odeme">
+                <ScalarProperty Name="odemeid" ColumnName="odemeid" />
+                <ScalarProperty Name="yontemadi" ColumnName="yontemadi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="poliklinik">
             <EntityTypeMapping TypeName="saglikDBModel.poliklinik">
               <MappingFragment StoreEntitySet="poliklinik">
-                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
-                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
-                <ScalarProperty Name="durum" ColumnName="durum" />
                 <ScalarProperty Name="poliklinikadi" ColumnName="poliklinikadi" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="poliklinik_isim">
             <EntityTypeMapping TypeName="saglikDBModel.poliklinik_isim">
               <MappingFragment StoreEntitySet="poliklinik_isim">
-                <ScalarProperty Name="isim" ColumnName="isim" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="isim" ColumnName="isim" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sevk">
             <EntityTypeMapping TypeName="saglikDBModel.sevk">
               <MappingFragment StoreEntitySet="sevk">
-                <ScalarProperty Name="taburcuid" ColumnName="taburcuid" />
-                <ScalarProperty Name="saat" ColumnName="saat" />
-                <ScalarProperty Name="sira" ColumnName="sira" />
-                <ScalarProperty Name="poliklinik" ColumnName="poliklinik" />
-                <ScalarProperty Name="sevkedendoktorid" ColumnName="sevkedendoktorid" />
-                <ScalarProperty Name="dosyaid" ColumnName="dosyaid" />
                 <ScalarProperty Name="sevktarihi" ColumnName="sevktarihi" />
+                <ScalarProperty Name="dosyaid" ColumnName="dosyaid" />
+                <ScalarProperty Name="sevkedendoktorid" ColumnName="sevkedendoktorid" />
+                <ScalarProperty Name="poliklinik" ColumnName="poliklinik" />
+                <ScalarProperty Name="sira" ColumnName="sira" />
+                <ScalarProperty Name="saat" ColumnName="saat" />
+                <ScalarProperty Name="taburcuid" ColumnName="taburcuid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="saglikDBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="taburcu">
-            <EntityTypeMapping TypeName="saglikDBModel.taburcu">
-              <MappingFragment StoreEntitySet="taburcu">
-                <ScalarProperty Name="odemeid" ColumnName="odemeid" />
-                <ScalarProperty Name="toplamtutar" ColumnName="toplamtutar" />
-                <ScalarProperty Name="taburcuoldumu" ColumnName="taburcuoldumu" />
-                <ScalarProperty Name="cikisSaati" ColumnName="cikisSaati" />
-                <ScalarProperty Name="taburcuid" ColumnName="taburcuid" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -961,11 +956,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="saglikDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="saglikDBModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="odemes">
-            <EntityTypeMapping TypeName="saglikDBModel.odeme">
-              <MappingFragment StoreEntitySet="odeme">
-                <ScalarProperty Name="yontemadi" ColumnName="yontemadi" />
+          <FunctionImportMapping FunctionImportName="userCheck" FunctionName="saglikDBModel.Store.userCheck" />
+          <EntitySetMapping Name="taburcu">
+            <EntityTypeMapping TypeName="saglikDBModel.taburcu">
+              <MappingFragment StoreEntitySet="taburcu">
+                <ScalarProperty Name="toplamtutar" ColumnName="toplamtutar" />
+                <ScalarProperty Name="taburcuoldumu" ColumnName="taburcuoldumu" />
                 <ScalarProperty Name="odemeid" ColumnName="odemeid" />
+                <ScalarProperty Name="cikisSaati" ColumnName="cikisSaati" />
+                <ScalarProperty Name="taburcuid" ColumnName="taburcuid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -983,7 +982,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

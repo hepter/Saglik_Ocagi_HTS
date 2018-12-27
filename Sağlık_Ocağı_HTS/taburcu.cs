@@ -22,13 +22,12 @@ namespace Sağlık_Ocağı_HTS
     
         public int taburcuid { get; set; }
         public Nullable<System.DateTime> cikisSaati { get; set; }
-        public string odeme { get; set; }
-        public string taburcuoldumu { get; set; }
-        public string toplamtutar { get; set; }
         public Nullable<int> odemeid { get; set; }
+        public bool taburcuoldumu { get; set; }
+        public string toplamtutar { get; set; }
     
+        public virtual odeme odeme { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sevk> sevk { get; set; }
-        public virtual odeme odeme1 { get; set; }
     }
 }

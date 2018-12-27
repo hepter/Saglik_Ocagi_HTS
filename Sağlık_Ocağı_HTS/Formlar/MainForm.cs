@@ -82,11 +82,11 @@ namespace Sağlık_Ocağı_HTS
    
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoginForm form= new LoginForm();
+            TaburcuForm form= new TaburcuForm();
             
             AdminPanelForm AdminPanelForm= new AdminPanelForm();
             PoliklinikEkle userDetay= new PoliklinikEkle();
-          //  form.Show();
+           form.Show();
           //  AdminPanelForm.Show();
            // userDetay.ShowDialog();
             HastaIslemPanel  hastaIslemPanel=  new HastaIslemPanel();

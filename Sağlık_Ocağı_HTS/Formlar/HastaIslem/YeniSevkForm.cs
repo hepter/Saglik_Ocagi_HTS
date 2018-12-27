@@ -324,7 +324,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 sevk.dosyaid = ActiveHasta.dosyaID;
 
                 sevk.taburcu=new taburcu();
-                sevk.taburcu.taburcuoldumu = "0";
+                sevk.taburcu.taburcuoldumu =false;
 
                 ActiveSevk = sevk;
                 db.sevk.Add(sevk);

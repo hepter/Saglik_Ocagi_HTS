@@ -17,13 +17,13 @@ namespace Sağlık_Ocağı_HTS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public odeme()
         {
-            this.taburcus = new HashSet<taburcu>();
+            this.taburcu = new HashSet<taburcu>();
         }
     
         public int odemeid { get; set; }
         public string yontemadi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<taburcu> taburcus { get; set; }
+        public virtual ICollection<taburcu> taburcu { get; set; }
     }
 }

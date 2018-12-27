@@ -57,21 +57,24 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             label1.Text = "USER ID:"+kull.id;
         }
         protected override void OnPaint(PaintEventArgs e)
-
         {
 
             base.OnPaint(e);
-
+            int borderWidth = 2;
             if (aktifKullaniciMi)
             {
-                
-         
-            int borderWidth = 1;
-            Color borderColor = SystemColors.AppWorkspace;
-            ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Color.Orange,
-                borderWidth, ButtonBorderStyle.Solid, Color.Orange, borderWidth,
-                ButtonBorderStyle.Solid, Color.Orange, borderWidth, ButtonBorderStyle.Solid,
-                Color.Orange, borderWidth, ButtonBorderStyle.Solid);
+              
+                Color color = Color.MediumVioletRed;
+                ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, color, borderWidth, ButtonBorderStyle.Solid,
+                    color, borderWidth, ButtonBorderStyle.Solid, color, borderWidth,
+                    ButtonBorderStyle.Solid, color, borderWidth, ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                Color color = Color.Green;
+                ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, color, borderWidth, ButtonBorderStyle.Solid,
+                    color, borderWidth, ButtonBorderStyle.Solid, color, borderWidth,
+                    ButtonBorderStyle.Solid, color, borderWidth, ButtonBorderStyle.Solid);
             }
         }
         private void User_Load(object sender, EventArgs e)

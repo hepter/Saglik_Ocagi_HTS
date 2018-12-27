@@ -94,7 +94,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 return;
             flowLayoutPanel1.Controls.Clear();
             //ActiveSevkler = db.sevkler.ToList();
-           
+            int sevkSayi = 0;
             foreach (var sevk in db.dosya.Where(a => a.dosyaid == h.dosyaID).First().sevk)
             {
                 SevkItem item = new SevkItem(sevk);
@@ -102,15 +102,26 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 item.DüzenleEvent += SevkDüzenleOrtakButton;
                 item.TaburcuEvent += SevkTaburcuOrtakButton;
                 flowLayoutPanel1.Controls.Add(item);
-
+                sevkSayi++;
             }
+
+            materialLabel8.Text = (sevkSayi == 0) ? "Sevk Bulunamadı!" : sevkSayi+" Adet Sevk Bulundu";
         }
 
       
         void SevkTaburcuOrtakButton(sevk s)
         {
-            YeniSevkForm form= new YeniSevkForm(s);
-            form.ShowDialog();
+            TaburcuForm form= new TaburcuForm(s);
+            DialogResult res= form.ShowDialog();
+            if (res==DialogResult.OK)
+            {
+                db=new saglikDBEntities_1();
+
+                ActiveHasta = db.hasta.Where(a => a.dosyaID == ActiveHasta.dosyaID).First();
+                db.Entry(ActiveHasta).State = EntityState.Detached;
+                sevkIslemDoldur(ActiveHasta);
+            }
+
         } 
       
         
@@ -157,7 +168,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
        
 
-
+     
         private void HastaIslemPanel_Load(object sender, EventArgs e)
         {
              db = new saglikDBEntities_1();
@@ -325,12 +336,19 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {  
+        {
 
-           
+            if (dataGridView1.Rows.Count==0)
+            {
+                MessageBox.Show("Tablo boş iken önizleme açılamaz!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
+
+
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.Margin=new Padding(20,20,20,20);
             printPreviewDialog1.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog1.Size=new Size(1200,800);
             printPreviewDialog1.ShowDialog();
         }
 
@@ -521,7 +539,12 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            
+            if (dataGridView1.Rows.Count==0)
+            {
+                MessageBox.Show("Tablo boş iken yazdırılamaz","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
+            }
 
             PrintDialog printDialog = new PrintDialog();            
             printDialog.Document = printDocument1;
@@ -532,6 +555,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 printDocument1.Print();
             }
            
+        }
+
+        private void materialSingleLineTextField1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

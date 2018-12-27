@@ -230,9 +230,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Ebrima", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Snow;
-            this.button2.Location = new System.Drawing.Point(11, 366);
+            this.button2.Location = new System.Drawing.Point(11, 363);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(183, 34);
+            this.button2.Size = new System.Drawing.Size(183, 37);
             this.button2.TabIndex = 7;
             this.button2.Text = "Sevki Oluştur";
             this.button2.UseVisualStyleBackColor = false;
