@@ -20,7 +20,7 @@ namespace Sağlık_Ocağı_HTS
             this.dosya = new HashSet<dosya>();
         }
     
-        public int tckimlikno { get; set; }
+        public long tckimlikno { get; set; }
         public int dosyaID { get; set; }
         public string kurumsicilno { get; set; }
         public string kurumadi { get; set; }

@@ -39,7 +39,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -65,6 +64,7 @@
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,13 +87,13 @@
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.materialLabel1);
             this.groupBox1.Controls.Add(this.richTextBox1);
             this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.maskedTextBox2);
             this.groupBox1.Controls.Add(this.materialLabel6);
+            this.groupBox1.Controls.Add(this.maskedTextBox3);
             this.groupBox1.Controls.Add(this.maskedTextBox1);
             this.groupBox1.Controls.Add(this.materialLabel10);
             this.groupBox1.Controls.Add(this.materialLabel21);
@@ -237,15 +237,6 @@
             this.comboBox3.Size = new System.Drawing.Size(218, 24);
             this.comboBox3.TabIndex = 16;
             // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(224, 73);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 22);
-            this.textBox1.TabIndex = 3;
-            // 
             // comboBox2
             // 
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -278,6 +269,7 @@
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(224, 449);
+            this.richTextBox1.MaxLength = 200;
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(218, 132);
             this.richTextBox1.TabIndex = 18;
@@ -288,6 +280,7 @@
             this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox6.Location = new System.Drawing.Point(224, 134);
+            this.textBox6.MaxLength = 50;
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(218, 22);
             this.textBox6.TabIndex = 5;
@@ -386,6 +379,7 @@
             this.textBox18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox18.Location = new System.Drawing.Point(224, 389);
+            this.textBox18.MaxLength = 10;
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(218, 22);
             this.textBox18.TabIndex = 15;
@@ -460,6 +454,7 @@
             this.textBox15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox15.Location = new System.Drawing.Point(224, 329);
+            this.textBox15.MaxLength = 50;
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(218, 22);
             this.textBox15.TabIndex = 13;
@@ -482,6 +477,7 @@
             this.textBox17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox17.Location = new System.Drawing.Point(224, 359);
+            this.textBox17.MaxLength = 50;
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(218, 22);
             this.textBox17.TabIndex = 14;
@@ -504,6 +500,7 @@
             this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox5.Location = new System.Drawing.Point(224, 104);
+            this.textBox5.MaxLength = 50;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(218, 22);
             this.textBox5.TabIndex = 4;
@@ -513,6 +510,7 @@
             this.textBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox16.Location = new System.Drawing.Point(224, 299);
+            this.textBox16.MaxLength = 25;
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(218, 22);
             this.textBox16.TabIndex = 12;
@@ -538,6 +536,19 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "_________________________________________________________________________________" +
     "___________________________________";
+            // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskedTextBox3.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox3.Location = new System.Drawing.Point(223, 73);
+            this.maskedTextBox3.Mask = "00000000000";
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(218, 22);
+            this.maskedTextBox3.TabIndex = 10;
+            this.maskedTextBox3.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox3.ValidatingType = typeof(int);
             // 
             // DoktorEkleForm
             // 
@@ -567,7 +578,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.RichTextBox richTextBox1;
@@ -593,5 +603,6 @@
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox3;
     }
 }

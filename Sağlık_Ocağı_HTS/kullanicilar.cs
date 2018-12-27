@@ -15,7 +15,7 @@ namespace Sağlık_Ocağı_HTS
     public partial class kullanicilar
     {
         public int id { get; set; }
-        public int tckimlikno { get; set; }
+        public long tckimlikno { get; set; }
         public string username { get; set; }
         public string sifre { get; set; }
         public string yetki { get; set; }

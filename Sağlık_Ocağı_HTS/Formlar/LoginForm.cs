@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
+using Sağlık_Ocağı_HTS.Denetimler.AdminPanel;
 
 namespace Sağlık_Ocağı_HTS.Formlar
 {
@@ -24,9 +25,28 @@ namespace Sağlık_Ocağı_HTS.Formlar
 
         }
 
+        private MainForm form ;
         private void button1_Click(object sender, EventArgs e)
         {
             var db= new saglikDBEntities_1();
+            int uye = db.kullanicilar.Count();
+            if (uye==0)
+            {
+                MessageBox.Show("Veritabanında kayıtlı üye yok\n" +
+                                "Yönetici Seviyesinde kullanıcı hesabı oluşturulmak üzere yeni bir forma yönlendirileceksiniz\n"
+                    ,"Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                UserAddDialog frm = new UserAddDialog();
+                Hide();
+                DialogResult res = frm.ShowDialog();
+                Show();
+                if (res==DialogResult.OK)
+                {
+                    form= new MainForm(frm.aktifKullanıcı);
+                    göster();
+                }
+                return;
+            }
+
             var kullanıcı = db.kullanicilar.FirstOrDefault(a=>a.username==materialSingleLineTextField1.Text.Trim() &&  a.sifre==materialSingleLineTextField2.Text.Trim());
             if (kullanıcı==null)
             {
@@ -35,7 +55,12 @@ namespace Sağlık_Ocağı_HTS.Formlar
             }
 
             db.Entry(kullanıcı).State = EntityState.Detached;
-            MainForm form= new MainForm(kullanıcı);
+            form= new MainForm(kullanıcı);
+            göster();
+        }
+
+        void göster()
+        {
             Hide();
             form.ShowDialog();
             Show();

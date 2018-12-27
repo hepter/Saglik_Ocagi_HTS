@@ -22,7 +22,7 @@ namespace Sağlık_Ocağı_HTS
         }
     
         public int id { get; set; }
-        public int tckimlikno { get; set; }
+        public long tckimlikno { get; set; }
         public string ad { get; set; }
         public string soyad { get; set; }
         public string dogumyeri { get; set; }

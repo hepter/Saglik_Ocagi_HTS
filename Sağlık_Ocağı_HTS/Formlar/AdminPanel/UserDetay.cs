@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Migrations;
 using System.Drawing;
@@ -30,8 +31,8 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             comboBox1.SelectedIndex = int.Parse(kull.yetki);
             textBox5.Text =birey.ad ;
             textBox6.Text=birey.soyad ;
-            textBox1.Text=kull.tckimlikno.ToString() ;
-            comboBox2.SelectedIndex = int.Parse(birey.cinsiyet);
+            maskedTextBox3.Text=kull.tckimlikno.ToString() ;
+            comboBox2.SelectedIndex = int.Parse(birey.cinsiyet??"0");
             dateTimePicker1.Value =birey.dtarihi ?? DateTime.Now  ;
             dateTimePicker2.Value =kull.isebaslama ?? DateTime.Now  ;
             textBox11.Text =kull.unvan;
@@ -41,7 +42,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             textBox15.Text =birey.anneadi ;
             textBox17.Text =birey.babaadi ;
             textBox18.Text =birey.kangrubu ;
-            comboBox3.SelectedIndex = int.Parse(birey.medenihal);
+            comboBox3.SelectedIndex = int.Parse(birey.medenihal??"0");
             textBox19.Text =kull.maas;
             richTextBox1.Text=birey.adres ;
 
@@ -79,17 +80,11 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             }
 
             birey birey  = new birey();
-            kullanicilar kull = new kullanicilar();
-            kull.username = textBox2.Text ;
-            kull.sifre = textBox3.Text ;
-            kull.yetki = comboBox1.SelectedIndex.ToString();
+
             birey.ad =  textBox5.Text ;
             birey.soyad =  textBox6.Text ;
-            kull.tckimlikno = int.Parse(textBox1.Text);
             birey.cinsiyet = comboBox2.SelectedIndex.ToString();
             birey.dtarihi = dateTimePicker1.Value   ;
-            kull.isebaslama =  dateTimePicker2.Value ;
-            kull.unvan = textBox11.Text ;
             birey.evtel  = maskedTextBox1.Text ;
             birey.ceptel = maskedTextBox2.Text ;
             birey.dogumyeri = textBox16.Text ;
@@ -97,16 +92,29 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             birey.babaadi =  textBox17.Text ;
             birey.kangrubu = textBox18.Text  ;
             birey.medenihal = comboBox3.SelectedIndex.ToString();
-            kull.maas = textBox19.Text;
             birey.adres  = richTextBox1.Text ;
+
+            kullanicilar kull = new kullanicilar();
+            kull.username = textBox2.Text ;
+            kull.sifre = textBox3.Text ;
+            kull.yetki = comboBox1.SelectedIndex.ToString();
+            kull.tckimlikno = Int64.Parse(maskedTextBox3.Text);
+            kull.isebaslama =  dateTimePicker2.Value ;
+            kull.unvan = textBox11.Text ;
+            kull.maas = textBox19.Text;
 
             if (editMode)
             {
                  kull.id =activeUserID;
                  birey.tckimlikno = kull.tckimlikno;
-                 //db.birey.AddOrUpdate(birey);
-                 db.kullanicilar.AddOrUpdate(kull);
-                 
+                kull.birey = birey;
+                db.kullanicilar.AddOrUpdate(kull);
+                db.birey.AddOrUpdate(birey);
+                //db.Entry(kull).State = EntityState.Modified;
+                //db.kullanicilar.Attach(kull);
+                //db.Entry(kull).State = EntityState.Modified;
+                //db.kullanicilar.AddOrUpdate(kull);
+                grg
             }
             else
             {
@@ -130,7 +138,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 
         bool YıldızlılarDolumu()
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+            if (!maskedTextBox3.MaskCompleted ||
                 string.IsNullOrWhiteSpace(textBox2.Text) ||
                 string.IsNullOrWhiteSpace(textBox3.Text) ||
                 string.IsNullOrWhiteSpace(textBox5.Text) ||

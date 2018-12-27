@@ -32,7 +32,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -40,7 +42,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -48,20 +49,24 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel14 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel17 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.materialLabel13 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.materialLabel16 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
             this.textBox17 = new System.Windows.Forms.TextBox();
@@ -71,12 +76,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +107,6 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.materialLabel2);
             this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.materialLabel1);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -116,6 +115,7 @@
             this.groupBox1.Controls.Add(this.maskedTextBox2);
             this.groupBox1.Controls.Add(this.materialLabel6);
             this.groupBox1.Controls.Add(this.maskedTextBox3);
+            this.groupBox1.Controls.Add(this.maskedTextBox4);
             this.groupBox1.Controls.Add(this.maskedTextBox1);
             this.groupBox1.Controls.Add(this.materialLabel10);
             this.groupBox1.Controls.Add(this.materialLabel21);
@@ -172,6 +172,16 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(217, 22);
             this.dateTimePicker1.TabIndex = 7;
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(66, 385);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(18, 22);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "*";
+            // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
@@ -181,6 +191,16 @@
             this.label9.Size = new System.Drawing.Size(18, 22);
             this.label9.TabIndex = 2;
             this.label9.Text = "*";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(122, 183);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(18, 22);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "*";
             // 
             // label8
             // 
@@ -270,15 +290,6 @@
             this.comboBox3.Size = new System.Drawing.Size(218, 24);
             this.comboBox3.TabIndex = 16;
             // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(224, 73);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 22);
-            this.textBox1.TabIndex = 3;
-            // 
             // comboBox2
             // 
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -359,6 +370,18 @@
             this.materialLabel6.Text = "Soyad:";
             this.materialLabel6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskedTextBox3.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox3.Location = new System.Drawing.Point(224, 385);
+            this.maskedTextBox3.Mask = "(999) 000-0000";
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(218, 22);
+            this.maskedTextBox3.TabIndex = 10;
+            this.maskedTextBox3.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
             // maskedTextBox1
             // 
             this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -423,6 +446,19 @@
             this.materialLabel17.Text = "Baba Adı:";
             this.materialLabel17.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // materialLabel4
+            // 
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel4.Location = new System.Drawing.Point(3, 383);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(212, 30);
+            this.materialLabel4.TabIndex = 3;
+            this.materialLabel4.Text = "Aile Yakını Tel:";
+            this.materialLabel4.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // textBox18
             // 
             this.textBox18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -484,6 +520,15 @@
             this.materialLabel5.Text = "Ad:";
             this.materialLabel5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // textBox4
+            // 
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox4.Location = new System.Drawing.Point(224, 327);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(218, 22);
+            this.textBox4.TabIndex = 9;
+            // 
             // textBox11
             // 
             this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -527,6 +572,19 @@
             this.materialLabel16.TabIndex = 3;
             this.materialLabel16.Text = "Doğum Yeri:";
             this.materialLabel16.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // materialLabel7
+            // 
+            this.materialLabel7.Depth = 0;
+            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel7.Location = new System.Drawing.Point(6, 325);
+            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel7.Name = "materialLabel7";
+            this.materialLabel7.Size = new System.Drawing.Size(212, 30);
+            this.materialLabel7.TabIndex = 3;
+            this.materialLabel7.Text = "Yakın Kurum Adı:";
+            this.materialLabel7.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // materialLabel3
             // 
@@ -625,72 +683,17 @@
             this.label1.Text = "_________________________________________________________________________________" +
     "___________________________________";
             // 
-            // materialLabel4
+            // maskedTextBox4
             // 
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(3, 383);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(212, 30);
-            this.materialLabel4.TabIndex = 3;
-            this.materialLabel4.Text = "Aile Yakını Tel:";
-            this.materialLabel4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // maskedTextBox3
-            // 
-            this.maskedTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.maskedTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox3.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBox3.Location = new System.Drawing.Point(224, 385);
-            this.maskedTextBox3.Mask = "(999) 000-0000";
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(218, 22);
-            this.maskedTextBox3.TabIndex = 10;
-            this.maskedTextBox3.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(66, 385);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 22);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "*";
-            // 
-            // materialLabel7
-            // 
-            this.materialLabel7.Depth = 0;
-            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel7.Location = new System.Drawing.Point(6, 325);
-            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel7.Name = "materialLabel7";
-            this.materialLabel7.Size = new System.Drawing.Size(212, 30);
-            this.materialLabel7.TabIndex = 3;
-            this.materialLabel7.Text = "Yakın Kurum Adı:";
-            this.materialLabel7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(224, 327);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(218, 22);
-            this.textBox4.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(122, 183);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(18, 22);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "*";
+            this.maskedTextBox4.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox4.Location = new System.Drawing.Point(225, 73);
+            this.maskedTextBox4.Mask = "00000000000";
+            this.maskedTextBox4.Name = "maskedTextBox4";
+            this.maskedTextBox4.Size = new System.Drawing.Size(218, 22);
+            this.maskedTextBox4.TabIndex = 10;
+            this.maskedTextBox4.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // Yeni_Hasta_Form
             // 
@@ -722,7 +725,6 @@
         private System.Windows.Forms.Button button1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.TextBox textBox2;
@@ -759,5 +761,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private System.Windows.Forms.TextBox textBox4;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox4;
     }
 }

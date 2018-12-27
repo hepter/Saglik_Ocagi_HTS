@@ -26,7 +26,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 return;
             }
 
-            if (db.hasta.Any(a=>a.tckimlikno.ToString()==textBox1.Text.Trim()))
+            if (db.hasta.Any(a=>a.tckimlikno.ToString()==maskedTextBox3.Text.Trim()))
             {
                 MessageBox.Show("Aynı Kimlik Numaralı hasta daha önce zaten eklenmiş!","Hata",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
@@ -35,10 +35,10 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
             doktor doktor  = new doktor();
 
-            doktor.tckimlikno= int.Parse(textBox1.Text);
+            doktor.tckimlikno= Int64.Parse(maskedTextBox3.Text);
 
             doktor.birey= new birey();
-            doktor.birey.tckimlikno = int.Parse(textBox1.Text);
+            doktor.birey.tckimlikno = Int64.Parse(maskedTextBox3.Text);
             doktor.birey.ad =  textBox5.Text ;
             doktor.birey.soyad =  textBox6.Text ;
             doktor.birey.cinsiyet = comboBox2.SelectedIndex.ToString();
@@ -63,7 +63,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         }
         bool YıldızlılarDolumu()
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+            if (!maskedTextBox3.MaskCompleted ||
                 string.IsNullOrWhiteSpace(textBox5.Text) ||
                 string.IsNullOrWhiteSpace(textBox6.Text) ||
                 !maskedTextBox2.MaskCompleted)
