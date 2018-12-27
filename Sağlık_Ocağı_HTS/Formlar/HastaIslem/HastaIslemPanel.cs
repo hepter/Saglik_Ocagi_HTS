@@ -53,11 +53,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         {
            
 
-            Yeni_Hasta_Form form= new Yeni_Hasta_Form();
+            GelismisAramaForm form= new GelismisAramaForm();
             DialogResult res= form.ShowDialog();
             if (res == DialogResult.OK)
             {
-                ActiveHasta = form.ActiveHasta;
+                ActiveHasta = form.activeHasta;
                 HastaBilgiDoldur(ActiveHasta);
             }
         }
@@ -171,11 +171,13 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
      
         private void HastaIslemPanel_Load(object sender, EventArgs e)
         {
-             db = new saglikDBEntities_1();
-         
-            //dataGridView1.Rows.Add("kbb", "114","10-10-2017", "17:55" ,  "a","hüseyin","1156");
-            //dataGridView1.Rows.Add("kbb", "114","10-10-2017", "17:55" ,  "b","hüseyin","1156");
-            //dataGridView1.Rows.Add("kbb", "114","10-10-2017", "17:55" ,  "c","hüseyin","1156");
+            db = new saglikDBEntities_1();
+
+            Button btn = button4;
+            btn.Image = (Image)(new Bitmap(btn.Image, new Size(btn.Size.Height,btn.Size.Height)));
+
+            btn = button5;
+            btn.Image = (Image)(new Bitmap(btn.Image, new Size(btn.Size.Height,btn.Size.Height)));
 
             return;
             sevk sevk= new sevk();//db.sevk.FirstOrDefault();

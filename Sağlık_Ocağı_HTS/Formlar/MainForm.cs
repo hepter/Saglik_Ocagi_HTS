@@ -86,10 +86,11 @@ namespace Sağlık_Ocağı_HTS
             
             AdminPanelForm AdminPanelForm= new AdminPanelForm();
             PoliklinikEkle userDetay= new PoliklinikEkle();
-           form.Show();
+         //  form.Show();
           //  AdminPanelForm.Show();
            // userDetay.ShowDialog();
             HastaIslemPanel  hastaIslemPanel=  new HastaIslemPanel();
+            
             hastaIslemPanel.Dock = DockStyle.Fill;
             panel1.Controls.Add(hastaIslemPanel);
         }
@@ -154,7 +155,12 @@ namespace Sağlık_Ocağı_HTS
         private void yöneticiPaneliToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AdminPanelForm panel =new AdminPanelForm(aktifKullanici);
-            panel.ShowDialog();
+            if (panel.ShowDialog() == DialogResult.OK)
+            {
+                aktifKullanici = panel.aktifKullanici;
+            }  
+         
+           
         }
 
         private void poliklinikEkleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -191,6 +197,16 @@ namespace Sağlık_Ocağı_HTS
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Process.GetCurrentProcess().Kill(); 
+        }
+
+        private void profilimiDüzenleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserDetay form= new UserDetay(aktifKullanici);
+            DialogResult res = form.DialogResult;
+            if (res== DialogResult.OK)
+            {
+                aktifKullanici = form.activeKullanici;
+            }
         }
     }
 }

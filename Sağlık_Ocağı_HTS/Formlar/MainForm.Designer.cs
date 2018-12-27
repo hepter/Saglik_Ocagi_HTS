@@ -30,9 +30,7 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dosyaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oturumdanÇıkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.süzenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yöneticiPaneliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -43,9 +41,12 @@
             this.materialContextMenuStrip1 = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.testeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.effeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.profilimiDüzenleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.oturumdanÇıkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.materialContextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -90,24 +91,10 @@
             this.dosyaToolStripMenuItem.DropDownClosed += new System.EventHandler(this.dosyaToolStripMenuItem_DropDownClosed);
             this.dosyaToolStripMenuItem.DropDownOpened += new System.EventHandler(this.dosyaToolStripMenuItem_DropDownOpened);
             // 
-            // oturumdanÇıkToolStripMenuItem
-            // 
-            this.oturumdanÇıkToolStripMenuItem.Name = "oturumdanÇıkToolStripMenuItem";
-            this.oturumdanÇıkToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.oturumdanÇıkToolStripMenuItem.Text = "Oturumdan çık";
-            this.oturumdanÇıkToolStripMenuItem.Click += new System.EventHandler(this.oturumdanÇıkToolStripMenuItem_Click);
-            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
-            // 
-            // çıkışToolStripMenuItem
-            // 
-            this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.çıkışToolStripMenuItem.Text = "Çıkış";
-            this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
             // 
             // süzenToolStripMenuItem
             // 
@@ -129,8 +116,9 @@
             // yöneticiPaneliToolStripMenuItem
             // 
             this.yöneticiPaneliToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.yöneticiPaneliToolStripMenuItem.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.edit;
             this.yöneticiPaneliToolStripMenuItem.Name = "yöneticiPaneliToolStripMenuItem";
-            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.yöneticiPaneliToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.yöneticiPaneliToolStripMenuItem.Text = "Yönetici Paneli";
             this.yöneticiPaneliToolStripMenuItem.Click += new System.EventHandler(this.yöneticiPaneliToolStripMenuItem_Click);
             // 
@@ -139,26 +127,30 @@
             this.toolStripMenuItem2.BackColor = System.Drawing.Color.Coral;
             this.toolStripMenuItem2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // poliklinikEkleToolStripMenuItem
             // 
             this.poliklinikEkleToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.poliklinikEkleToolStripMenuItem.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.hosp;
             this.poliklinikEkleToolStripMenuItem.Name = "poliklinikEkleToolStripMenuItem";
-            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.poliklinikEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.poliklinikEkleToolStripMenuItem.Text = "Poliklinik Ekle";
             this.poliklinikEkleToolStripMenuItem.Click += new System.EventHandler(this.poliklinikEkleToolStripMenuItem_Click);
             // 
             // doktorEkleToolStripMenuItem
             // 
             this.doktorEkleToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.doktorEkleToolStripMenuItem.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.doktor;
             this.doktorEkleToolStripMenuItem.Name = "doktorEkleToolStripMenuItem";
-            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.doktorEkleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.doktorEkleToolStripMenuItem.Text = "Doktor Ekle";
             this.doktorEkleToolStripMenuItem.Click += new System.EventHandler(this.doktorEkleToolStripMenuItem_Click);
             // 
             // görünümToolStripMenuItem
             // 
+            this.görünümToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.profilimiDüzenleToolStripMenuItem});
             this.görünümToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.görünümToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.görünümToolStripMenuItem.Name = "görünümToolStripMenuItem";
@@ -203,18 +195,6 @@
             this.effeToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
             this.effeToolStripMenuItem.Text = "effe";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(85)))), ((int)(((byte)(72)))));
-            this.pictureBox1.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.admin;
-            this.pictureBox1.Location = new System.Drawing.Point(1126, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -239,6 +219,42 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "isim";
             // 
+            // profilimiDüzenleToolStripMenuItem
+            // 
+            this.profilimiDüzenleToolStripMenuItem.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.user;
+            this.profilimiDüzenleToolStripMenuItem.Name = "profilimiDüzenleToolStripMenuItem";
+            this.profilimiDüzenleToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.profilimiDüzenleToolStripMenuItem.Text = "Profilimi Düzenle";
+            this.profilimiDüzenleToolStripMenuItem.Click += new System.EventHandler(this.profilimiDüzenleToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(85)))), ((int)(((byte)(72)))));
+            this.pictureBox1.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.admin;
+            this.pictureBox1.Location = new System.Drawing.Point(1126, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // oturumdanÇıkToolStripMenuItem
+            // 
+            this.oturumdanÇıkToolStripMenuItem.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.account;
+            this.oturumdanÇıkToolStripMenuItem.Name = "oturumdanÇıkToolStripMenuItem";
+            this.oturumdanÇıkToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.oturumdanÇıkToolStripMenuItem.Text = "Oturumdan çık";
+            this.oturumdanÇıkToolStripMenuItem.Click += new System.EventHandler(this.oturumdanÇıkToolStripMenuItem_Click);
+            // 
+            // çıkışToolStripMenuItem
+            // 
+            this.çıkışToolStripMenuItem.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.logout;
+            this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
+            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.çıkışToolStripMenuItem.Text = "Çıkış";
+            this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -249,6 +265,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.MinimumSize = new System.Drawing.Size(1050, 700);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SOHTS";
@@ -281,6 +298,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem profilimiDüzenleToolStripMenuItem;
     }
 }
 

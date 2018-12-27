@@ -13,6 +13,8 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
     {
         private bool editMode;
         private int activeUserID;
+        public kullanicilar activeKullanici { get; set; }
+
         public UserDetay()
         {
             InitializeComponent();
@@ -25,7 +27,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         public UserDetay(kullanicilar kull) : this()
         {
             birey birey  = new saglikDBEntities_1().birey.First(a=>a.tckimlikno==kull.tckimlikno);
-
+            activeKullanici = kull;
             textBox2.Text=kull.username ;
             textBox3.Text=kull.sifre ;
             comboBox1.SelectedIndex = int.Parse(kull.yetki);
@@ -79,22 +81,16 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
                 return;
             }
 
-            birey birey  = new birey();
-
-            birey.ad =  textBox5.Text ;
-            birey.soyad =  textBox6.Text ;
-            birey.cinsiyet = comboBox2.SelectedIndex.ToString();
-            birey.dtarihi = dateTimePicker1.Value   ;
-            birey.evtel  = maskedTextBox1.Text ;
-            birey.ceptel = maskedTextBox2.Text ;
-            birey.dogumyeri = textBox16.Text ;
-            birey.anneadi = textBox15.Text ;
-            birey.babaadi =  textBox17.Text ;
-            birey.kangrubu = textBox18.Text  ;
-            birey.medenihal = comboBox3.SelectedIndex.ToString();
-            birey.adres  = richTextBox1.Text ;
-
+         
             kullanicilar kull = new kullanicilar();
+            kull.birey= new birey();
+            if (editMode)
+            {
+                kull = db.kullanicilar.Where(a => a.tckimlikno == activeKullanici.tckimlikno).First();
+                db.Entry(kull).State = EntityState.Unchanged;
+            }
+            
+
             kull.username = textBox2.Text ;
             kull.sifre = textBox3.Text ;
             kull.yetki = comboBox1.SelectedIndex.ToString();
@@ -102,26 +98,25 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             kull.isebaslama =  dateTimePicker2.Value ;
             kull.unvan = textBox11.Text ;
             kull.maas = textBox19.Text;
+            
+            kull.birey.ad =  textBox5.Text ;
+            kull.birey.soyad =  textBox6.Text ;
+            kull.birey.cinsiyet = comboBox2.SelectedIndex.ToString();
+            kull.birey.dtarihi = dateTimePicker1.Value   ;
+            kull.birey.evtel  = maskedTextBox1.Text ;
+            kull.birey.ceptel = maskedTextBox2.Text ;
+            kull.birey.dogumyeri = textBox16.Text ;
+            kull.birey.anneadi = textBox15.Text ;
+            kull.birey.babaadi =  textBox17.Text ;
+            kull.birey.kangrubu = textBox18.Text  ;
+            kull.birey.medenihal = comboBox3.SelectedIndex.ToString();
+            kull.birey.adres  = richTextBox1.Text ;
+            
+            
 
-            if (editMode)
+            if (!editMode)
             {
-                 kull.id =activeUserID;
-                 birey.tckimlikno = kull.tckimlikno;
-                kull.birey = birey;
-                db.kullanicilar.AddOrUpdate(kull);
-                db.birey.AddOrUpdate(birey);
-                //db.Entry(kull).State = EntityState.Modified;
-                //db.kullanicilar.Attach(kull);
-                //db.Entry(kull).State = EntityState.Modified;
-                //db.kullanicilar.AddOrUpdate(kull);
-                grg
-            }
-            else
-            {
-                  birey.tckimlikno = kull.tckimlikno;
-                  db.birey.AddOrUpdate(birey);
                   db.kullanicilar.AddOrUpdate(kull);
-                
             }
           
             
@@ -130,7 +125,9 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
                 MessageBox.Show("Kayıt Eklendi","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
             else
                 MessageBox.Show("Kayıt Güncellendi","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            
+            db.Entry(kull).State = EntityState.Detached;
+            activeKullanici = kull;
+            DialogResult = DialogResult.OK;
             Close();
         }
 

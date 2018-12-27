@@ -63,6 +63,16 @@ namespace Sağlık_Ocağı_HTS.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap account {
+            get {
+                object obj = ResourceManager.GetObject("account", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap admin {
             get {
                 object obj = ResourceManager.GetObject("admin", resourceCulture);
@@ -126,6 +136,16 @@ namespace Sağlık_Ocağı_HTS.Properties {
         internal static System.Drawing.Bitmap imza {
             get {
                 object obj = ResourceManager.GetObject("imza", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap logout {
+            get {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

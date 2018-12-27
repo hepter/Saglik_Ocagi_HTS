@@ -15,8 +15,9 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
     public partial class AdminPanelForm : MaterialForm
     {
-        
-        private kullanicilar aktifKullanici;
+
+        public kullanicilar aktifKullanici { get; set; }
+
         public AdminPanelForm()
         {
             InitializeComponent();
@@ -89,16 +90,25 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         public void DetayAksiyon(kullanicilar kull)
         {
             UserDetay detay= new UserDetay(kull);
-            detay.ShowDialog();
-            ControlsYenile();
+            
+            if(detay.ShowDialog()==DialogResult.OK)
+            {
+                aktifKullanici = detay.activeKullanici;
+                ControlsYenile();
+                DialogResult = DialogResult.OK;
+            }
         }
 
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             UserDetay dialog = new UserDetay();
-            dialog.ShowDialog();
-            ControlsYenile();
+            if(dialog.ShowDialog()==DialogResult.OK)
+            {
+                aktifKullanici = dialog.activeKullanici;
+                ControlsYenile();
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)

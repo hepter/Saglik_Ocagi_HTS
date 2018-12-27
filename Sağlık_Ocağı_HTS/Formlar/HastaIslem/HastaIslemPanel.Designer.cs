@@ -40,6 +40,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.button2 = new System.Windows.Forms.Button();
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
@@ -77,7 +78,7 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -86,6 +87,7 @@
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialSingleLineTextField1
@@ -93,7 +95,7 @@
             this.materialSingleLineTextField1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.materialSingleLineTextField1.Depth = 0;
             this.materialSingleLineTextField1.Hint = "Dosya No & T.C. Kimlik No";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(751, 3);
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(861, 3);
             this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
             this.materialSingleLineTextField1.PasswordChar = '\0';
@@ -114,7 +116,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Snow;
-            this.button1.Location = new System.Drawing.Point(1019, -3);
+            this.button1.Location = new System.Drawing.Point(1129, -3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(174, 34);
             this.button1.TabIndex = 20;
@@ -131,7 +133,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.groupBox1.Location = new System.Drawing.Point(6, 37);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1187, 275);
+            this.groupBox1.Size = new System.Drawing.Size(1297, 275);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hasta";
@@ -149,7 +151,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1181, 252);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1291, 252);
             this.tableLayoutPanel1.TabIndex = 24;
             // 
             // groupBox2
@@ -157,9 +159,9 @@
             this.groupBox2.Controls.Add(this.flowLayoutPanel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox2.Location = new System.Drawing.Point(506, 3);
+            this.groupBox2.Location = new System.Drawing.Point(553, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(672, 246);
+            this.groupBox2.Size = new System.Drawing.Size(735, 246);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sevkler";
@@ -170,7 +172,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 18);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(666, 225);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(729, 225);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             this.flowLayoutPanel1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flowLayoutPanel1_ControlAdded);
@@ -195,8 +197,22 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(503, 252);
+            this.panel1.Size = new System.Drawing.Size(550, 252);
             this.panel1.TabIndex = 23;
+            // 
+            // materialLabel8
+            // 
+            this.materialLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialLabel8.Depth = 0;
+            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel8.Location = new System.Drawing.Point(175, 209);
+            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel8.Name = "materialLabel8";
+            this.materialLabel8.Size = new System.Drawing.Size(195, 31);
+            this.materialLabel8.TabIndex = 22;
+            this.materialLabel8.Text = "0 Adet Sevk Bulundu";
+            this.materialLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // materialLabel1
             // 
@@ -219,7 +235,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Snow;
-            this.button2.Location = new System.Drawing.Point(329, 209);
+            this.button2.Location = new System.Drawing.Point(376, 209);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(174, 31);
             this.button2.TabIndex = 20;
@@ -236,7 +252,7 @@
             this.maskedTextBox2.Mask = "(999) 000-0000";
             this.maskedTextBox2.Name = "maskedTextBox2";
             this.maskedTextBox2.ReadOnly = true;
-            this.maskedTextBox2.Size = new System.Drawing.Size(346, 27);
+            this.maskedTextBox2.Size = new System.Drawing.Size(393, 27);
             this.maskedTextBox2.TabIndex = 2;
             // 
             // materialLabel4
@@ -261,7 +277,7 @@
             this.maskedTextBox1.Mask = "(999) 000-0000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.ReadOnly = true;
-            this.maskedTextBox1.Size = new System.Drawing.Size(346, 27);
+            this.maskedTextBox1.Size = new System.Drawing.Size(393, 27);
             this.maskedTextBox1.TabIndex = 2;
             // 
             // materialLabel3
@@ -285,7 +301,7 @@
             this.textBox4.Location = new System.Drawing.Point(154, 178);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(346, 27);
+            this.textBox4.Size = new System.Drawing.Size(393, 27);
             this.textBox4.TabIndex = 1;
             // 
             // textBox1
@@ -296,7 +312,7 @@
             this.textBox1.Location = new System.Drawing.Point(154, 10);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(346, 27);
+            this.textBox1.Size = new System.Drawing.Size(393, 27);
             this.textBox1.TabIndex = 1;
             // 
             // materialLabel6
@@ -333,7 +349,7 @@
             this.textBox2.Location = new System.Drawing.Point(154, 43);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(346, 27);
+            this.textBox2.Size = new System.Drawing.Size(393, 27);
             this.textBox2.TabIndex = 1;
             // 
             // textBox3
@@ -344,7 +360,7 @@
             this.textBox3.Location = new System.Drawing.Point(154, 145);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(346, 27);
+            this.textBox3.Size = new System.Drawing.Size(393, 27);
             this.textBox3.TabIndex = 1;
             // 
             // materialLabel2
@@ -397,12 +413,13 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(3, 326);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 25;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1190, 274);
+            this.dataGridView1.Size = new System.Drawing.Size(1300, 274);
             this.dataGridView1.TabIndex = 22;
             this.dataGridView1.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView1_RowPostPaint);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
@@ -490,7 +507,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1196, 323);
+            this.panel2.Size = new System.Drawing.Size(1306, 323);
             this.panel2.TabIndex = 23;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -515,15 +532,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.57143F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.42857F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1196, 603);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 323F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1306, 603);
             this.tableLayoutPanel2.TabIndex = 24;
             // 
             // contextMenuStrip1
@@ -562,7 +579,7 @@
             this.materialLabel7.Depth = 0;
             this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel7.Location = new System.Drawing.Point(940, 608);
+            this.materialLabel7.Location = new System.Drawing.Point(1064, -1);
             this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel7.Name = "materialLabel7";
             this.materialLabel7.Size = new System.Drawing.Size(147, 24);
@@ -574,7 +591,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1080, 609);
+            this.label1.Location = new System.Drawing.Point(1212, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 23);
             this.label1.TabIndex = 26;
@@ -600,59 +617,65 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackgroundImage = global::Sağlık_Ocağı_HTS.Properties.Resources.print_preview256;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(856, 607);
+            this.button4.Font = new System.Drawing.Font("Lucida Sans", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.print_preview256;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(815, -1);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(36, 31);
+            this.button4.Size = new System.Drawing.Size(141, 31);
             this.button4.TabIndex = 22;
+            this.button4.Text = "Önizleme";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.BackgroundImage = global::Sağlık_Ocağı_HTS.Properties.Resources.print;
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(898, 607);
+            this.button5.Font = new System.Drawing.Font("Lucida Sans", 9F, System.Drawing.FontStyle.Bold);
+            this.button5.Image = global::Sağlık_Ocağı_HTS.Properties.Resources.print;
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.Location = new System.Drawing.Point(955, -1);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(36, 31);
+            this.button5.Size = new System.Drawing.Size(103, 31);
             this.button5.TabIndex = 22;
+            this.button5.Text = "Yazdır";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // materialLabel8
+            // panel3
             // 
-            this.materialLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialLabel8.Depth = 0;
-            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel8.Location = new System.Drawing.Point(128, 209);
-            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel8.Name = "materialLabel8";
-            this.materialLabel8.Size = new System.Drawing.Size(195, 31);
-            this.materialLabel8.TabIndex = 22;
-            this.materialLabel8.Text = "0 Adet Sevk Bulundu";
-            this.materialLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.button5);
+            this.panel3.Controls.Add(this.materialLabel7);
+            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(3, 607);
+            this.panel3.Margin = new System.Windows.Forms.Padding(1);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1306, 30);
+            this.panel3.TabIndex = 27;
             // 
             // HastaIslemPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.materialLabel7);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(1012, 616);
             this.Name = "HastaIslemPanel";
-            this.Size = new System.Drawing.Size(1218, 638);
+            this.Size = new System.Drawing.Size(1328, 638);
             this.Load += new System.EventHandler(this.HastaIslemPanel_Load);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -663,8 +686,9 @@
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -714,5 +738,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.Button button5;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
+        private System.Windows.Forms.Panel panel3;
     }
 }

@@ -102,17 +102,17 @@
     <Compile Include="dosya.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\User.cs">
+    <Compile Include="Formlar\AdminPanel\UserItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\User.Designer.cs">
-      <DependentUpon>User.cs</DependentUpon>
+    <Compile Include="Formlar\AdminPanel\UserItem.Designer.cs">
+      <DependentUpon>UserItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserDüzenleHızlı.cs">
+    <Compile Include="Formlar\AdminPanel\UserEkleHızlı.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserDüzenleHızlı.Designer.cs">
-      <DependentUpon>UserDüzenleHızlı.cs</DependentUpon>
+    <Compile Include="Formlar\AdminPanel\UserEkleHızlı.Designer.cs">
+      <DependentUpon>UserEkleHızlı.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\AdminPanel\UserDetay.cs">
       <SubType>Form</SubType>
@@ -137,6 +137,12 @@
     </Compile>
     <Compile Include="Formlar\HastaIslem\DoktorEkleForm.Designer.cs">
       <DependentUpon>DoktorEkleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\GelismisAramaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formlar\HastaIslem\GelismisAramaForm.Designer.cs">
+      <DependentUpon>GelismisAramaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\HastaIslem\HastaIslemPanel.cs">
       <SubType>UserControl</SubType>
@@ -254,11 +260,11 @@
     <Compile Include="taburcu.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Formlar\AdminPanel\User.resx">
-      <DependentUpon>User.cs</DependentUpon>
+    <EmbeddedResource Include="Formlar\AdminPanel\UserItem.resx">
+      <DependentUpon>UserItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\AdminPanel\UserDüzenleHızlı.resx">
-      <DependentUpon>UserDüzenleHızlı.cs</DependentUpon>
+    <EmbeddedResource Include="Formlar\AdminPanel\UserEkleHızlı.resx">
+      <DependentUpon>UserEkleHızlı.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\AdminPanel\UserDetay.resx">
       <DependentUpon>UserDetay.cs</DependentUpon>
@@ -271,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\DoktorEkleForm.resx">
       <DependentUpon>DoktorEkleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formlar\HastaIslem\GelismisAramaForm.resx">
+      <DependentUpon>GelismisAramaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\HastaIslem\HastaIslemPanel.resx">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
@@ -405,6 +414,8 @@
       <DependentUpon>DB.edmx</DependentUpon>
       <LastGenOutput>DB.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\account.png" />
+    <None Include="Resources\logout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
