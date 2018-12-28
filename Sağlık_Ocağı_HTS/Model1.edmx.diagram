@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a609bf75e4ba41c4bbadfc7784738d93" Name="Diagram1">
+        <EntityTypeShape EntityType="Database1Model.birey" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.doktor" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.dosya" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.hasta" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.islem" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.islemler" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.kullanicilar" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.odeme" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.personel" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.poliklinik" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.poliklinik_isim" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.sevk" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.taburcu" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK_doktor_birey" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_hasta_birey" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_kullanicilar_birey" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_personel_birey" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_sevk_doktor" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_dosya_hasta" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_sevk_dosya" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_islemler_islem" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_islemler_personel" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_taburcu_odeme" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_poliklinik_bolumid" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_sevk_poliklinik" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_sevk_taburcu" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
