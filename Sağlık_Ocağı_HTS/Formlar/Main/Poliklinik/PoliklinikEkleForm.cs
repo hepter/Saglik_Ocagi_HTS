@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Sağlık_Ocağı_HTS.Formlar.Ekle.PoliKlinik;
 using Sağlık_Ocağı_HTS.Formlar.Poliklinik;
 
 namespace Sağlık_Ocağı_HTS.Formlar.Ekle
 {
-    public partial class PoliklinikEkleForm : Sağlık_Ocağı_HTS.Formlar.DialogBox
+    public partial class PoliklinikEkleForm : DialogBox
     {
+        private string aramaCacheStr = "";
         private saglikDBEntities_1 db;
-        private int toplamControl = 0;
+        private int toplamControl;
+
         public PoliklinikEkleForm()
         {
             db = new saglikDBEntities_1();
@@ -25,32 +22,28 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
         private void EkleTemplate_Load(object sender, EventArgs e)
         {
             PoliklinikDoldur();
-
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
-
-
-            if (toplamControl==1)
+            if (toplamControl == 1)
             {
                 DüzenleButonAksiyon(flowLayoutPanel1.Controls.Cast<PoliklinikItem>().Single().activePoliklinik);
             }
-            else if (toplamControl==0)
+            else if (toplamControl == 0)
             {
-                poliklinik poli= new poliklinik();
+                poliklinik poli = new poliklinik();
                 poli.poliklinikadi = materialSingleLineTextField1.Text.Trim();
-                PoliklinikGöster pGöster= new PoliklinikGöster(poli);
-                if (pGöster.ShowDialog()==DialogResult.OK)
+                PoliklinikGöster pGöster = new PoliklinikGöster(poli);
+                if (pGöster.ShowDialog() == DialogResult.OK)
                 {
-                    db= new saglikDBEntities_1();
+                    db = new saglikDBEntities_1();
                     PoliklinikDoldur();
                 }
             }
         }
 
-        private string aramaCacheStr="";
-        void PoliklinikDoldur(string arananMetin)
+        private void PoliklinikDoldur(string arananMetin)
         {
             flowLayoutPanel1.SuspendLayout();
             aramaCacheStr = arananMetin;
@@ -58,69 +51,70 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
             toplamControl = 0;
             foreach (var entity in db.poliklinik.ToList())
             {
-                if (string.IsNullOrWhiteSpace(aramaCacheStr) || entity.poliklinikadi.IndexOf(arananMetin,comparisonType:StringComparison.CurrentCultureIgnoreCase)!=-1)
+                if (string.IsNullOrWhiteSpace(aramaCacheStr) ||
+                    entity.poliklinikadi.IndexOf(arananMetin, StringComparison.CurrentCultureIgnoreCase) != -1)
                 {
-                    PoliklinikItem item= new PoliklinikItem(entity);
+                    PoliklinikItem item = new PoliklinikItem(entity);
                     item.DüzenleEvent += DüzenleButonAksiyon;
                     item.SilEvent += SilButonAksiyon;
                     flowLayoutPanel1.Controls.Add(item);
                     toplamControl++;
                 }
             }
-            if (toplamControl==1)
+
+            if (toplamControl == 1)
             {
                 flowLayoutPanel1.Controls.Cast<PoliklinikItem>().First().BackColor = Color.Plum;
             }
+
             flowLayoutPanel1.ResumeLayout();
-            if (toplamControl!=0)
+            if (toplamControl != 0)
             {
                 ControlsYenidenBoyutla();
             }
         }
 
-        void PoliklinikDoldur()
+        private void PoliklinikDoldur()
         {
             PoliklinikDoldur(aramaCacheStr);
         }
 
         private void DüzenleButonAksiyon(poliklinik poli)
         {
-            PoliklinikGöster pgöster= new PoliklinikGöster(poli);
+            PoliklinikGöster pgöster = new PoliklinikGöster(poli);
             if (DialogResult.OK == pgöster.ShowDialog())
             {
-                db=new saglikDBEntities_1();
+                db = new saglikDBEntities_1();
                 PoliklinikDoldur();
             }
-            
-          
         }
 
         private void SilButonAksiyon(poliklinik poli)
         {
-            DialogResult res=  MessageBox.Show($"'{poli.poliklinikadi}' isimli Polikliniği silmek istediğinize Emin misiniz?","Siliniyor...",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult res =
+                MessageBox.Show($"'{poli.poliklinikadi}' isimli Polikliniği silmek istediğinize Emin misiniz?",
+                    "Siliniyor...", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (res!=DialogResult.Yes)
+            if (res != DialogResult.Yes)
                 return;
-            db=new saglikDBEntities_1();
+            db = new saglikDBEntities_1();
             var sevkler = db.sevk.FirstOrDefault(a => a.poliklinik == poli.poliklinikadi);
-            if (sevkler!=null)
+            if (sevkler != null)
             {
-                MessageBox.Show($"Kullanımda olan bir poliklinik silinemez!\nÖmce bağlı olduğu sevk silinmesi gerekli!","HATA",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Kullanımda olan bir poliklinik silinemez!\nÖmce bağlı olduğu sevk silinmesi gerekli!",
+                    "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-           
-            poliklinik pol = new poliklinik() { poliklinikadi = poli.poliklinikadi };
+
+            poliklinik pol = new poliklinik {poliklinikadi = poli.poliklinikadi};
             db.poliklinik.Attach(pol);
             db.poliklinik.Remove(pol);
 
             db.SaveChanges();
             PoliklinikDoldur();
-            MessageBox.Show($"Başarılı","Silindi",MessageBoxButtons.OK,MessageBoxIcon.Information);
-
-
-           
-
+            MessageBox.Show("Başarılı", "Silindi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
         private void materialSingleLineTextField1_TextChanged(object sender, EventArgs e)
         {
             PoliklinikDoldur(materialSingleLineTextField1.Text.Trim());
@@ -129,10 +123,9 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
         private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)
         {
             ControlsYenidenBoyutla();
-
         }
 
-        void ControlsYenidenBoyutla()
+        private void ControlsYenidenBoyutla()
         {
             flowLayoutPanel1.SuspendLayout();
             foreach (var user in flowLayoutPanel1.Controls.Cast<PoliklinikItem>())
@@ -142,7 +135,6 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
 
         private void materialSingleLineTextField1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -336,7 +336,6 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(205, 24);
             this.comboBox3.TabIndex = 16;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox2
             // 
@@ -351,7 +350,6 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(205, 24);
             this.comboBox2.TabIndex = 6;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // materialLabel1
             // 
@@ -837,7 +835,6 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "UserDetay";
             this.Text = "Kullanıcı Panel";
-            this.Load += new System.EventHandler(this.UserDetay_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.flowLayoutPanel1, 0);
             this.Controls.SetChildIndex(this.label11, 0);

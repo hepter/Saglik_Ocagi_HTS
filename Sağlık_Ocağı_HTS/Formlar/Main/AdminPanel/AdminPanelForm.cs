@@ -1,40 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
-
 
 namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
 {
     public partial class AdminPanelForm : MaterialForm
     {
-
-        public kullanicilar aktifKullanici { get; set; }
+        private saglikDBEntities_1 db;
 
         public AdminPanelForm()
         {
             InitializeComponent();
         }
 
-        public AdminPanelForm(kullanicilar kull):this()
+        public AdminPanelForm(kullanicilar kull) : this()
         {
             aktifKullanici = kull;
-
         }
-        private saglikDBEntities_1 db;
+
+        public kullanicilar aktifKullanici { get; set; }
+
         private void LoginForm_Load(object sender, EventArgs e)
         {
             ControlsYenile();
         }
 
-        void ControlsYenile()
+        private void ControlsYenile()
         {
             db = new saglikDBEntities_1();
             flowLayoutPanel1.Controls.Clear();
@@ -42,42 +35,41 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             foreach (var kull in db.kullanicilar.ToList())
             {
                 bool aktifKullanicininHesabimi = false;
-                if (aktifKullanici.username==kull.username)
+                if (aktifKullanici.username == kull.username)
                     aktifKullanicininHesabimi = true;
-                User user = new User(kull, SilAksiyon, DetayAksiyon,aktifKullanicininHesabimi);
+                User user = new User(kull, SilAksiyon, DetayAksiyon, aktifKullanicininHesabimi);
                 flowLayoutPanel1.Controls.Add(user);
             }
+
+         
             ResumeLayout();
             ControlsYenidenBoyutla();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
-
-        public void SilAksiyon(kullanicilar kull )
+        public void SilAksiyon(kullanicilar kull)
         {
             db = new saglikDBEntities_1();
 
-             if (aktifKullanici.username ==kull.username)
-             {
-                 MessageBox.Show($"Kendi Hesabınızı silemezsiniz!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                 return;
-             }
+            if (aktifKullanici.username == kull.username)
+            {
+                MessageBox.Show("Kendi Hesabınızı silemezsiniz!", "Uyarı", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
-            DialogResult res=   MessageBox.Show($"'{kull.username}' kullanıcısını silmek istediğinize Emin misiniz?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult res = MessageBox.Show($"'{kull.username}' kullanıcısını silmek istediğinize Emin misiniz?",
+                "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (res != DialogResult.Yes)
                 return;
 
             foreach (var user in flowLayoutPanel1.Controls.Cast<User>())
             {
-                if (kull.id==user.EntityKullanici.id)
+                if (kull.id == user.EntityKullanici.id)
                 {
-                    db.Entry(new kullanicilar()
+                    db.Entry(new kullanicilar
                     {
-                        id=user.EntityKullanici.id,
+                        id = user.EntityKullanici.id,
                         username = user.EntityKullanici.username
-
                     }).State = EntityState.Deleted;
                     db.SaveChanges();
                     //new saglikDBEntities_1().kullanici.Remove(user.EntityKullanici);
@@ -85,21 +77,21 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
                     break;
                 }
             }
-
         }
+
         public void DetayAksiyon(kullanicilar kull)
         {
-            UserDetay detay= new UserDetay(kull);
-            
-            if(detay.ShowDialog()==DialogResult.OK)
+            UserDetay detay = new UserDetay(kull);
+
+            if (detay.ShowDialog() == DialogResult.OK)
             {
-                if (aktifKullanici.id==detay.activeKullanici.id)
+                if (aktifKullanici.id == detay.activeKullanici.id)
                 {
-                    aktifKullanici= detay.activeKullanici;
+                    aktifKullanici = detay.activeKullanici;
                     DialogResult = DialogResult.OK;
                 }
+
                 ControlsYenile();
-                
             }
         }
 
@@ -107,7 +99,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         private void button1_Click_1(object sender, EventArgs e)
         {
             UserDetay dialog = new UserDetay();
-            if(dialog.ShowDialog()==DialogResult.OK)
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 ControlsYenile();
             }
@@ -119,7 +111,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
         }
 
 
-        void ControlsYenidenBoyutla()
+        private void ControlsYenidenBoyutla()
         {
             flowLayoutPanel1.SuspendLayout();
             foreach (var user in flowLayoutPanel1.Controls.Cast<User>())

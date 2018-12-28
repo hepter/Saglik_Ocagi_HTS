@@ -231,7 +231,6 @@
             this.materialSingleLineTextField1.Size = new System.Drawing.Size(296, 28);
             this.materialSingleLineTextField1.TabIndex = 24;
             this.materialSingleLineTextField1.UseSystemPasswordChar = false;
-            this.materialSingleLineTextField1.Click += new System.EventHandler(this.materialSingleLineTextField1_Click);
             this.materialSingleLineTextField1.TextChanged += new System.EventHandler(this.materialSingleLineTextField1_TextChanged);
             // 
             // groupBox2

@@ -288,7 +288,6 @@
             this.tabloyuYazdırToolStripMenuItem.Name = "tabloyuYazdırToolStripMenuItem";
             this.tabloyuYazdırToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.tabloyuYazdırToolStripMenuItem.Text = "Tabloyu Yazdır";
-            this.tabloyuYazdırToolStripMenuItem.Click += new System.EventHandler(this.tabloyuYazdırToolStripMenuItem_Click);
             // 
             // yazıcıÖnizlemeToolStripMenuItem
             // 
@@ -296,7 +295,6 @@
             this.yazıcıÖnizlemeToolStripMenuItem.Name = "yazıcıÖnizlemeToolStripMenuItem";
             this.yazıcıÖnizlemeToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.yazıcıÖnizlemeToolStripMenuItem.Text = "Yazıcı Önizleme";
-            this.yazıcıÖnizlemeToolStripMenuItem.Click += new System.EventHandler(this.yazıcıÖnizlemeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 

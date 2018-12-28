@@ -1,31 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 
 namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 {
-    public partial class GelismisAramaForm : Sağlık_Ocağı_HTS.Formlar.DialogBox
+    public partial class GelismisAramaForm : DialogBox
     {
-        saglikDBEntities_1 db= new saglikDBEntities_1();
-        public hasta activeHasta { get; set; }
+        private saglikDBEntities_1 db = new saglikDBEntities_1();
 
         public GelismisAramaForm()
         {
             InitializeComponent();
         }
 
+        public hasta activeHasta { get; set; }
+
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex<0)
+            if (e.RowIndex < 0)
                 return;
-            Int64 tcno = Int64.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-            activeHasta = db.hasta.Where(a=>a.tckimlikno==tcno).Single();
+            long tcno = long.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            activeHasta = db.hasta.Where(a => a.tckimlikno == tcno).Single();
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -46,7 +42,6 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             }
 
             materialLabel1.Text = $"Kayıtlı Hasta:{hastaSayı}";
-
         }
 
         private void materialCheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -55,12 +50,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             {
                 (sender as MaterialCheckBox).Checked = true;
             }
+
             Ara();
-        }
-
-        private void materialSingleLineTextField1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void materialSingleLineTextField1_TextChanged(object sender, EventArgs e)
@@ -68,7 +59,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             Ara();
         }
 
-        void Ara()
+        private void Ara()
         {
             int hastaSayı = 0;
             string str = materialSingleLineTextField1.Text;
@@ -84,18 +75,20 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     bool status = false;
-                    if (materialCheckBox1.Checked && row.Cells[0].Value.ToString().IndexOf(str)!=-1)
+                    if (materialCheckBox1.Checked && row.Cells[0].Value.ToString().IndexOf(str) != -1)
                     {
                         status = true;
+                    }
 
-                    }
-                    if (materialCheckBox3.Checked && row.Cells[1].Value.ToString().IndexOf(str)!=-1)
+                    if (materialCheckBox3.Checked && row.Cells[1].Value.ToString().IndexOf(str) != -1)
                     {
                         status = true;
                     }
-                    if (materialCheckBox2.Checked && (row.Cells[2].Value.ToString()+row.Cells[3].Value.ToString()).IndexOf(str)!=-1)
+
+                    if (materialCheckBox2.Checked &&
+                        (row.Cells[2].Value + row.Cells[3].Value.ToString()).IndexOf(str) != -1)
                     {
-                        status= true;
+                        status = true;
                     }
 
                     if (status)

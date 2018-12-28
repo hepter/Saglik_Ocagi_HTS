@@ -238,7 +238,6 @@
             this.Name = "User";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.Size = new System.Drawing.Size(750, 69);
-            this.Load += new System.EventHandler(this.User_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

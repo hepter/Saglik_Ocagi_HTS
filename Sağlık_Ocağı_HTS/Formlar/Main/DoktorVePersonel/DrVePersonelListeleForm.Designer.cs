@@ -83,7 +83,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Name = "DrVePersonelListeleForm";
-            this.Load += new System.EventHandler(this.DrVePersonelListeleForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.button1, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
