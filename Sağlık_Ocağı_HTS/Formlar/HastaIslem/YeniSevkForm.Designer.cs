@@ -153,7 +153,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(126, 6);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(216, 24);
+            this.comboBox2.Size = new System.Drawing.Size(218, 24);
             this.comboBox2.TabIndex = 1;
             this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
             // 
@@ -259,7 +259,7 @@
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(46, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(45, 22);
             this.numericUpDown1.TabIndex = 8;
             this.numericUpDown1.Value = new decimal(new int[] {
             1,
@@ -302,7 +302,7 @@
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(149, 5);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(174, 24);
+            this.comboBox4.Size = new System.Drawing.Size(173, 24);
             this.comboBox4.TabIndex = 1;
             this.comboBox4.SelectionChangeCommitted += new System.EventHandler(this.comboBox4_SelectionChangeCommitted);
             this.comboBox4.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.comboBox4_Format);
@@ -314,7 +314,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.48544F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.51456F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 348F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F));
             this.tableLayoutPanel2.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel6, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel5, 0, 0);
@@ -330,10 +330,10 @@
             this.panel4.Controls.Add(this.comboBox4);
             this.panel4.Controls.Add(this.materialLabel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(113, 0);
+            this.panel4.Location = new System.Drawing.Point(112, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(330, 34);
+            this.panel4.Size = new System.Drawing.Size(329, 34);
             this.panel4.TabIndex = 11;
             // 
             // panel6
@@ -341,10 +341,10 @@
             this.panel6.Controls.Add(this.comboBox2);
             this.panel6.Controls.Add(this.materialLabel2);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(443, 0);
+            this.panel6.Location = new System.Drawing.Point(441, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(349, 34);
+            this.panel6.Size = new System.Drawing.Size(351, 34);
             this.panel6.TabIndex = 11;
             // 
             // panel5
@@ -355,7 +355,7 @@
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(113, 34);
+            this.panel5.Size = new System.Drawing.Size(112, 34);
             this.panel5.TabIndex = 11;
             // 
             // YeniSevkForm

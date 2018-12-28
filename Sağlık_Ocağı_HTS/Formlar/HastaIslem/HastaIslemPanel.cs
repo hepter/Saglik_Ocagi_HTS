@@ -14,7 +14,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
     public partial class HastaIslemPanel : UserControl
     {
         private int sağClickRowSıra = -1;
-        private saglikDBEntities_1 db;
+        private saglikDBEntities_1 db= new saglikDBEntities_1();
         public hasta ActiveHasta { get; set; }
         public sevk ActiveSevk { get; set; }
         public List<islemler> ActiveIslemler { get; set; }
@@ -123,7 +123,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             flowLayoutPanel1.Controls.Clear();
             //ActiveSevkler = db.sevkler.ToList();
             int sevkSayi = 0;
-            foreach (var sevk in db.dosya.Where(a => a.dosyaid == h.dosyaID).First().sevk)
+            var efesfe = db.dosya.ToList().Where(a => a.dosyaid == h.dosyaID);
+            foreach (var sevk in db.dosya.ToList().Where(a => a.dosyaid == h.dosyaID).FirstOrDefault().sevk)
             {
                 SevkItem item = new SevkItem(sevk);
                 item.GörüntüleEvent += SevkGörüntüleOrtakButton;

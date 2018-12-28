@@ -87,7 +87,7 @@ namespace Sağlık_Ocağı_HTS
    
         private void Form1_Load(object sender, EventArgs e)
         {
-
+         
         
 
             HastaIslemPanel  hastaIslemPanel=  new HastaIslemPanel(tabloyuYazdırToolStripMenuItem,yazıcıÖnizlemeToolStripMenuItem);
