@@ -24,7 +24,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         {
             if (e.RowIndex<0)
                 return;
-            activeHasta = db.hasta.Where(a=>a.tckimlikno==Int64.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString())).Single();
+            Int64 tcno = Int64.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+            activeHasta = db.hasta.Where(a=>a.tckimlikno==tcno).Single();
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -54,7 +55,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             {
                 (sender as MaterialCheckBox).Checked = true;
             }
-
+            Ara();
         }
 
         private void materialSingleLineTextField1_Click(object sender, EventArgs e)
@@ -63,7 +64,12 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         }
 
         private void materialSingleLineTextField1_TextChanged(object sender, EventArgs e)
-        { 
+        {
+            Ara();
+        }
+
+        void Ara()
+        {
             int hastaSayı = 0;
             string str = materialSingleLineTextField1.Text;
 
@@ -83,11 +89,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                         status = true;
 
                     }
-                    if (materialCheckBox2.Checked && row.Cells[1].Value.ToString().IndexOf(str)!=-1)
+                    if (materialCheckBox3.Checked && row.Cells[1].Value.ToString().IndexOf(str)!=-1)
                     {
                         status = true;
                     }
-                    if (materialCheckBox3.Checked && (row.Cells[2].Value.ToString()+row.Cells[3].Value.ToString()).IndexOf(str)!=-1)
+                    if (materialCheckBox2.Checked && (row.Cells[2].Value.ToString()+row.Cells[3].Value.ToString()).IndexOf(str)!=-1)
                     {
                         status= true;
                     }

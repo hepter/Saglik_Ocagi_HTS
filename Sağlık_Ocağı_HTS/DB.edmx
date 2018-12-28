@@ -66,7 +66,7 @@
           </Key>
           <Property Name="sevktarihi" Type="datetime" Nullable="false" />
           <Property Name="islemid" Type="int" Nullable="false" />
-          <Property Name="doktorid" Type="int" Nullable="false" />
+          <Property Name="personelid" Type="int" Nullable="false" />
           <Property Name="miktar" Type="int" />
         </EntityType>
         <EntityType Name="kullanicilar">
@@ -88,6 +88,13 @@
           </Key>
           <Property Name="odemeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="yontemadi" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="personel">
+          <Key>
+            <PropertyRef Name="personelid" />
+          </Key>
+          <Property Name="personelid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tckimlikno" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="poliklinik">
           <Key>
@@ -174,18 +181,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_islemler_doktor">
-          <End Role="doktor" Type="Self.doktor" Multiplicity="1" />
-          <End Role="islemler" Type="Self.islemler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="doktor">
-              <PropertyRef Name="doktorid" />
-            </Principal>
-            <Dependent Role="islemler">
-              <PropertyRef Name="doktorid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_islemler_islem">
           <End Role="islem" Type="Self.islem" Multiplicity="1" />
           <End Role="islemler" Type="Self.islemler" Multiplicity="*" />
@@ -198,6 +193,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_islemler_personel">
+          <End Role="personel" Type="Self.personel" Multiplicity="1" />
+          <End Role="islemler" Type="Self.islemler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personel">
+              <PropertyRef Name="personelid" />
+            </Principal>
+            <Dependent Role="islemler">
+              <PropertyRef Name="personelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_kullanicilar_birey">
           <End Role="birey" Type="Self.birey" Multiplicity="1" />
           <End Role="kullanicilar" Type="Self.kullanicilar" Multiplicity="*" />
@@ -206,6 +213,18 @@
               <PropertyRef Name="tckimlikno" />
             </Principal>
             <Dependent Role="kullanicilar">
+              <PropertyRef Name="tckimlikno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personel_birey">
+          <End Role="birey" Type="Self.birey" Multiplicity="1" />
+          <End Role="personel" Type="Self.personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="birey">
+              <PropertyRef Name="tckimlikno" />
+            </Principal>
+            <Dependent Role="personel">
               <PropertyRef Name="tckimlikno" />
             </Dependent>
           </ReferentialConstraint>
@@ -326,6 +345,7 @@
           <EntitySet Name="islemler" EntityType="Self.islemler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="odeme" EntityType="Self.odeme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personel" EntityType="Self.personel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="poliklinik" EntityType="Self.poliklinik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="poliklinik_isim" EntityType="Self.poliklinik_isim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sevk" EntityType="Self.sevk" Schema="dbo" store:Type="Tables" />
@@ -343,17 +363,21 @@
             <End Role="birey" EntitySet="birey" />
             <End Role="hasta" EntitySet="hasta" />
           </AssociationSet>
-          <AssociationSet Name="FK_islemler_doktor" Association="Self.FK_islemler_doktor">
-            <End Role="doktor" EntitySet="doktor" />
-            <End Role="islemler" EntitySet="islemler" />
-          </AssociationSet>
           <AssociationSet Name="FK_islemler_islem" Association="Self.FK_islemler_islem">
             <End Role="islem" EntitySet="islem" />
+            <End Role="islemler" EntitySet="islemler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_islemler_personel" Association="Self.FK_islemler_personel">
+            <End Role="personel" EntitySet="personel" />
             <End Role="islemler" EntitySet="islemler" />
           </AssociationSet>
           <AssociationSet Name="FK_kullanicilar_birey" Association="Self.FK_kullanicilar_birey">
             <End Role="birey" EntitySet="birey" />
             <End Role="kullanicilar" EntitySet="kullanicilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personel_birey" Association="Self.FK_personel_birey">
+            <End Role="birey" EntitySet="birey" />
+            <End Role="personel" EntitySet="personel" />
           </AssociationSet>
           <AssociationSet Name="FK_poliklinik_bolumid" Association="Self.FK_poliklinik_bolumid">
             <End Role="poliklinik_isim" EntitySet="poliklinik_isim" />
@@ -427,6 +451,7 @@
           <EntitySet Name="islemler" EntityType="saglikDBModel.islemler" />
           <EntitySet Name="kullanicilar" EntityType="saglikDBModel.kullanicilar" />
           <EntitySet Name="odeme" EntityType="saglikDBModel.odeme" />
+          <EntitySet Name="personel" EntityType="saglikDBModel.personel" />
           <EntitySet Name="poliklinik" EntityType="saglikDBModel.poliklinik" />
           <EntitySet Name="poliklinik_isim" EntityType="saglikDBModel.poliklinik_isim" />
           <EntitySet Name="sevk" EntityType="saglikDBModel.sevk" />
@@ -444,9 +469,9 @@
             <End Role="birey" EntitySet="birey" />
             <End Role="kullanicilar" EntitySet="kullanicilar" />
           </AssociationSet>
-          <AssociationSet Name="FK_islemler_doktor" Association="saglikDBModel.FK_islemler_doktor">
-            <End Role="doktor" EntitySet="doktor" />
-            <End Role="islemler" EntitySet="islemler" />
+          <AssociationSet Name="FK_personel_birey" Association="saglikDBModel.FK_personel_birey">
+            <End Role="birey" EntitySet="birey" />
+            <End Role="personel" EntitySet="personel" />
           </AssociationSet>
           <AssociationSet Name="FK_sevk_doktor" Association="saglikDBModel.FK_sevk_doktor">
             <End Role="doktor" EntitySet="doktor" />
@@ -462,6 +487,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_islemler_islem" Association="saglikDBModel.FK_islemler_islem">
             <End Role="islem" EntitySet="islem" />
+            <End Role="islemler" EntitySet="islemler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_islemler_personel" Association="saglikDBModel.FK_islemler_personel">
+            <End Role="personel" EntitySet="personel" />
             <End Role="islemler" EntitySet="islemler" />
           </AssociationSet>
           <AssociationSet Name="FK_taburcu_odeme" Association="saglikDBModel.FK_taburcu_odeme">
@@ -513,6 +542,7 @@
           <NavigationProperty Name="doktor" Relationship="saglikDBModel.FK_doktor_birey" FromRole="birey" ToRole="doktor" />
           <NavigationProperty Name="hasta" Relationship="saglikDBModel.FK_hasta_birey" FromRole="birey" ToRole="hasta" />
           <NavigationProperty Name="kullanicilar" Relationship="saglikDBModel.FK_kullanicilar_birey" FromRole="birey" ToRole="kullanicilar" />
+          <NavigationProperty Name="personel" Relationship="saglikDBModel.FK_personel_birey" FromRole="birey" ToRole="personel" />
         </EntityType>
         <EntityType Name="doktor">
           <Key>
@@ -521,7 +551,6 @@
           <Property Name="doktorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tckimlikno" Type="Int64" Nullable="false" />
           <NavigationProperty Name="birey" Relationship="saglikDBModel.FK_doktor_birey" FromRole="doktor" ToRole="birey" />
-          <NavigationProperty Name="islemler" Relationship="saglikDBModel.FK_islemler_doktor" FromRole="doktor" ToRole="islemler" />
           <NavigationProperty Name="sevk" Relationship="saglikDBModel.FK_sevk_doktor" FromRole="doktor" ToRole="sevk" />
         </EntityType>
         <EntityType Name="dosya">
@@ -564,10 +593,10 @@
           </Key>
           <Property Name="sevktarihi" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="islemid" Type="Int32" Nullable="false" />
-          <Property Name="doktorid" Type="Int32" Nullable="false" />
+          <Property Name="personelid" Type="Int32" Nullable="false" />
           <Property Name="miktar" Type="Int32" />
-          <NavigationProperty Name="doktor" Relationship="saglikDBModel.FK_islemler_doktor" FromRole="islemler" ToRole="doktor" />
           <NavigationProperty Name="islem" Relationship="saglikDBModel.FK_islemler_islem" FromRole="islemler" ToRole="islem" />
+          <NavigationProperty Name="personel" Relationship="saglikDBModel.FK_islemler_personel" FromRole="islemler" ToRole="personel" />
         </EntityType>
         <EntityType Name="kullanicilar">
           <Key>
@@ -590,6 +619,15 @@
           <Property Name="odemeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="yontemadi" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="taburcu" Relationship="saglikDBModel.FK_taburcu_odeme" FromRole="odeme" ToRole="taburcu" />
+        </EntityType>
+        <EntityType Name="personel">
+          <Key>
+            <PropertyRef Name="personelid" />
+          </Key>
+          <Property Name="personelid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tckimlikno" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="birey" Relationship="saglikDBModel.FK_personel_birey" FromRole="personel" ToRole="birey" />
+          <NavigationProperty Name="islemler" Relationship="saglikDBModel.FK_islemler_personel" FromRole="personel" ToRole="islemler" />
         </EntityType>
         <EntityType Name="poliklinik">
           <Key>
@@ -685,15 +723,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_islemler_doktor">
-          <End Type="saglikDBModel.doktor" Role="doktor" Multiplicity="1" />
-          <End Type="saglikDBModel.islemler" Role="islemler" Multiplicity="*" />
+        <Association Name="FK_personel_birey">
+          <End Type="saglikDBModel.birey" Role="birey" Multiplicity="1" />
+          <End Type="saglikDBModel.personel" Role="personel" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="doktor">
-              <PropertyRef Name="doktorid" />
+            <Principal Role="birey">
+              <PropertyRef Name="tckimlikno" />
             </Principal>
-            <Dependent Role="islemler">
-              <PropertyRef Name="doktorid" />
+            <Dependent Role="personel">
+              <PropertyRef Name="tckimlikno" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -742,6 +780,18 @@
             </Principal>
             <Dependent Role="islemler">
               <PropertyRef Name="islemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_islemler_personel">
+          <End Type="saglikDBModel.personel" Role="personel" Multiplicity="1" />
+          <End Type="saglikDBModel.islemler" Role="islemler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personel">
+              <PropertyRef Name="personelid" />
+            </Principal>
+            <Dependent Role="islemler">
+              <PropertyRef Name="personelid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -887,7 +937,7 @@
             <EntityTypeMapping TypeName="saglikDBModel.islemler">
               <MappingFragment StoreEntitySet="islemler">
                 <ScalarProperty Name="miktar" ColumnName="miktar" />
-                <ScalarProperty Name="doktorid" ColumnName="doktorid" />
+                <ScalarProperty Name="personelid" ColumnName="personelid" />
                 <ScalarProperty Name="islemid" ColumnName="islemid" />
                 <ScalarProperty Name="sevktarihi" ColumnName="sevktarihi" />
               </MappingFragment>
@@ -912,6 +962,14 @@
               <MappingFragment StoreEntitySet="odeme">
                 <ScalarProperty Name="yontemadi" ColumnName="yontemadi" />
                 <ScalarProperty Name="odemeid" ColumnName="odemeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personel">
+            <EntityTypeMapping TypeName="saglikDBModel.personel">
+              <MappingFragment StoreEntitySet="personel">
+                <ScalarProperty Name="tckimlikno" ColumnName="tckimlikno" />
+                <ScalarProperty Name="personelid" ColumnName="personelid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -968,7 +1026,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

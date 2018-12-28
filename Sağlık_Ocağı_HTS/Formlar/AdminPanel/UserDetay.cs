@@ -99,6 +99,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             kull.unvan = textBox11.Text ;
             kull.maas = textBox19.Text;
             
+            kull.birey.tckimlikno =  kull.tckimlikno;
             kull.birey.ad =  textBox5.Text ;
             kull.birey.soyad =  textBox6.Text ;
             kull.birey.cinsiyet = comboBox2.SelectedIndex.ToString();
@@ -125,8 +126,12 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
                 MessageBox.Show("Kayıt Eklendi","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
             else
                 MessageBox.Show("Kayıt Güncellendi","Başarılı",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            db.Entry(kull).State = EntityState.Detached;
+           
+            //var yedek = activeKullanici.birey;
+            db.Entry(kull.birey).State = EntityState.Detached; 
+            //db.Entry(kull).State = EntityState.Detached;
             activeKullanici = kull;
+            //activeKullanici.birey = yedek;
             DialogResult = DialogResult.OK;
             Close();
         }

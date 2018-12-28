@@ -50,6 +50,7 @@
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
@@ -76,7 +77,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -170,7 +170,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(224, 213);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(217, 22);
-            this.dateTimePicker1.TabIndex = 7;
+            this.dateTimePicker1.TabIndex = 4;
             // 
             // label3
             // 
@@ -243,7 +243,7 @@
             this.button2.Location = new System.Drawing.Point(340, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 32);
-            this.button2.TabIndex = 20;
+            this.button2.TabIndex = 19;
             this.button2.Text = "İptal";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -258,7 +258,7 @@
             this.button1.Location = new System.Drawing.Point(7, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(178, 32);
-            this.button1.TabIndex = 19;
+            this.button1.TabIndex = 18;
             this.button1.Text = "Yeni Hasta Ekle";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -302,7 +302,7 @@
             this.comboBox2.Location = new System.Drawing.Point(224, 183);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(218, 24);
-            this.comboBox2.TabIndex = 6;
+            this.comboBox2.TabIndex = 3;
             // 
             // materialLabel1
             // 
@@ -324,7 +324,7 @@
             this.textBox2.Location = new System.Drawing.Point(224, 241);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(218, 22);
-            this.textBox2.TabIndex = 0;
+            this.textBox2.TabIndex = 5;
             // 
             // richTextBox1
             // 
@@ -333,7 +333,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(225, 597);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(218, 132);
-            this.richTextBox1.TabIndex = 18;
+            this.richTextBox1.TabIndex = 17;
             this.richTextBox1.Text = "";
             // 
             // textBox6
@@ -343,7 +343,7 @@
             this.textBox6.Location = new System.Drawing.Point(224, 134);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(218, 22);
-            this.textBox6.TabIndex = 5;
+            this.textBox6.TabIndex = 2;
             // 
             // maskedTextBox2
             // 
@@ -382,6 +382,18 @@
             this.maskedTextBox3.TabIndex = 10;
             this.maskedTextBox3.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
+            // maskedTextBox4
+            // 
+            this.maskedTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskedTextBox4.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox4.Location = new System.Drawing.Point(225, 73);
+            this.maskedTextBox4.Mask = "00000000000";
+            this.maskedTextBox4.Name = "maskedTextBox4";
+            this.maskedTextBox4.Size = new System.Drawing.Size(218, 22);
+            this.maskedTextBox4.TabIndex = 0;
+            this.maskedTextBox4.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
             // maskedTextBox1
             // 
             this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -391,7 +403,7 @@
             this.maskedTextBox1.Mask = "(999) 000-0000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(218, 22);
-            this.maskedTextBox1.TabIndex = 10;
+            this.maskedTextBox1.TabIndex = 9;
             this.maskedTextBox1.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // materialLabel10
@@ -527,7 +539,7 @@
             this.textBox4.Location = new System.Drawing.Point(224, 327);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(218, 22);
-            this.textBox4.TabIndex = 9;
+            this.textBox4.TabIndex = 8;
             // 
             // textBox11
             // 
@@ -536,7 +548,7 @@
             this.textBox11.Location = new System.Drawing.Point(224, 299);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(218, 22);
-            this.textBox11.TabIndex = 9;
+            this.textBox11.TabIndex = 7;
             // 
             // materialLabel20
             // 
@@ -641,7 +653,7 @@
             this.textBox5.Location = new System.Drawing.Point(224, 104);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(218, 22);
-            this.textBox5.TabIndex = 4;
+            this.textBox5.TabIndex = 1;
             // 
             // textBox16
             // 
@@ -659,7 +671,7 @@
             this.textBox3.Location = new System.Drawing.Point(224, 271);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(218, 22);
-            this.textBox3.TabIndex = 1;
+            this.textBox3.TabIndex = 6;
             // 
             // label2
             // 
@@ -683,18 +695,6 @@
             this.label1.Text = "_________________________________________________________________________________" +
     "___________________________________";
             // 
-            // maskedTextBox4
-            // 
-            this.maskedTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox4.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBox4.Location = new System.Drawing.Point(225, 73);
-            this.maskedTextBox4.Mask = "00000000000";
-            this.maskedTextBox4.Name = "maskedTextBox4";
-            this.maskedTextBox4.Size = new System.Drawing.Size(218, 22);
-            this.maskedTextBox4.TabIndex = 10;
-            this.maskedTextBox4.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
             // Yeni_Hasta_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -702,6 +702,7 @@
             this.ClientSize = new System.Drawing.Size(514, 741);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Yeni_Hasta_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yeni Hasta ";
             this.Load += new System.EventHandler(this.Yeni_Hasta_Form_Load);
             this.flowLayoutPanel1.ResumeLayout(false);

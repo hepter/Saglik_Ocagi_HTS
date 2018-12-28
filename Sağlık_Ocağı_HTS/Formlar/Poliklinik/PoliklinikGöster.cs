@@ -27,6 +27,11 @@ namespace Sağlık_Ocağı_HTS.Formlar.Poliklinik
             materialSingleLineTextField1.Text = poli.poliklinikadi;
             activePoliklinik=poli;
             materialCheckBox1.Checked = ((poli.durum ?? "0")   == "1") ? true : false;
+            if (poli.aciklama!=null)
+            {
+                materialSingleLineTextField1.Enabled = false; 
+            }
+          
 
         }
 

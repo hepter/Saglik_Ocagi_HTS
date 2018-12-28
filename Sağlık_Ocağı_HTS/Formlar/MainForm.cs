@@ -31,8 +31,13 @@ namespace Sağlık_Ocağı_HTS
             set
             {
                 label1.Text = value.username;
-                var birey = db.birey.Where(a => a.tckimlikno == value.tckimlikno).First();
-                label2.Text = birey.ad + " "+ birey.soyad;
+                if (value.birey==null)
+                {
+                    var birey = db.birey.Where(a => a.tckimlikno == value.tckimlikno).First();
+                    value.birey = birey;
+                }
+               
+                label2.Text = value.birey.ad + " " + value.birey.soyad;//birey.ad + " "+ birey.soyad;
                 pictureBox1.Image = (value.yetki == "1") ? Properties.Resources.admin : Properties.Resources.user;
                 _aktifKullanici = value;
             }
@@ -82,18 +87,16 @@ namespace Sağlık_Ocağı_HTS
    
         private void Form1_Load(object sender, EventArgs e)
         {
-            TaburcuForm form= new TaburcuForm();
-            
-            AdminPanelForm AdminPanelForm= new AdminPanelForm();
-            PoliklinikEkle userDetay= new PoliklinikEkle();
-         //  form.Show();
-          //  AdminPanelForm.Show();
-           // userDetay.ShowDialog();
-            HastaIslemPanel  hastaIslemPanel=  new HastaIslemPanel();
-            
+
+        
+
+            HastaIslemPanel  hastaIslemPanel=  new HastaIslemPanel(tabloyuYazdırToolStripMenuItem,yazıcıÖnizlemeToolStripMenuItem);
             hastaIslemPanel.Dock = DockStyle.Fill;
             panel1.Controls.Add(hastaIslemPanel);
+           // tabloyuYazdırToolStripMenuItem.Click += TabloyuYazdırToolStripMenuItemOnClick;
         }
+
+   
 
         private void süzenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -123,6 +126,10 @@ namespace Sağlık_Ocağı_HTS
 
         private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+            DialogResult res=   MessageBox.Show($"Programı kapatmak istediğnize Emin misiniz?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (res != DialogResult.Yes)
+                return;
             Process.GetCurrentProcess().Kill(); 
         }
 
@@ -181,17 +188,18 @@ namespace Sağlık_Ocağı_HTS
 
         private void doktorEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DoktorEkleForm form=new DoktorEkleForm();
+            DrVePersonelEkleForm form=new DrVePersonelEkleForm(DrVePersonelEkleForm.EklemeTürü.Doktor);
             form.ShowDialog();
-
+            
         }
 
+        public EventHandler KapatEvent;
         private void oturumdanÇıkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult res=   MessageBox.Show($"{aktifKullanici.username} hesanbından çıkış yapılsın mı?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult res=   MessageBox.Show($"'{aktifKullanici.username}'Kullanıcı hesabından çıkış yapılsın mı?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
             if (res != DialogResult.Yes)
                 return;
-            Close();
+            KapatEvent(null,null);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -202,11 +210,39 @@ namespace Sağlık_Ocağı_HTS
         private void profilimiDüzenleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserDetay form= new UserDetay(aktifKullanici);
-            DialogResult res = form.DialogResult;
+            DialogResult res = form.ShowDialog();
             if (res== DialogResult.OK)
             {
                 aktifKullanici = form.activeKullanici;
             }
+        }
+
+        private void personelEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DrVePersonelEkleForm form=new DrVePersonelEkleForm(DrVePersonelEkleForm.EklemeTürü.Personel);
+            form.ShowDialog();
+        }
+
+        private void tabloyuYazdırToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yazıcıÖnizlemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void doktorYönetimToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DrVePersonelListeleForm form= new DrVePersonelListeleForm(DrVePersonelEkleForm.EklemeTürü.Doktor);
+            form.ShowDialog();
+        }
+
+        private void personelYönetimToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DrVePersonelListeleForm form= new DrVePersonelListeleForm(DrVePersonelEkleForm.EklemeTürü.Personel);
+            form.ShowDialog();
         }
     }
 }

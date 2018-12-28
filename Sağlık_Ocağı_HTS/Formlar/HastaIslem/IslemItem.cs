@@ -15,17 +15,20 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         public delegate void islemHandler(islem i);
         public event islemHandler silBtnEvent;
         public islem ActiveIslem { get; }
+        public islemler ActiveIslemler { get; }
 
         public IslemItem()
         {
             InitializeComponent();
         }
-        public IslemItem(islem islm):this()
+        public IslemItem(islemler islm):this()
         {
-            ActiveIslem = islm;
-            materialLabel1.Text = islm.islemadi;
-            materialLabel2.Text = islm.birimfiyat;
-         
+            ActiveIslem = islm.islem;
+            ActiveIslemler = islm;
+            materialLabel1.Text = islm.islem.islemadi;
+            materialLabel2.Text = islm.islem.birimfiyat;
+            materialLabel3.Text = islm.personel.birey.ad+" "+islm.personel.birey.soyad;
+            materialLabel4.Text = islm.miktar.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)

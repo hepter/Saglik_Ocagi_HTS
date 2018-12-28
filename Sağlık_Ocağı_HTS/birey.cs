@@ -19,6 +19,7 @@ namespace Sağlık_Ocağı_HTS
         {
             this.doktor = new HashSet<doktor>();
             this.kullanicilar = new HashSet<kullanicilar>();
+            this.personel = new HashSet<personel>();
         }
     
         public int id { get; set; }
@@ -41,5 +42,7 @@ namespace Sağlık_Ocağı_HTS
         public virtual hasta hasta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<kullanicilar> kullanicilar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<personel> personel { get; set; }
     }
 }

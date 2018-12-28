@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
@@ -15,19 +17,23 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         private saglikDBEntities_1 db;
         public hasta ActiveHasta { get; set; }
         public sevk ActiveSevk { get; set; }
-       // public List<sevkler> ActiveSevkler { get; set; }
         public List<islemler> ActiveIslemler { get; set; }
+
+
         public HastaIslemPanel()
         {
             InitializeComponent();
-           // ActiveSevkler =  new List<sevkler>();
             ActiveIslemler =new List<islemler>();
         }
-
+        public HastaIslemPanel(object yaz,object önizle):this()
+        {
+            (yaz as ToolStripMenuItem).Click += button4_Click;
+            (önizle as ToolStripMenuItem).Click += button5_Click;
+        }
 
         private void materialSingleLineTextField1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && materialSingleLineTextField1.Text.Trim()!="")//&& materialSingleLineTextField1.f)
+            if (e.KeyCode == Keys.Enter)// && materialSingleLineTextField1.Text.Trim()!="")//&& materialSingleLineTextField1.f)
             {
                 TextboxEnterSorgula();
             }
@@ -37,17 +43,37 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         {
             
             string aranan = materialSingleLineTextField1.Text;
-            int sayi;
-            if (!int.TryParse(aranan,out sayi))
-                return;
-            hasta hasta = HastaBulDosyaID(aranan) ?? HastaBulTC(aranan);
-            if (hasta!=null)
+            Int64 sayi;
+            if (!Int64.TryParse(aranan,out sayi))
             {
-                HastaBilgiDoldur(hasta);
-                ActiveHasta = hasta;
+                hastaEkleFlipFlop();
+                return;
             }
+
+            hasta hasta = HastaBulDosyaID(aranan) ?? HastaBulTC(aranan);
+           
+            HastaBilgiDoldur(hasta);
+            ActiveHasta = hasta;
+
+            if (hasta==null)
+                hastaEkleFlipFlop();
+            
         }
 
+        void hastaEkleFlipFlop()
+        {
+            Task.Run(delegate
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    button3.Invoke((Action) delegate { button3.BackColor = Color.FromArgb(82, 155, 41); });
+                    Thread.Sleep(150);
+                    button3.Invoke((Action) delegate { button3.BackColor = Color.FromArgb(82, 41, 41); });
+                    Thread.Sleep(150);
+                }
+                    
+            });
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -64,25 +90,27 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         private hasta HastaBulDosyaID(string str)
         {
             db = new saglikDBEntities_1();
-            hasta hasta = db.hasta.Find(int.Parse(str));
+            Int64 sayi =Int64.Parse(str);
+            hasta hasta = db.hasta.ToList().Where(a=>a.dosyaID==sayi).FirstOrDefault();
             return hasta; //(a => a.dosyaID == int.Parse(str));
         }
 
         private hasta HastaBulTC(string str)
         {
             db = new saglikDBEntities_1();
-            return db.hasta.Find(int.Parse(str));
+            Int64 tc = Int64.Parse(str);
+            return db.hasta.ToList().Where(a=>a.tckimlikno==tc).FirstOrDefault();
         }
 
         private void HastaBilgiDoldur(hasta h)
         {
 
-            textBox1.Text = h.birey.ad;
-            textBox2.Text = h.birey.soyad;
-            maskedTextBox1.Text = h.birey.ceptel;
-            maskedTextBox2.Text = h.yakintel;
-            textBox3.Text = h.kurumsicilno;
-            textBox4.Text = h.kurumadi;
+            textBox1.Text = h?.birey.ad ?? "";
+            textBox2.Text = h?.birey.soyad?? "";
+            maskedTextBox1.Text = h?.birey.ceptel?? "";
+            maskedTextBox2.Text = h?.yakintel?? "";
+            textBox3.Text = h?.kurumsicilno?? "";
+            textBox4.Text = h?.tckimlikno.ToString()?? "";
             sevkIslemDoldur(h);
 
         }
@@ -127,6 +155,12 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         
         void SevkDüzenleOrtakButton(sevk s)
         {
+            if (s.taburcu.taburcuoldumu)
+            {
+              
+                MessageBox.Show("Sevk Taburcu Edilmiş Düzenleme Yapılamaz!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                return;
+            }
             YeniSevkForm form= new YeniSevkForm(s);
             form.ShowDialog();
         } 
@@ -134,7 +168,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         public void SevkGörüntüleOrtakButton(sevk s)
         {
-
+            ActiveSevk = s;
             db = new saglikDBEntities_1();
             List<islemler> islmler = new List<islemler>();
             islmler = db.islemler.ToList().Where(a=>a.sevktarihi == s.sevktarihi).ToList();
@@ -146,7 +180,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
             foreach (var var in islmler)
             {
                 int maliyet = int.Parse(var.islem.birimfiyat);
-                string  sevkYapanDr = "Dr. " + var.doktor.birey.ad;
+                string  islemYapanPersonel = var.personel.birey.ad+" "+var.personel.birey.soyad;
 
                 dataGridView1.Rows.Add(s.poliklinik,
                     s.sevktarihi.ToString("dd-MM-yyyy"),
@@ -154,8 +188,8 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                     s.saat,
                     var.islem.islemid,
                     var.islem.islemadi,
-                    var.doktor.doktorid,
-                    sevkYapanDr,
+                    var.personel.personelid,
+                    islemYapanPersonel,
                     maliyet,
                     var.miktar
                     );
@@ -171,33 +205,12 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
      
         private void HastaIslemPanel_Load(object sender, EventArgs e)
         {
-            db = new saglikDBEntities_1();
-
             Button btn = button4;
             btn.Image = (Image)(new Bitmap(btn.Image, new Size(btn.Size.Height,btn.Size.Height)));
 
             btn = button5;
             btn.Image = (Image)(new Bitmap(btn.Image, new Size(btn.Size.Height,btn.Size.Height)));
 
-            return;
-            sevk sevk= new sevk();//db.sevk.FirstOrDefault();
-            sevk.poliklinik = "K.b.b.2";//poliklinik.poliklinikadi;
-            sevk.sevktarihi=DateTime.Now;
-            sevk.dosyaid=16;
-            sevk.sevkedendoktorid = 3;
-            sevk.taburcuid = 1;
-           
-            
-            //db.sevk.Remove(sevk);
-            db.sevk.Add(sevk);
-            db.SaveChanges();
-
-            db = new saglikDBEntities_1();
-            sevk= db.sevk.FirstOrDefault();
-            sevk.taburcuid = 2;
-            
-            db.Entry(sevk).State = EntityState.Modified;
-            db.SaveChanges();
         }
         
       
@@ -214,7 +227,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         {
             flowLayoutPanel1.SuspendLayout();
             foreach (var user in flowLayoutPanel1.Controls.Cast<SevkItem>())
-                user.Width = flowLayoutPanel1.Width - 30;
+                user.Width = flowLayoutPanel1.Width - 33;
             flowLayoutPanel1.ResumeLayout();
         }
 
@@ -222,34 +235,13 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         {
             ControlsYenidenBoyutla();
         }
-
-        //public delegate void dataGridButtonHandler(sevk s);
-
-        //public event dataGridButtonHandler dataGridButtonEvent;
-        //private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    DataGridView dgw = sender as DataGridView;
-        //  //  var tip = dgw.Columns[e.ColumnIndex].CellType;
-        //    if (dgw.Columns[e.ColumnIndex].CellType  == typeof(DataGridViewButtonCell) && e.RowIndex >= 0)
-        //    {
-        //        db = new saglikDBEntities_1();
-        //        if (db.sevk.Count()==0)
-        //        {
-        //            return;
-        //        }
-
-        //        string SatırTarihi = dgw.Rows[e.RowIndex].Cells[1].Value + " " + dgw.Rows[e.RowIndex].Cells[3].Value;
-        //        sevk svk=  db.sevk.ToList().SingleOrDefault(a => a.sevktarihi.ToString("dd-MM-yyyy HH:mm:ss") == SatırTarihi);
-        //        if (dataGridButtonEvent !=null)
-        //            dataGridButtonEvent(svk);
-
-        //    }
-        //}
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (ActiveHasta == null)
+            {
+                MessageBox.Show("Seçili Bir hasta yok\nSevk eklenemez!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
+            }
 
             YeniSevkForm form = new YeniSevkForm(ActiveHasta);
             DialogResult res =  form.ShowDialog();
@@ -318,7 +310,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
                 return;
             islemler islm = db.islemler.ToList().Where(a => a.islemid == seciliIslemID).First();
 
-            DialogResult res=   MessageBox.Show($"{islm.islem.islemadi} işlemini silmek istediğinize Emin misiniz?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult res=   MessageBox.Show($"'{islm.islem.islemadi}' işlemini silmek istediğinize Emin misiniz?","Uyarı",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
             if (res != DialogResult.Yes)
                 return;
             
@@ -339,7 +331,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+         
             if (dataGridView1.Rows.Count==0)
             {
                 MessageBox.Show("Tablo boş iken önizleme açılamaz!","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
@@ -360,16 +352,16 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
           
              
             string başMesaj = "Sağlık Ocağı Hasta Sevk Raporu";
-            string doktorİsim = string.Format("Dr. {0} {1}","hasan","teret");
+            string doktorİsim = string.Format("Dr. {0} {1}",ActiveSevk.doktor.birey.ad,ActiveSevk.doktor.birey.soyad);
             string toplamStr = $"Toplam Maliyet: {label1.Text}";
 
-                int iLeftMargin = e.MarginBounds.Left-50;
-                //Set the top margin
-                int iTopMargin = e.MarginBounds.Top-50;
-                //Whether more pages have to print or not
-                bool bMorePagesToPrint = false;
-                int iTmpWidth = 0;             
-                
+            int iLeftMargin = e.MarginBounds.Left-50;
+            //Set the top margin
+            int iTopMargin = e.MarginBounds.Top-50;
+            //Whether more pages have to print or not
+            bool bMorePagesToPrint = false;
+            int iTmpWidth = 0;             
+
                 //For the first page to print set the cell width and header height
                 if (bFirstPage)
                 {
@@ -541,7 +533,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+           
             if (dataGridView1.Rows.Count==0)
             {
                 MessageBox.Show("Tablo boş iken yazdırılamaz","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
@@ -562,6 +554,17 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         private void materialSingleLineTextField1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Yeni_Hasta_Form form= new Yeni_Hasta_Form();
+            DialogResult res= form.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                ActiveHasta = form.ActiveHasta;
+                HastaBilgiDoldur(ActiveHasta);
+            }
         }
     }
 

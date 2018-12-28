@@ -52,6 +52,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
         private string aramaCacheStr="";
         void PoliklinikDoldur(string arananMetin)
         {
+            flowLayoutPanel1.SuspendLayout();
             aramaCacheStr = arananMetin;
             flowLayoutPanel1.Controls.Clear();
             toplamControl = 0;
@@ -70,7 +71,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
             {
                 flowLayoutPanel1.Controls.Cast<PoliklinikItem>().First().BackColor = Color.Plum;
             }
-
+            flowLayoutPanel1.ResumeLayout();
             if (toplamControl!=0)
             {
                 ControlsYenidenBoyutla();
@@ -85,8 +86,12 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
         private void DüzenleButonAksiyon(poliklinik poli)
         {
             PoliklinikGöster pgöster= new PoliklinikGöster(poli);
-            pgöster.ShowDialog();
-            db=new saglikDBEntities_1();
+            if (DialogResult.OK == pgöster.ShowDialog())
+            {
+                db=new saglikDBEntities_1();
+                PoliklinikDoldur();
+            }
+            
           
         }
 
@@ -97,7 +102,7 @@ namespace Sağlık_Ocağı_HTS.Formlar.Ekle
             if (res!=DialogResult.Yes)
                 return;
             db=new saglikDBEntities_1();
-            var sevkler = db.sevk.First(a => a.poliklinik == poli.poliklinikadi);
+            var sevkler = db.sevk.FirstOrDefault(a => a.poliklinik == poli.poliklinikadi);
             if (sevkler!=null)
             {
                 MessageBox.Show($"Kullanımda olan bir poliklinik silinemez!\nÖmce bağlı olduğu sevk silinmesi gerekli!","HATA",MessageBoxButtons.OK,MessageBoxIcon.Error);

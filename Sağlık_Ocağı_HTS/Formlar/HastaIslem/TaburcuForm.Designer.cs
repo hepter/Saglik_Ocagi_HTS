@@ -273,6 +273,8 @@
             this.MinimizeBox = false;
             this.Name = "TaburcuForm";
             this.Load += new System.EventHandler(this.TaburcuForm_Load);
+            this.ResizeBegin += new System.EventHandler(this.TaburcuForm_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.TaburcuForm_ResizeEnd);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
             this.Controls.SetChildIndex(this.button3, 0);

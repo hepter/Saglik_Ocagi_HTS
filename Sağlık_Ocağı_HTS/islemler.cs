@@ -16,10 +16,10 @@ namespace Sağlık_Ocağı_HTS
     {
         public System.DateTime sevktarihi { get; set; }
         public int islemid { get; set; }
-        public int doktorid { get; set; }
+        public int personelid { get; set; }
         public Nullable<int> miktar { get; set; }
     
-        public virtual doktor doktor { get; set; }
         public virtual islem islem { get; set; }
+        public virtual personel personel { get; set; }
     }
 }

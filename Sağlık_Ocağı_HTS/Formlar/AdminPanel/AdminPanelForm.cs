@@ -93,9 +93,13 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             
             if(detay.ShowDialog()==DialogResult.OK)
             {
-                aktifKullanici = detay.activeKullanici;
+                if (aktifKullanici.id==detay.activeKullanici.id)
+                {
+                    aktifKullanici= detay.activeKullanici;
+                    DialogResult = DialogResult.OK;
+                }
                 ControlsYenile();
-                DialogResult = DialogResult.OK;
+                
             }
         }
 
@@ -105,9 +109,7 @@ namespace Sağlık_Ocağı_HTS.Denetimler.AdminPanel
             UserDetay dialog = new UserDetay();
             if(dialog.ShowDialog()==DialogResult.OK)
             {
-                aktifKullanici = dialog.activeKullanici;
                 ControlsYenile();
-                DialogResult = DialogResult.OK;
             }
         }
 

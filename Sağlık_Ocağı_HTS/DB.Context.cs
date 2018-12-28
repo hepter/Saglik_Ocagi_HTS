@@ -35,6 +35,7 @@ namespace Sağlık_Ocağı_HTS
         public virtual DbSet<islemler> islemler { get; set; }
         public virtual DbSet<kullanicilar> kullanicilar { get; set; }
         public virtual DbSet<odeme> odeme { get; set; }
+        public virtual DbSet<personel> personel { get; set; }
         public virtual DbSet<poliklinik> poliklinik { get; set; }
         public virtual DbSet<poliklinik_isim> poliklinik_isim { get; set; }
         public virtual DbSet<sevk> sevk { get; set; }

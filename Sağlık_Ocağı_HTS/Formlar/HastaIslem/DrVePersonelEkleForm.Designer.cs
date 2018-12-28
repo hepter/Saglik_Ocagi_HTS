@@ -1,6 +1,6 @@
 ﻿namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
 {
-    partial class DoktorEkleForm
+    partial class DrVePersonelEkleForm
     {
         /// <summary>
         ///Gerekli tasarımcı değişkeni.
@@ -45,6 +45,7 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
@@ -64,7 +65,6 @@
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,6 +121,7 @@
             // 
             // button3
             // 
+            this.button3.Enabled = false;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button3.FlatAppearance.BorderSize = 3;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -217,7 +218,7 @@
             this.button1.ForeColor = System.Drawing.Color.Snow;
             this.button1.Location = new System.Drawing.Point(7, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 32);
+            this.button1.Size = new System.Drawing.Size(211, 32);
             this.button1.TabIndex = 19;
             this.button1.Text = "Yeni Doktor Ekle";
             this.button1.UseVisualStyleBackColor = false;
@@ -266,7 +267,8 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(224, 449);
             this.richTextBox1.MaxLength = 200;
@@ -309,6 +311,19 @@
             this.materialLabel6.TabIndex = 3;
             this.materialLabel6.Text = "Soyad:";
             this.materialLabel6.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maskedTextBox3.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox3.Location = new System.Drawing.Point(223, 73);
+            this.maskedTextBox3.Mask = "00000000000";
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(218, 22);
+            this.maskedTextBox3.TabIndex = 10;
+            this.maskedTextBox3.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.maskedTextBox3.ValidatingType = typeof(int);
             // 
             // maskedTextBox1
             // 
@@ -537,27 +552,15 @@
             this.label1.Text = "_________________________________________________________________________________" +
     "___________________________________";
             // 
-            // maskedTextBox3
-            // 
-            this.maskedTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox3.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBox3.Location = new System.Drawing.Point(223, 73);
-            this.maskedTextBox3.Mask = "00000000000";
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(218, 22);
-            this.maskedTextBox3.TabIndex = 10;
-            this.maskedTextBox3.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.maskedTextBox3.ValidatingType = typeof(int);
-            // 
-            // DoktorEkleForm
+            // DrVePersonelEkleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.ClientSize = new System.Drawing.Size(479, 625);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "DoktorEkleForm";
+            this.Name = "DrVePersonelEkleForm";
+            this.Load += new System.EventHandler(this.DoktorEkleForm_Load);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.groupBox1.ResumeLayout(false);
@@ -567,42 +570,42 @@
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel6;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel10;
-        private MaterialSkin.Controls.MaterialLabel materialLabel21;
-        private MaterialSkin.Controls.MaterialLabel materialLabel14;
-        private MaterialSkin.Controls.MaterialLabel materialLabel17;
-        private System.Windows.Forms.TextBox textBox18;
-        private MaterialSkin.Controls.MaterialLabel materialLabel13;
-        private MaterialSkin.Controls.MaterialLabel materialLabel18;
-        private MaterialSkin.Controls.MaterialLabel materialLabel9;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
-        private MaterialSkin.Controls.MaterialLabel materialLabel20;
-        private System.Windows.Forms.TextBox textBox15;
-        private MaterialSkin.Controls.MaterialLabel materialLabel16;
-        private System.Windows.Forms.TextBox textBox17;
-        private MaterialSkin.Controls.MaterialLabel materialLabel15;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox3;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Button button3;
+        public System.Windows.Forms.DateTimePicker dateTimePicker1;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.ComboBox comboBox2;
+        public MaterialSkin.Controls.MaterialLabel materialLabel1;
+        public System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        public MaterialSkin.Controls.MaterialLabel materialLabel6;
+        public System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        public MaterialSkin.Controls.MaterialLabel materialLabel10;
+        public MaterialSkin.Controls.MaterialLabel materialLabel21;
+        public MaterialSkin.Controls.MaterialLabel materialLabel14;
+        public MaterialSkin.Controls.MaterialLabel materialLabel17;
+        public System.Windows.Forms.TextBox textBox18;
+        public MaterialSkin.Controls.MaterialLabel materialLabel13;
+        public MaterialSkin.Controls.MaterialLabel materialLabel18;
+        public MaterialSkin.Controls.MaterialLabel materialLabel9;
+        public MaterialSkin.Controls.MaterialLabel materialLabel5;
+        public MaterialSkin.Controls.MaterialLabel materialLabel20;
+        public System.Windows.Forms.TextBox textBox15;
+        public MaterialSkin.Controls.MaterialLabel materialLabel16;
+        public System.Windows.Forms.TextBox textBox17;
+        public MaterialSkin.Controls.MaterialLabel materialLabel15;
+        public System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.TextBox textBox16;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.MaskedTextBox maskedTextBox3;
     }
 }

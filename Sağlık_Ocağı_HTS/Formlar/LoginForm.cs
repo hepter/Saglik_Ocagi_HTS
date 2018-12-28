@@ -25,7 +25,7 @@ namespace Sağlık_Ocağı_HTS.Formlar
 
         }
 
-        private MainForm form ;
+        static  public MainForm form ;
         private void button1_Click(object sender, EventArgs e)
         {
             var db= new saglikDBEntities_1();
@@ -62,10 +62,14 @@ namespace Sağlık_Ocağı_HTS.Formlar
         void göster()
         {
             Hide();
-            form.ShowDialog();
-            Show();
-            materialSingleLineTextField1.Text = "";
-            materialSingleLineTextField2.Text = "";
+            form.Show();
+            form.KapatEvent += (sender, args) =>
+            {
+                this.Show();
+                form.Hide();
+                
+            };
+           
         }
 
         private void button2_Click(object sender, EventArgs e)

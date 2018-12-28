@@ -120,5 +120,15 @@ namespace Sağlık_Ocağı_HTS.Formlar.HastaIslem
         {
             Close();
         }
+
+        private void TaburcuForm_ResizeBegin(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.SuspendLayout();
+        }
+
+        private void TaburcuForm_ResizeEnd(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.ResumeLayout();
+        }
     }
 }
