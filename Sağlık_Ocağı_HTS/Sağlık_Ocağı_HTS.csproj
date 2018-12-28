@@ -87,112 +87,112 @@
     <Compile Include="dosya.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserItem.cs">
+    <Compile Include="Formlar\Main\AdminPanel\Bilesenler\UserItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserItem.Designer.cs">
+    <Compile Include="Formlar\Main\AdminPanel\Bilesenler\UserItem.Designer.cs">
       <DependentUpon>UserItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserEkleHızlı.cs">
+    <Compile Include="Formlar\Main\AdminPanel\UserEkleHızlı.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserEkleHızlı.Designer.cs">
+    <Compile Include="Formlar\Main\AdminPanel\UserEkleHızlı.Designer.cs">
       <DependentUpon>UserEkleHızlı.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserDetay.cs">
+    <Compile Include="Formlar\Main\AdminPanel\Bilesenler\UserDetay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\UserDetay.Designer.cs">
+    <Compile Include="Formlar\Main\AdminPanel\Bilesenler\UserDetay.Designer.cs">
       <DependentUpon>UserDetay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\AdminPanelForm.cs">
+    <Compile Include="Formlar\Main\AdminPanel\AdminPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\AdminPanel\AdminPanelForm.Designer.cs">
+    <Compile Include="Formlar\Main\AdminPanel\AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\DialogBox.cs">
+    <Compile Include="Formlar\SoyutForm\DialogBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\DialogBox.Designer.cs">
+    <Compile Include="Formlar\SoyutForm\DialogBox.Designer.cs">
       <DependentUpon>DialogBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\DrVePersonelEkleForm.cs">
+    <Compile Include="Formlar\Main\DoktorVePersonel\Bilesenler\DrVePersonelEkleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\DrVePersonelEkleForm.Designer.cs">
+    <Compile Include="Formlar\Main\DoktorVePersonel\Bilesenler\DrVePersonelEkleForm.Designer.cs">
       <DependentUpon>DrVePersonelEkleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\DrVePersonelItem.cs">
+    <Compile Include="Formlar\Main\DoktorVePersonel\Bilesenler\DrVePersonelItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\DrVePersonelItem.Designer.cs">
+    <Compile Include="Formlar\Main\DoktorVePersonel\Bilesenler\DrVePersonelItem.Designer.cs">
       <DependentUpon>DrVePersonelItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\DrVePersonelListeleForm.cs">
+    <Compile Include="Formlar\Main\DoktorVePersonel\DrVePersonelListeleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\DrVePersonelListeleForm.Designer.cs">
+    <Compile Include="Formlar\Main\DoktorVePersonel\DrVePersonelListeleForm.Designer.cs">
       <DependentUpon>DrVePersonelListeleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\GelismisAramaForm.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\GelismisAramaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\GelismisAramaForm.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\GelismisAramaForm.Designer.cs">
       <DependentUpon>GelismisAramaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\HastaIslemPanel.cs">
+    <Compile Include="Formlar\Main\HastaIslem\HastaIslemPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\HastaIslemPanel.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\HastaIslemPanel.Designer.cs">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\IslemEkleForm.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\IslemEkleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\IslemEkleForm.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\IslemEkleForm.Designer.cs">
       <DependentUpon>IslemEkleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\IslemItem.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\IslemItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\IslemItem.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\IslemItem.Designer.cs">
       <DependentUpon>IslemItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\SevkItem.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\SevkItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\SevkItem.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\SevkItem.Designer.cs">
       <DependentUpon>SevkItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\TaburcuForm.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\TaburcuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\TaburcuForm.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\TaburcuForm.Designer.cs">
       <DependentUpon>TaburcuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\YeniHastaForm.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\YeniHastaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\YeniHastaForm.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\YeniHastaForm.Designer.cs">
       <DependentUpon>YeniHastaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\YeniSevkForm.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\YeniSevkForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\HastaIslem\YeniSevkForm.Designer.cs">
+    <Compile Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\YeniSevkForm.Designer.cs">
       <DependentUpon>YeniSevkForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.cs">
+    <Compile Include="Formlar\Main\Poliklinik\PoliklinikEkleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.Designer.cs">
-      <DependentUpon>PoliklinikEkle.cs</DependentUpon>
+    <Compile Include="Formlar\Main\Poliklinik\PoliklinikEkleForm.Designer.cs">
+      <DependentUpon>PoliklinikEkleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\Poliklinik\Ekle\PoliklinikItem.cs">
+    <Compile Include="Formlar\Main\Poliklinik\Bilesenler\PoliklinikItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Formlar\Poliklinik\Ekle\PoliklinikItem.Designer.cs">
+    <Compile Include="Formlar\Main\Poliklinik\Bilesenler\PoliklinikItem.Designer.cs">
       <DependentUpon>PoliklinikItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Formlar\LoginForm.cs">
@@ -201,23 +201,17 @@
     <Compile Include="Formlar\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\MainForm.cs">
+    <Compile Include="Formlar\Main\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\MainForm.Designer.cs">
+    <Compile Include="Formlar\Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formlar\Poliklinik\PoliklinikGöster.cs">
+    <Compile Include="Formlar\Main\Poliklinik\Bilesenler\PoliklinikGöster.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formlar\Poliklinik\PoliklinikGöster.Designer.cs">
+    <Compile Include="Formlar\Main\Poliklinik\Bilesenler\PoliklinikGöster.Designer.cs">
       <DependentUpon>PoliklinikGöster.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formlar\PrintPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formlar\PrintPreview.Designer.cs">
-      <DependentUpon>PrintPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="hasta.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -266,73 +260,69 @@
     <Compile Include="taburcu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Formlar\AdminPanel\UserItem.resx">
+    <EmbeddedResource Include="Formlar\Main\AdminPanel\Bilesenler\UserItem.resx">
       <DependentUpon>UserItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\AdminPanel\UserEkleHızlı.resx">
+    <EmbeddedResource Include="Formlar\Main\AdminPanel\UserEkleHızlı.resx">
       <DependentUpon>UserEkleHızlı.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\AdminPanel\UserDetay.resx">
+    <EmbeddedResource Include="Formlar\Main\AdminPanel\Bilesenler\UserDetay.resx">
       <DependentUpon>UserDetay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\AdminPanel\AdminPanelForm.resx">
+    <EmbeddedResource Include="Formlar\Main\AdminPanel\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\DialogBox.resx">
+    <EmbeddedResource Include="Formlar\SoyutForm\DialogBox.resx">
       <DependentUpon>DialogBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\DrVePersonelEkleForm.resx">
+    <EmbeddedResource Include="Formlar\Main\DoktorVePersonel\Bilesenler\DrVePersonelEkleForm.resx">
       <DependentUpon>DrVePersonelEkleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\DrVePersonelItem.resx">
+    <EmbeddedResource Include="Formlar\Main\DoktorVePersonel\Bilesenler\DrVePersonelItem.resx">
       <DependentUpon>DrVePersonelItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\DrVePersonelListeleForm.resx">
+    <EmbeddedResource Include="Formlar\Main\DoktorVePersonel\DrVePersonelListeleForm.resx">
       <DependentUpon>DrVePersonelListeleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\GelismisAramaForm.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\Bilesenler\GelismisAramaForm.resx">
       <DependentUpon>GelismisAramaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\HastaIslemPanel.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\HastaIslemPanel.resx">
       <DependentUpon>HastaIslemPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\IslemEkleForm.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\IslemEkleForm.resx">
       <DependentUpon>IslemEkleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\IslemItem.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\IslemItem.resx">
       <DependentUpon>IslemItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\SevkItem.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\Bilesenler\SevkItem.resx">
       <DependentUpon>SevkItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\TaburcuForm.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\Bilesenler\TaburcuForm.resx">
       <DependentUpon>TaburcuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\YeniHastaForm.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\Bilesenler\YeniHastaForm.resx">
       <DependentUpon>YeniHastaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\HastaIslem\YeniSevkForm.resx">
+    <EmbeddedResource Include="Formlar\Main\HastaIslem\Bilesenler\Sevk\YeniSevkForm.resx">
       <DependentUpon>YeniSevkForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\Poliklinik\Ekle\PoliklinikEkle.resx">
-      <DependentUpon>PoliklinikEkle.cs</DependentUpon>
+    <EmbeddedResource Include="Formlar\Main\Poliklinik\PoliklinikEkleForm.resx">
+      <DependentUpon>PoliklinikEkleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\Poliklinik\Ekle\PoliklinikItem.resx">
+    <EmbeddedResource Include="Formlar\Main\Poliklinik\Bilesenler\PoliklinikItem.resx">
       <DependentUpon>PoliklinikItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formlar\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\MainForm.resx">
+    <EmbeddedResource Include="Formlar\Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\Poliklinik\PoliklinikGöster.resx">
+    <EmbeddedResource Include="Formlar\Main\Poliklinik\Bilesenler\PoliklinikGöster.resx">
       <DependentUpon>PoliklinikGöster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formlar\PrintPreview.resx">
-      <DependentUpon>PrintPreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

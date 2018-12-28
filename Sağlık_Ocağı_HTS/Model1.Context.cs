@@ -17,8 +17,7 @@ namespace Sağlık_Ocağı_HTS
     
     public partial class saglikDBEntities_1 : DbContext
     {
-        public saglikDBEntities_1()
-            : base("name=saglikDBEntities_1")
+        public saglikDBEntities_1(): base("name=saglikDBEntities_1")
         {
         }
     
