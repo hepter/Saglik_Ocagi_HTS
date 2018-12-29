@@ -1,4 +1,5 @@
 # Sağlık Ocağı Hasta Takip Sistemi
 
 
-[![SOHTS](https://cdn.pbrd.co/images/HTYlZBE.png)](https://youtu.be/1Jw-hPF2SeA)
+#### Video
+[![SOHTS](https://i.ibb.co/CwmKGCc/Ads-z.png)](https://youtu.be/1Jw-hPF2SeA)
