@@ -2,7 +2,7 @@
 
 
 #### Video
-[![SOHTS](https://i.ibb.co/CwmKGCc/Ads-z.png)](https://youtu.be/1Jw-hPF2SeA)
+[![SOHTS](https://i.ibb.co/CwmKGCc/Ads-z.png)](https://youtu.be/WxgiwbgWD3M)
 
 
 ## Uygulanması
